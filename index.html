@@ -259,8 +259,8 @@ textarea{min-height:110px;resize:vertical;line-height:1.45}
 .progress-region.open{border-color:rgba(225,211,151,.34)}
 .progress-region-toggle{width:100%;border:0;background:rgba(255,255,255,.014);color:inherit;padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px;align-items:center;text-align:left;cursor:pointer;border-bottom:1px solid transparent}
 .progress-region-toggle:hover{background:rgba(201,183,125,.055)}.progress-region.open .progress-region-toggle{border-bottom-color:var(--line);background:rgba(201,183,125,.045)}
-.progress-region-title{min-width:0}.progress-region-title h2{font-size:18px;color:var(--gold-bright)}.progress-region-sub{display:flex;flex-wrap:wrap;gap:7px;align-items:center;margin-top:6px;color:var(--dim);font-size:13px}
-.progress-region-stats{text-align:right;min-width:105px}.progress-region-stats strong{display:block;color:var(--text);font-family:"Noto Serif Display",Georgia,serif;font-size:14px}.progress-region-stats span{display:block;color:var(--dim);font-size:12px;margin-top:3px}
+.progress-region-title{min-width:0}.progress-region-title h2{font-size:18px;color:var(--gold-bright)}.progress-region-sub{display:flex;flex-wrap:wrap;justify-content:flex-start;align-items:center;gap:10px;margin-top:8px;color:var(--dim);font-size:13px}.progress-region-sub .part-badge{margin-right:2px}
+.progress-region-stats{text-align:right;min-width:76px;display:flex;flex-direction:column;align-items:flex-end;justify-content:center;gap:0}.progress-region-stats strong{display:block;color:var(--text);font-family:"Noto Serif Display",Georgia,serif;font-size:14px;line-height:1}.progress-region-stats span{display:none}
 .progress-chevron{width:30px;height:30px;border:1px solid var(--line);display:grid;place-items:center;color:var(--gold);font-size:17px;transition:transform .2s ease,background .2s ease}.progress-region.open .progress-chevron{transform:rotate(180deg);background:rgba(201,183,125,.08)}
 .progress-region-progress{height:4px;background:rgba(255,255,255,.05);grid-column:1/-1;margin-top:3px}.progress-region-progress span{display:block;height:100%;background:linear-gradient(90deg,#7e7248,#d7c686);transition:.25s}
 .progress-region-body{padding:14px 16px 16px}.progress-region-body[hidden]{display:none}
@@ -288,7 +288,7 @@ textarea{min-height:110px;resize:vertical;line-height:1.45}
 .progress-region.dlc-region.open{border-color:rgba(226,145,101,.5)}
 .progress-region.dlc-region .progress-region-toggle:hover{background:rgba(181,81,46,.08)}
 .progress-region.dlc-region.open .progress-region-toggle{background:linear-gradient(90deg,rgba(156,64,37,.13),rgba(201,183,125,.025));border-bottom-color:rgba(206,118,76,.3)}
-.progress-region.dlc-region .progress-region-title h2{color:#efc8aa;font-size:20px}
+.progress-region.dlc-region .progress-region-title h2{color:#efc8aa;font-size:18px}
 .progress-region.dlc-region .progress-chevron{border-color:rgba(206,118,76,.38);color:#e49a70}
 .progress-region.dlc-region.open .progress-chevron{background:rgba(156,64,37,.14)}
 .progress-region.dlc-region .progress-region-progress span{background:linear-gradient(90deg,#8f462f,#d7895e,#d7bd7d)}
@@ -496,6 +496,13 @@ html[lang="vi"] .map-note-tag{
 .affinity-custom-trigger .affinity-icon-wrap.selector{width:28px;height:28px;flex-basis:28px}
 @media(max-width:650px){.affinity-custom-menu{max-height:280px}.affinity-custom-trigger{grid-template-columns:28px minmax(0,1fr) auto}}
 
+
+/* V1.0.1a — đồng bộ bố cục tag Game chính / DLC */
+.progress-region-toggle{grid-template-columns:minmax(0,1fr) auto auto!important}
+.progress-region-title{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;justify-self:stretch!important;width:100%!important;min-width:0!important;text-align:left!important}
+.progress-region-sub{display:flex!important;width:100%!important;justify-content:flex-start!important;align-items:center!important;align-self:flex-start!important;margin:8px 0 0!important;padding:0!important;gap:10px!important;text-align:left!important}
+.progress-region-sub .part-badge{margin:0 2px 0 0!important}
+.progress-region-stats span{display:none!important}
 </style>
 </head>
 <body>
@@ -867,15 +874,10 @@ function isProgressSectionOpen(sectionId){
 }
 function renderProgressAccordion(){
   const list=filteredProgressSections(),query=questSearch.value.trim().toLowerCase(),status=questStatus.value;
-  let dlcDividerAdded=false;
   const sectionsHtml=[];
   list.forEach(section=>{
-    if(section.part==='dlc'&&!dlcDividerAdded){
-      dlcDividerAdded=true;
-      sectionsHtml.push(`<div class="progress-dlc-divider"><div class="dlc-kicker">DLC Expansion</div><h2>Shadow of the Erdtree</h2><p>Phần tiến trình DLC được tách riêng bằng tông đỏ đồng để dễ phân biệt với hành trình game chính.</p></div>`);
-    }
     const p=sectionCompletion(section),visible=section.items.filter(item=>stepMatches(item,query,status)),open=isProgressSectionOpen(section.id),itemsHtml=renderProgressItems(section,visible),isDlc=section.part==='dlc';
-    sectionsHtml.push(`<section class="progress-region ${isDlc?'dlc-region':''} ${open?'open':''}" data-progress-region="${esc(section.id)}"><button class="progress-region-toggle" type="button" data-progress-toggle="${esc(section.id)}" aria-expanded="${open}"><div class="progress-region-title"><h2>${esc(section.title)}</h2><div class="progress-region-sub"><span class="part-badge ${isDlc?'dlc':'main'}">${isDlc?'DLC':'Game chính'}</span><span>${p.total} bước</span><span>${Math.round(p.pct)}% hoàn thành</span></div></div><div class="progress-region-stats"><strong>${p.done} / ${p.total}</strong><span>đã hoàn thành</span></div><span class="progress-chevron" aria-hidden="true">⌄</span><div class="progress-region-progress"><span style="width:${p.pct}%"></span></div></button><div class="progress-region-body" ${open?'':'hidden'}><div class="progress-items">${itemsHtml||'<div class="progress-empty">Không có bước phù hợp với bộ lọc hiện tại.</div>'}</div><div class="section-source">Checklist được nhập từ tài liệu “All NPCs Guide - Theo thứ tự thời gian theo khu vực” mà bạn cung cấp.</div></div></section>`);
+    sectionsHtml.push(`<section class="progress-region ${isDlc?'dlc-region':''} ${open?'open':''}" data-progress-region="${esc(section.id)}"><button class="progress-region-toggle" type="button" data-progress-toggle="${esc(section.id)}" aria-expanded="${open}"><div class="progress-region-title"><h2>${esc(section.title)}</h2><div class="progress-region-sub"><span class="part-badge ${isDlc?'dlc':'main'}">${isDlc?'DLC':'Game chính'}</span><span>${p.total} bước</span><span>${Math.round(p.pct)}% hoàn thành</span></div></div><div class="progress-region-stats"><strong>${p.done} / ${p.total}</strong></div><span class="progress-chevron" aria-hidden="true">⌄</span><div class="progress-region-progress"><span style="width:${p.pct}%"></span></div></button><div class="progress-region-body" ${open?'':'hidden'}><div class="progress-items">${itemsHtml||'<div class="progress-empty">Không có bước phù hợp với bộ lọc hiện tại.</div>'}</div><div class="section-source">Checklist được nhập từ tài liệu “All NPCs Guide - Theo thứ tự thời gian theo khu vực” mà bạn cung cấp.</div></div></section>`);
   });
   progressAccordion.innerHTML=sectionsHtml.join('')||'<div class="panel progress-empty">Không tìm thấy khu vực hoặc bước tiến trình phù hợp.</div>';
   questCount.textContent=`${list.length} / ${PROGRESSION.length} khu vực`;
