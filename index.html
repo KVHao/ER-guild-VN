@@ -53,13 +53,19 @@ a{color:inherit}
   border-bottom:1px solid var(--line); background:linear-gradient(90deg,rgba(36,40,30,.94),rgba(13,16,13,.8));
   box-shadow:0 8px 30px rgba(0,0,0,.24); position:sticky; top:0; z-index:20; backdrop-filter:blur(12px);
 }
-.brand{display:flex; align-items:center; gap:14px; min-width:265px}
+.brand{display:flex; align-items:center; gap:14px; min-width:265px;position:relative}
 .brand-mark{
-  width:44px;height:44px;border:1px solid var(--line-strong);position:relative;display:grid;place-items:center;
+  width:44px;height:44px;border:1px solid var(--line-strong);position:relative;display:grid;place-items:center;padding:0;cursor:pointer;touch-action:manipulation;
   background:radial-gradient(circle,rgba(209,192,127,.18),transparent 62%),rgba(255,255,255,.02);
   box-shadow:inset 0 0 24px rgba(0,0,0,.45),0 0 15px rgba(203,185,124,.08);
 }
 .brand-mark:before{content:"◈";font-size:26px;color:var(--gold-bright);text-shadow:0 0 12px rgba(234,220,166,.3)}
+.brand-mark:after{content:"";display:none}
+.mobile-nav-menu{position:absolute;top:calc(100% + 1px);left:10px;right:10px;display:none;grid-template-columns:1fr;gap:4px;padding:9px;border:1px solid var(--line-strong);background:linear-gradient(145deg,rgba(30,34,27,.98),rgba(10,12,10,.98));box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:50}
+.mobile-nav-menu.show{display:grid}
+.mobile-nav-item{width:100%;min-height:44px;border:1px solid transparent;border-left:3px solid transparent;background:rgba(255,255,255,.018);color:var(--muted);padding:10px 13px;text-align:left;cursor:pointer;font-family:"Noto Serif Display",Georgia,serif;font-size:13px;letter-spacing:.03em;text-transform:uppercase}
+.mobile-nav-item:hover,.mobile-nav-item:focus-visible{color:var(--text);background:rgba(201,183,125,.07);outline:none}
+.mobile-nav-item.active{color:var(--gold-bright);border-color:rgba(201,183,125,.22);border-left-color:var(--gold);background:linear-gradient(90deg,rgba(201,183,125,.12),rgba(201,183,125,.025))}
 .brand-title{font-family:"Noto Serif Display", Georgia, serif;font-size:19px;letter-spacing:.03em;line-height:1.15}
 .brand-title small{display:block;color:var(--dim);font-family:"Noto Serif", Georgia, serif;font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
 .nav{display:flex;align-self:stretch;gap:2px;flex:1}
@@ -346,7 +352,7 @@ textarea{min-height:110px;resize:vertical;line-height:1.45}
   .progress-controls{grid-template-columns:1fr 1fr 1fr auto auto}.progress-guide-note{grid-template-columns:auto minmax(0,1fr)}.progress-legend{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media(max-width:650px){
-  body{font-size:16px}.brand-title small{display:none}.brand-mark{width:38px;height:38px}.topbar{gap:8px}.btn .optional{display:none}.page-head{align-items:flex-start;flex-direction:column}.filter-grid,.form-grid,.slot-grid,.talisman-grid,.quest-toolbar{grid-template-columns:1fr}.filter-grid .wide,.form-grid .span2{grid-column:auto}.summary-grid{grid-template-columns:1fr 1fr}.map-note{grid-template-columns:1fr;align-items:start}.map-note .btn{grid-column:auto;width:100%;text-align:center}.map-frame,.map-frame-wrap{height:580px;min-height:580px}.map-fallback{inset:auto 10px 10px;flex-direction:column;align-items:flex-start}.top-actions .btn:not(.icon-btn){padding:9px}.section-grid{display:block}.progress-controls{grid-template-columns:1fr 1fr}.progress-controls #questSearch{grid-column:1/-1}.progress-guide-note{grid-template-columns:1fr}.progress-legend{grid-column:auto;grid-template-columns:1fr 1fr}.progress-controls .btn{width:100%}.progress-region-toggle{grid-template-columns:minmax(0,1fr) auto}.progress-region-stats{display:none}.progress-item.level-1{margin-left:12px}.progress-item.level-2{margin-left:24px}
+  body{font-size:16px}.brand-title small{display:none}.brand{flex:1;min-width:0}.brand-mark{width:38px;height:38px;cursor:pointer;touch-action:manipulation}.brand-mark:after{content:"⌄";display:block;position:absolute;right:2px;bottom:-1px;color:var(--gold);font-size:11px;line-height:1;transition:transform .18s ease}.brand-mark[aria-expanded="true"]:after{transform:rotate(180deg)}.brand-mark:focus-visible{outline:2px solid var(--gold);outline-offset:3px}.topbar{gap:8px;flex-wrap:nowrap}.nav{display:none}.mobile-nav-menu{position:absolute;top:calc(100% + 1px);left:10px;right:10px;display:none;grid-template-columns:1fr;gap:4px;padding:9px;border:1px solid var(--line-strong);background:linear-gradient(145deg,rgba(30,34,27,.98),rgba(10,12,10,.98));box-shadow:0 18px 40px rgba(0,0,0,.55);z-index:50}.mobile-nav-menu.show{display:grid}.mobile-nav-item{width:100%;min-height:44px;border:1px solid transparent;border-left:3px solid transparent;background:rgba(255,255,255,.018);color:var(--muted);padding:10px 13px;text-align:left;cursor:pointer;font-family:"Noto Serif Display",Georgia,serif;font-size:13px;letter-spacing:.03em;text-transform:uppercase}.mobile-nav-item:hover,.mobile-nav-item:focus-visible{color:var(--text);background:rgba(201,183,125,.07);outline:none}.mobile-nav-item.active{color:var(--gold-bright);border-color:rgba(201,183,125,.22);border-left-color:var(--gold);background:linear-gradient(90deg,rgba(201,183,125,.12),rgba(201,183,125,.025))}.btn .optional{display:none}.page-head{align-items:flex-start;flex-direction:column}.filter-grid,.form-grid,.slot-grid,.talisman-grid,.quest-toolbar{grid-template-columns:1fr}.filter-grid .wide,.form-grid .span2{grid-column:auto}.summary-grid{grid-template-columns:1fr 1fr}.map-note{grid-template-columns:1fr;align-items:start}.map-note .btn{grid-column:auto;width:100%;text-align:center}.map-frame,.map-frame-wrap{height:580px;min-height:580px}.map-fallback{inset:auto 10px 10px;flex-direction:column;align-items:flex-start}.top-actions .btn:not(.icon-btn){padding:9px}.section-grid{display:block}.progress-controls{grid-template-columns:1fr 1fr}.progress-controls #questSearch{grid-column:1/-1}.progress-guide-note{grid-template-columns:1fr}.progress-legend{grid-column:auto;grid-template-columns:1fr 1fr}.progress-controls .btn{width:100%}.progress-region-toggle{grid-template-columns:minmax(0,1fr) auto}.progress-region-stats{display:none}.progress-item.level-1{margin-left:12px}.progress-item.level-2{margin-left:24px}
 }
 
 
@@ -579,7 +585,7 @@ html[lang="vi"] .map-note-tag{
 <div class="shell">
   <div class="topbar">
     <div class="brand">
-      <div class="brand-mark"></div>
+      <button class="brand-mark" id="mobileNavToggle" type="button" aria-label="Mở danh sách tab chính" aria-controls="mobileNavMenu" aria-expanded="false"></button>
       <div class="brand-title">Elden Ring Companion<small>Version 1.1</small></div>
     </div>
     <nav class="nav" aria-label="Điều hướng chính">
@@ -589,6 +595,13 @@ html[lang="vi"] .map-note-tag{
       <button class="nav-btn" data-tab="bosses">Infor Boss</button>
       <button class="nav-btn" data-tab="planner">Planner</button>
     </nav>
+    <div class="mobile-nav-menu" id="mobileNavMenu" aria-label="Danh sách tab chính" aria-hidden="true">
+      <button class="mobile-nav-item active" type="button" data-mobile-tab="map">Bản đồ Check-in</button>
+      <button class="mobile-nav-item" type="button" data-mobile-tab="quest">Tiến trình</button>
+      <button class="mobile-nav-item" type="button" data-mobile-tab="items">Tra cứu</button>
+      <button class="mobile-nav-item" type="button" data-mobile-tab="bosses">Infor Boss</button>
+      <button class="mobile-nav-item" type="button" data-mobile-tab="planner">Planner</button>
+    </div>
     <div class="top-actions">
       <button class="btn" id="dataBtn" type="button" title="Sao lưu hoặc khôi phục checklist">💾 <span class="optional">Lưu checklist</span></button>
       <button class="btn primary" id="downloadBtn" type="button" title="Tải file HTML hiện tại về máy">⇩ <span class="optional">Tải HTML</span></button>
@@ -914,12 +927,21 @@ function setProgressMode(mode,persist=true){
 }
 function setTab(tab){
   if(tab==='guidev2'){tab='quest';state.progressMode='v2'}
-  state.activeTab=tab;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+tab));saveState();
+  state.activeTab=tab;document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));document.querySelectorAll('[data-mobile-tab]').forEach(b=>b.classList.toggle('active',b.dataset.mobileTab===tab));document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('active',p.id==='tab-'+tab));closeMobileNav();saveState();
   if(tab==='quest')setProgressMode(state.progressMode||'v1',false);
   if(tab==='items'||tab==='bosses')initItemChecklist().then(()=>{if(tab==='bosses')renderBossChecklist()});if(tab==='planner')initPlannerCatalogs()
 }
 
+const mobileNavToggle=document.getElementById('mobileNavToggle'),mobileNavMenu=document.getElementById('mobileNavMenu');
+function closeMobileNav(){if(!mobileNavToggle||!mobileNavMenu)return;mobileNavMenu.classList.remove('show');mobileNavMenu.setAttribute('aria-hidden','true');mobileNavToggle.setAttribute('aria-expanded','false')}
+function toggleMobileNav(){if(!mobileNavToggle||!mobileNavMenu)return;const open=!mobileNavMenu.classList.contains('show');mobileNavMenu.classList.toggle('show',open);mobileNavMenu.setAttribute('aria-hidden',String(!open));mobileNavToggle.setAttribute('aria-expanded',String(open))}
 document.querySelectorAll('.nav-btn').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+document.querySelectorAll('[data-mobile-tab]').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.mobileTab)));
+if(mobileNavToggle)mobileNavToggle.addEventListener('click',e=>{e.stopPropagation();toggleMobileNav()});
+if(mobileNavMenu)mobileNavMenu.addEventListener('click',e=>e.stopPropagation());
+document.addEventListener('click',closeMobileNav);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobileNav()});
+window.addEventListener('resize',()=>{if(mobileNavMenu?.classList.contains('show'))closeMobileNav()});
 document.querySelectorAll('[data-progress-mode]').forEach(btn=>btn.addEventListener('click',()=>setProgressMode(btn.dataset.progressMode)));
 
 function initMapFilters(){
