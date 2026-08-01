@@ -1961,7 +1961,7 @@ async function hydrateTalismanEffectPanel(item){return talismanEffectVi(item)}
 
 const wikiEffectCache=new Map();
 const spellInfoCache=new Map();
-// Dữ liệu phép được nhúng trực tiếp để cửa sổ chi tiết không phụ thuộc kết nối mạng.
+// Dữ liệu cũ được giữ lại để tương thích, nhưng cửa sổ chi tiết phép hiện chỉ tải online từ Nyasu.
 // Khóa dùng normalizeItemName() để khớp tên từ checklist / planner.
 const SPELL_OFFLINE_DATA={
   'comet':{
@@ -2117,14 +2117,8 @@ function spellRequirementText(data={}){
   return req.join(' · ')||'Không có yêu cầu được ghi';
 }
 function renderSpellNyasuPanel(item){
-  const mind=state?.planner?.stats?.mind||10,fp=plannerFpEstimate(mind),embedded=spellOfflineData(item);
-  const cost=Number(embedded?.fpCost)||0,casts=cost>0?Math.floor(fp/cost):0;
-  const summary=embedded?.effect||spellFallbackEffectVi(item?.name||'',item?.category||'');
-  const type=embedded?.type||spellTypeVi(item),school=embedded?.school||spellSchoolVi(item,{}),slots=Number(embedded?.memorySlots)||0;
-  const stamina=embedded?.staminaCost||'Chờ đối chiếu Nyasu',charge=embedded?.charge||spellChargeVi(item,{}),damage=embedded?.damageType||spellDamageTypeVi(item,{});
-  const req=embedded?.requires?.length?spellRequirementText({requires:embedded.requires||[]}):'Chờ đối chiếu Nyasu';
-  const note=embedded?.source||'Mô tả tiếng Việt được nhúng trực tiếp. Bộ thông số đầy đủ của phép này chưa được thêm vào dữ liệu offline.';
-  return `<section class="spell-nyasu-panel" id="spellNyasuPanel" data-item-id="${esc(item.id)}"><div class="spell-nyasu-head"><h3>✦ Thông tin phép · ${esc(item.name)}</h3></div><p class="spell-nyasu-effect">${esc(summary)}</p><div class="spell-nyasu-grid"><div class="spell-nyasu-cell"><span>Loại</span><b>${esc(type)}</b></div><div class="spell-nyasu-cell"><span>Trường phái</span><b>${esc(school)}</b></div><div class="spell-nyasu-cell"><span>FP Cost</span><b>${cost?`${cost} FP`:'Chờ đối chiếu Nyasu'}</b></div><div class="spell-nyasu-cell"><span>Số lần dùng</span><b>${cost?`${casts} lần · Mind ${mind} / ${fp} FP`:`— / ${fp} FP`}</b></div><div class="spell-nyasu-cell"><span>Memory Slots</span><b>${slots?`${slots} ô`:'Chờ đối chiếu Nyasu'}</b></div><div class="spell-nyasu-cell"><span>Stamina Cost</span><b>${esc(stamina)}</b></div><div class="spell-nyasu-cell"><span>Giữ / tích lực</span><b>${esc(charge)}</b></div><div class="spell-nyasu-cell"><span>Loại sát thương</span><b>${esc(damage)}</b></div></div><div class="spell-nyasu-requires">Yêu cầu: ${esc(req)}</div><div class="spell-nyasu-note">${esc(note)}</div></section>`;
+  const mind=state?.planner?.stats?.mind||10,fp=plannerFpEstimate(mind),loading='Đang lấy dữ liệu đợi chút';
+  return `<section class="spell-nyasu-panel" id="spellNyasuPanel" data-item-id="${esc(item.id)}"><div class="spell-nyasu-head"><h3>✦ Thông tin phép · ${esc(item.name)}</h3><span class="spell-nyasu-source">Nyasu · Online</span></div><p class="spell-nyasu-effect">${esc(loading)}</p><div class="spell-nyasu-grid"><div class="spell-nyasu-cell"><span>Loại</span><b>${esc(spellTypeVi(item))}</b></div><div class="spell-nyasu-cell"><span>Trường phái</span><b>${esc(loading)}</b></div><div class="spell-nyasu-cell"><span>FP Cost</span><b>${esc(loading)}</b></div><div class="spell-nyasu-cell"><span>Số lần dùng</span><b>— / ${fp} FP</b></div><div class="spell-nyasu-cell"><span>Memory Slots</span><b>${esc(loading)}</b></div><div class="spell-nyasu-cell"><span>Stamina Cost</span><b>${esc(loading)}</b></div><div class="spell-nyasu-cell"><span>Giữ / tích lực</span><b>${esc(loading)}</b></div><div class="spell-nyasu-cell"><span>Loại sát thương</span><b>${esc(loading)}</b></div></div><div class="spell-nyasu-requires">Yêu cầu: ${esc(loading)}</div><div class="spell-nyasu-note">Đang kết nối trực tiếp dữ liệu hiển thị của Nyasu Build Planner…</div></section>`;
 }
 function renderDynamicEffectPanel(item){
   if(isSpellItem(item))return renderSpellNyasuPanel(item);
@@ -2140,16 +2134,95 @@ function dynamicEffectMeta(item){
   if(item.group==='Items')return{title:'◈ Công dụng vật phẩm',kind:'Item'};
   return null;
 }
+const NYASU_SPELLS_BASE='https://er-build-planner.nyasu.business/spells';
+const NYASU_READER_PREFIX='https://r.jina.ai/http://';
+function nyasuReaderUrl(path=''){
+  const clean=String(path||'').replace(/^https?:\/\//i,'');
+  return NYASU_READER_PREFIX+clean;
+}
+function nyasuSpellBlock(text,item){
+  const raw=String(text||'').replace(/\r/g,'');
+  const lines=raw.split('\n').map(line=>line.replace(/\s+/g,' ').trim()).filter(Boolean);
+  const key=normalizeItemName(item?.name||'');
+  let index=lines.findIndex(line=>normalizeItemName(line)===key);
+  if(index<0)index=lines.findIndex(line=>normalizeItemName(line).includes(key));
+  if(index<0)return raw;
+  return lines.slice(Math.max(0,index-8),Math.min(lines.length,index+90)).join('\n');
+}
+function nyasuField(text,labels=[]){
+  const source=String(text||'');
+  for(const label of labels){
+    const escaped=String(label).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+    const patterns=[
+      new RegExp(`(?:^|\\n)\\s*${escaped}\\s*[:|–—-]?\\s*([^\\n|]{1,180})`,'i'),
+      new RegExp(`${escaped}\\s*[:|–—-]\\s*([^\\n|]{1,180})`,'i')
+    ];
+    for(const pattern of patterns){const match=source.match(pattern);if(match?.[1])return match[1].trim()}
+  }
+  return'';
+}
+function nyasuNumber(text,labels=[]){
+  const value=nyasuField(text,labels);const match=String(value).match(/-?\d+(?:\.\d+)?/);return match?Number(match[0]):null;
+}
+function nyasuRequirements(text){
+  const block=nyasuField(text,['Requirements','Requirement','Required Stats','Stat Requirements','Yêu cầu']);
+  const source=block||String(text||'');
+  const defs=[['Intelligence','INT'],['Faith','FAI'],['Arcane','ARC']];
+  const out=[];
+  for(const [name,short] of defs){const match=source.match(new RegExp(`(?:${name}|${short})\\s*[:|]?\\s*(\\d+)`,'i'));if(match)out.push({name,amount:Number(match[1])})}
+  return out;
+}
+function parseNyasuSpellData(text,item){
+  const block=nyasuSpellBlock(text,item);
+  const fpCost=nyasuNumber(block,['FP Cost','FP']);
+  const memorySlots=nyasuNumber(block,['Memory Slots','Slots Used','Memory Slot','Slots']);
+  const staminaCost=nyasuField(block,['Stamina Cost','Stamina']);
+  const effect=nyasuField(block,['Effect','Effects','Description','Spell Effect'])||'';
+  const school=nyasuField(block,['School','Sorcery School','Incantation School','Spell School'])||'';
+  const damageType=nyasuField(block,['Damage Type','Attack Type','Damage'])||'';
+  const chargeRaw=nyasuField(block,['Chargeable','Charging','Can Be Charged','Hold']);
+  const requires=nyasuRequirements(block);
+  const hasName=normalizeItemName(block).includes(normalizeItemName(item?.name||''));
+  const hasStats=[fpCost,memorySlots,staminaCost,effect,school,damageType,chargeRaw,requires.length].some(Boolean);
+  if(!hasName||!hasStats)throw new Error('Nyasu chưa trả về khối dữ liệu của phép này');
+  return{
+    type:spellTypeVi(item),
+    school:school||spellSchoolVi(item,{description:block}),
+    effect:translateSpellEffectVi(effect||block,item?.name||'',item?.category||''),
+    fpCost,
+    memorySlots,
+    staminaCost:staminaCost||null,
+    charge:chargeRaw?(/yes|true|can|charge|hold|có/i.test(chargeRaw)?'Có thể giữ để tích lực':'Không ghi nhận'):spellChargeVi(item,{description:block,effects:block}),
+    damageType:damageType||spellDamageTypeVi(item,{description:block,effects:block}),
+    requires,
+    source:'Dữ liệu được lấy online từ trang Nyasu Build Planner.'
+  };
+}
+async function fetchNyasuText(url){
+  const targets=[url,nyasuReaderUrl(url),BOSS_ALLORIGINS+encodeURIComponent(url)];
+  let lastError=null;
+  for(const target of targets){
+    try{const response=await fetch(target,{cache:'no-store'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const text=await response.text();if(text&&text.length>40)return text}catch(error){lastError=error}
+  }
+  throw lastError||new Error('Không kết nối được Nyasu');
+}
 async function fetchSpellBaseData(item){
   const key=normalizeItemName(item?.name||'');if(spellInfoCache.has(key))return spellInfoCache.get(key);
-  const endpoint=item.category==='Sorceries'?'sorceries':'incantations';
+  const query=encodeURIComponent(item?.name||'');
+  const candidates=[
+    `${NYASU_SPELLS_BASE}?search=${query}`,
+    `${NYASU_SPELLS_BASE}?query=${query}`,
+    `${NYASU_SPELLS_BASE}/picker?search=${query}`,
+    NYASU_SPELLS_BASE
+  ];
   const task=(async()=>{
-    try{
-      const raw=await fetchJsonResource(`${ITEM_FANAPI_BASE}${endpoint}?name=${encodeURIComponent(item.name)}`);
-      const rows=Array.isArray(raw)?raw:(Array.isArray(raw?.data)?raw.data:[]);
-      return rows.find(x=>normalizeItemName(x?.name)===key)||rows[0]||{};
-    }catch(error){return{}}
-  })();spellInfoCache.set(key,task);return task;
+    let lastError=null;
+    for(const url of candidates){
+      try{return parseNyasuSpellData(await fetchNyasuText(url),item)}catch(error){lastError=error}
+    }
+    throw lastError||new Error('Không lấy được dữ liệu phép từ Nyasu');
+  })().catch(error=>{spellInfoCache.delete(key);throw error});
+  spellInfoCache.set(key,task);return task;
 }
 function parseSpellWikiStats(markdown=''){
   const txt=String(markdown||'');
@@ -2160,9 +2233,29 @@ function parseSpellWikiStats(markdown=''){
   return{stamina:stamina?Number(stamina):null,fp:fp?Number(fp):null,slots:slots?Number(slots):null,charge};
 }
 async function hydrateSpellNyasuPanel(item){
-  // V1.3.3: chi tiết phép chỉ dùng dữ liệu đã nhúng / dữ liệu có sẵn trong item.
-  // Không gọi FanAPI hoặc wiki khi mở modal, để bản dịch và thông tin đã khóa hoạt động offline.
-  return spellOfflineData(item);
+  const host=itemModalBody.querySelector('#spellNyasuPanel');if(!host||host.dataset.itemId!==item.id)return;
+  try{
+    const data=await fetchSpellBaseData(item);
+    const live=itemModalBody.querySelector('#spellNyasuPanel');if(!live||live.dataset.itemId!==item.id)return;
+    const mind=state?.planner?.stats?.mind||10,fp=plannerFpEstimate(mind),cost=Number(data.fpCost)||0,casts=cost>0?Math.floor(fp/cost):0;
+    const values=[data.type||spellTypeVi(item),data.school||spellSchoolVi(item,data),cost?`${cost} FP`:'Không có',cost?`${casts} lần · Mind ${mind} / ${fp} FP`:`— / ${fp} FP`,Number(data.memorySlots)?`${Number(data.memorySlots)} ô`:'Không có',data.staminaCost||'Không ghi nhận',data.charge||spellChargeVi(item,data),data.damageType||spellDamageTypeVi(item,data)];
+    const cells=live.querySelectorAll('.spell-nyasu-cell b');values.forEach((value,index)=>{if(cells[index])cells[index].textContent=value});
+    const copy=live.querySelector('.spell-nyasu-effect'),req=live.querySelector('.spell-nyasu-requires'),note=live.querySelector('.spell-nyasu-note'),source=live.querySelector('.spell-nyasu-source');
+    if(copy)copy.textContent=data.effect||spellFallbackEffectVi(item.name,item.category);
+    if(req)req.textContent=`Yêu cầu: ${spellRequirementText(data)}`;
+    if(note)note.textContent=data.source||'Dữ liệu được lấy online từ Nyasu Build Planner.';
+    if(source)source.textContent='Nyasu · Đã tải';
+  }catch(error){
+    const live=itemModalBody.querySelector('#spellNyasuPanel');if(!live||live.dataset.itemId!==item.id)return;
+    const loading='Đang lấy dữ liệu đợi chút';
+    live.querySelectorAll('.spell-nyasu-cell b').forEach((cell,index)=>{if(index>0&&cell.textContent===loading)cell.textContent='Không lấy được dữ liệu'});
+    const copy=live.querySelector('.spell-nyasu-effect'),req=live.querySelector('.spell-nyasu-requires'),note=live.querySelector('.spell-nyasu-note'),source=live.querySelector('.spell-nyasu-source');
+    if(copy&&copy.textContent===loading)copy.textContent='Không lấy được thông tin phép từ Nyasu.';
+    if(req)req.textContent='Yêu cầu: Không lấy được dữ liệu';
+    if(note)note.textContent='Hãy kiểm tra kết nối Internet rồi mở lại. Tool chỉ lấy thông tin phép từ Nyasu.';
+    if(source)source.textContent='Nyasu · Lỗi kết nối';
+    console.warn('Nyasu spell data unavailable',error);
+  }
 }
 function parseWikiGenericEffect(markdown='',item=null){
   const lines=String(markdown).replace(/\r/g,'').split('\n').map(line=>cleanWikiCell(line).replace(/^[-•#>\s]+/,'').trim()).filter(Boolean);
