@@ -769,6 +769,23 @@ html[lang="vi"] .map-note-tag{
   .planner-panel-collapsed > .panel-title:after{display:none}
 }
 
+
+.aside-section{border-top:1px solid var(--line)}
+.aside-section-hdr{display:flex;align-items:center;justify-content:space-between;padding:9px 14px;cursor:pointer;user-select:none;background:rgba(201,183,125,.025)}
+.aside-section-hdr:hover{background:rgba(201,183,125,.06)}
+.aside-section-hdr h4{margin:0;color:var(--gold-bright);font-family:inherit;font-size:13px;font-weight:600;letter-spacing:0;text-transform:none}
+.aside-section-hdr .badge-count{color:var(--dim);font-size:11px;font-weight:400}
+.aside-section-chevron{color:var(--dim);font-size:9px;transition:transform .2s}
+.aside-section.closed .aside-section-chevron{transform:rotate(-90deg)}
+.aside-section.closed .aside-section-body{display:none}
+
+.equip-load-status{display:inline-block;margin-top:2px;font-size:9px;font-weight:700;letter-spacing:.04em;padding:1px 5px;border-radius:2px}
+.equip-load-status.light{background:rgba(134,151,122,.25);color:#86977a}
+.equip-load-status.medium{background:rgba(201,183,125,.18);color:#c9b77d}
+.equip-load-status.heavy{background:rgba(166,110,97,.25);color:#c9896e}
+.equip-load-status.overloaded{background:rgba(166,110,97,.5);color:#e06060}
+.equip-load-note{padding:10px 14px 6px;border-top:1px solid var(--line);font-size:10.5px;line-height:1.7;color:var(--dim)}
+.equip-load-note span{font-weight:700;color:var(--gold)}
 </style>
 </head>
 <body>
@@ -997,6 +1014,7 @@ html[lang="vi"] .map-note-tag{
                 <div class="upcoming-class-chip"><strong>Idus Knight</strong><span class="upcoming-tag">Sắp ra mắt</span></div>
               </div>
             </div>
+            <p style="margin:6px 0 2px;color:var(--dim);font-size:11px;font-style:italic">&#9432; Chọn class khác rồi chọn lại class của build để load file lại</p>
             <div class="level-planner-grid">
               <div class="level-panel"><div class="level-label">Level đã phân bổ</div><div class="level-big" id="currentLevel">9</div></div>
               <label class="level-panel"><span class="level-label">Level đang có</span><input class="level-number-input" type="number" min="1" max="713" id="ownedLevel" value="150"></label>
@@ -1007,7 +1025,7 @@ html[lang="vi"] .map-note-tag{
             <div class="progress"><span id="levelProgress"></span></div><div id="levelHint" style="color:var(--muted);font-size:14px;margin-top:7px;line-height:1.45"></div>
           </div>
           <div class="stat-list" id="statList"></div>
-          <div id="plannerArmorSummaryAside" class="armor-aside-summary"></div>
+          <div class="aside-section" id="armorAsideSection"><div class="aside-section-hdr" onclick="this.closest('.aside-section').classList.toggle('closed');"><h4>Chỉ số bộ giáp</h4><span class="aside-section-chevron">&#9660;</span></div><div class="aside-section-body"><div id="plannerArmorSummaryAside" class="armor-aside-summary" style="border-top:none;margin-top:0;padding-top:0"></div></div></div><div class="aside-section closed" id="effectsAsideSection"><div class="aside-section-hdr" onclick="this.closest('.aside-section').classList.toggle('closed');"><h4>Hiệu ứng trang bị <span class="badge-count" id="effectsBadge"></span></h4><span class="aside-section-chevron">&#9660;</span></div><div class="aside-section-body"><div class="planner-active-effects" id="plannerActiveEffects"></div></div></div>
         </aside>
         <div class="planner-content">
           <section class="panel"><div class="panel-title"><h2>Vũ khí &amp; Ash of War</h2><span class="badge planner-catalog-badge" id="plannerCatalogBadge">Đang chuẩn bị dữ liệu</span></div><div class="subsection">
@@ -1031,7 +1049,7 @@ html[lang="vi"] .map-note-tag{
             <div class="equipment-field"><label class="caption">Găng tay</label><div class="input-with-action"><input id="gauntlets" type="text" list="plannerGauntletList" placeholder="Chọn găng tay…"><button class="btn planner-view-item" type="button" data-planer-field="gauntlets">Xem</button></div></div>
             <div class="equipment-field"><label class="caption">Giáp chân</label><div class="input-with-action"><input id="legs" type="text" list="plannerLegList" placeholder="Chọn giáp chân…"><button class="btn planner-view-item" type="button" data-planer-field="legs">Xem</button></div></div>
             <div class="equipment-field wide"><label class="caption">Great Rune</label><div class="input-with-action"><input id="greatRune" type="text" list="plannerGreatRuneList" placeholder="Chọn Great Rune…"><button class="btn planner-view-item" type="button" data-planer-field="greatRune">Xem</button></div></div>
-          </div><div class="armor-loadout-summary" id="plannerArmorSummary"></div><div class="planner-active-effects" id="plannerActiveEffects"></div></div></section>
+          </div><div class="armor-loadout-summary" id="plannerArmorSummary" style="display:none"></div></div></section>
           <section class="panel"><div class="panel-title"><h2>Bùa hộ mệnh &amp; Wondrous Physick</h2><span class="badge">3 Loadout · 8 Bùa · 2 Tear dùng + 2 dự phòng</span></div><div class="subsection"><div class="planner-data-note" style="margin-bottom:10px"><div class="planner-data-icon">◇</div><div><strong>Ba loadout đổi nhanh cho Bùa và Crystal Tears.</strong><p>Mỗi loadout lưu riêng 4 bùa chính, 4 bùa dự phòng, 2 Crystal Tears đang dùng, 2 lựa chọn thay thế và một dòng ghi chú.</p></div></div>
             <div class="utility-loadout-tabs" id="utilityLoadoutTabs" role="tablist" aria-label="Loadout bùa và Crystal Tears">
               <button class="utility-loadout-tab" type="button" data-utility-loadout="1" role="tab">Loadout 1</button><button class="utility-loadout-tab" type="button" data-utility-loadout="2" role="tab">Loadout 2</button><button class="utility-loadout-tab" type="button" data-utility-loadout="3" role="tab">Loadout 3</button>
@@ -3132,21 +3150,43 @@ function plannerEffectIsConditional(entry){
 function renderPlannerActiveEffects(){
   const host=$('plannerActiveEffects');if(!host)return;
   const effects=plannerEquippedEffects();
-  if(!effects.length){host.innerHTML='<div class="planner-effect-head"><h3>Hiệu ứng trang bị</h3><span>0 hiệu ứng</span></div><div class="planner-effect-empty">Vũ khí, giáp và 4 bùa đang trang bị có hiệu ứng bị động hoặc điều kiện sẽ tự xuất hiện tại đây.</div>';return}
-  host.innerHTML=`<div class="planner-effect-head"><h3>Hiệu ứng trang bị</h3><span>${effects.length} hiệu ứng · Bùa tham khảo Nyasu</span></div><div class="planner-effect-list">${effects.map(entry=>{const conditional=plannerEffectIsConditional(entry),condition=plannerEffectCondition(entry);return`<div class="planner-effect-row"><div class="planner-effect-source"><strong>${esc(entry.name)}</strong><small>${esc(entry.label)}</small></div><div class="planner-effect-copy"><b>${esc(entry.info.kind||'Hiệu ứng đặc biệt')}</b><p>${esc(entry.info.effect||'')}</p><em>${esc(condition)}${entry.info.note?` · ${esc(entry.info.note)}`:''}</em></div><span class="planner-effect-state ${conditional?'conditional':''}">${conditional?'Có điều kiện':'Bị động'}</span></div>`}).join('')}</div>`;
+  if(!effects.length){host.innerHTML='<div class="planner-effect-empty">Vũ khí, giáp và 4 bùa đang trang bị có hiệu ứng bị động hoặc điều kiện sẽ tự xuất hiện tại đây.</div>';return}
+  host.innerHTML=`<div class="planner-effect-list">${effects.map(entry=>{const conditional=plannerEffectIsConditional(entry),condition=plannerEffectCondition(entry);return`<div class="planner-effect-row"><div class="planner-effect-source"><strong>${esc(entry.name)}</strong><small>${esc(entry.label)}</small></div><div class="planner-effect-copy"><b>${esc(entry.info.kind||'Hiệu ứng')}</b><p>${esc(entry.info.effect||'')}</p><em>${condition!=='Luôn kích hoạt'?esc(condition):''}</em></div><span class="planner-effect-state ${conditional?'conditional':''}">${conditional?'ĐK':'✓'}</span></div>`}).join('')}</div>`;
 }
 
+
+function calcMaxEquipLoad(end){
+  end=Math.max(1,Math.min(99,end||1));
+  if(end<=8)return 45.0;
+  if(end<=25)return 45+27*((end-8)/17);
+  if(end<=60)return 72+48*((end-25)/35);
+  return 120+40*((end-60)/39);
+}
+function equipLoadStatus(pct){
+  if(pct<=30)return{cls:'light',label:'Light Load'};
+  if(pct<=70)return{cls:'medium',label:'Medium Load'};
+  if(pct<=100)return{cls:'heavy',label:'Heavy Load'};
+  return{cls:'overloaded',label:'Overloaded'};
+}
 function renderPlannerArmorSummary(){
   const host=$('plannerArmorSummary');if(!host)return;const totals=plannerArmorTotals();
   const syncAside=html=>{const a=$('plannerArmorSummaryAside');if(a)a.innerHTML=html;};
-  if(!totals.selected.length){const emptyHtml='<div class="armor-loadout-head"><h3>Tổng chỉ số bộ giáp</h3><span>0 / 4 mảnh</span></div><div class="armor-loadout-empty">Chọn mũ, giáp ngực, găng tay và giáp chân để xem tổng giảm sát thương, kháng, Poise và trọng lượng.</div>';host.innerHTML=emptyHtml;syncAside(emptyHtml);return}
+  if(!totals.selected.length){const emptyHtml='<div class="armor-loadout-head"><h3>Tổng chỉ số bộ giáp (2)</h3><span>0 / 4 mảnh</span></div><div class="armor-loadout-empty">Chọn mũ, giáp ngực, găng tay và giáp chân để xem tổng giảm sát thương, kháng, Poise và trọng lượng.</div>';host.innerHTML=emptyHtml;syncAside(emptyHtml);return}
   const pieces=totals.selected.map(piece=>`<div class="armor-piece-chip"><strong>${esc(piece.label)}: ${esc(piece.name)}</strong><em>${piece.stats?`Poise ${formatArmorValue(piece.stats.poise)} · Wgt ${formatArmorValue(piece.stats.weight)}`:'Chưa khớp dữ liệu'}</em></div>`).join('');
   const neg=totals.neg;
-  const asideHtml=`<div class="armor-loadout-head"><h3>Chỉ số bộ giáp</h3><span>${totals.matched.length}/4 mảnh</span></div><div class="armor-total-grid">${['physical','strike','slash','pierce','magic','fire','lightning','holy'].map(k=>``).join('')}<section class="armor-total-group"><h4>Giảm sát thương (%)</h4><div class="armor-total-metrics">${armorStatRow('Vật lý',neg.physical,'physical')}${armorStatRow('Đập',neg.strike,'physical')}${armorStatRow('Chém',neg.slash,'physical')}${armorStatRow('Đâm',neg.pierce,'physical')}${armorStatRow('Phép',neg.magic,'magic')}${armorStatRow('Lửa',neg.fire,'fire')}${armorStatRow('Sét',neg.lightning,'lightning')}${armorStatRow('Thánh',neg.holy,'holy')}</div></section><section class="armor-total-group"><h4>Kháng trạng thái</h4><div class="armor-total-metrics">${armorStatRow('Miễn nhiễm',totals.immunity)}${armorStatRow('Bền bỉ',totals.robustness)}${armorStatRow('Tập trung',totals.focus)}${armorStatRow('Sinh lực',totals.vitality)}</div></section></div><div class="armor-total-footer"><div>Mảnh giáp<b>${totals.matched.length}/4</b></div><div>Poise<b>${formatArmorValue(totals.poise)}</b></div><div>Trọng lượng<b>${formatArmorValue(totals.weight)}</b></div><div>Vật lý<b>${formatArmorValue(neg.physical)}%</b></div><div>Phép<b>${formatArmorValue(neg.magic)}%</b></div><div>Thánh<b>${formatArmorValue(neg.holy)}%</b></div></div>`;
+  const asideHtml=`<div class="armor-total-grid">${['physical','strike','slash','pierce','magic','fire','lightning','holy'].map(k=>``).join('')}<section class="armor-total-group"><h4>Giảm sát thương (%)</h4><div class="armor-total-metrics">${armorStatRow('Vật lý',neg.physical,'physical')}${armorStatRow('Đập',neg.strike,'physical')}${armorStatRow('Chém',neg.slash,'physical')}${armorStatRow('Đâm',neg.pierce,'physical')}${armorStatRow('Phép',neg.magic,'magic')}${armorStatRow('Lửa',neg.fire,'fire')}${armorStatRow('Sét',neg.lightning,'lightning')}${armorStatRow('Thánh',neg.holy,'holy')}</div></section><section class="armor-total-group"><h4>Kháng trạng thái</h4><div class="armor-total-metrics">${armorStatRow('Miễn nhiễm',totals.immunity)}${armorStatRow('Bền bỉ',totals.robustness)}${armorStatRow('Tập trung',totals.focus)}${armorStatRow('Sinh lực',totals.vitality)}</div></section></div><div class="armor-total-footer">${(()=>{const end=state.planner.stats&&state.planner.stats.endurance||classBase().stats&&classBase().stats.endurance||10;const maxL=calcMaxEquipLoad(end);const pct=maxL>0?totals.weight/maxL*100:0;const st=equipLoadStatus(pct);return`<div>Equip Load<b style="font-size:10px">${totals.weight.toFixed(1)}/${maxL.toFixed(1)}</b><span class="equip-load-status ${st.cls}">${pct.toFixed(0)}%</span></div>`})()}<div>Poise<b>${formatArmorValue(totals.poise)}</b></div><div>Trọng lượng<b>${formatArmorValue(totals.weight)}</b></div><div>Vật lý<b>${formatArmorValue(neg.physical)}%</b></div><div>Phép<b>${formatArmorValue(neg.magic)}%</b></div><div>Thánh<b>${formatArmorValue(neg.holy)}%</b></div></div><div class=\'equip-load-note\'>  <span>Light Load (≤ 30%):</span> Né nhanh (Fast roll), khoảng cách lướt xa nhất.<br>  <span>Medium Load (&gt; 30% và ≤ 70%):</span> Né vừa (Medium roll), tiêu chuẩn phổ biến.<br>  <span>Heavy Load (&gt; 70% và ≤ 100%):</span> Né chậm nặng nề (Fat roll).<br>  <span>Overloaded (&gt; 100%):</span> Không thể né hay lùi bước (Backstep), di chuyển cực kỳ chậm.</div>`;
   syncAside(asideHtml);
-  host.innerHTML=`<div class="armor-loadout-head"><h3>Tổng chỉ số bộ giáp</h3><span>${totals.matched.length} / 4 mảnh có dữ liệu</span></div><div class="armor-piece-list">${pieces}</div><div class="armor-total-grid"><section class="armor-total-group"><h4>Giảm sát thương tổng hợp (%)</h4><div class="armor-total-metrics">${armorStatRow('Vật lý',neg.physical,'physical')}${armorStatRow('Đập',neg.strike,'physical')}${armorStatRow('Chém',neg.slash,'physical')}${armorStatRow('Đâm',neg.pierce,'physical')}${armorStatRow('Phép',neg.magic,'magic')}${armorStatRow('Lửa',neg.fire,'fire')}${armorStatRow('Sét',neg.lightning,'lightning')}${armorStatRow('Thánh',neg.holy,'holy')}</div></section><section class="armor-total-group"><h4>Kháng trạng thái cộng dồn</h4><div class="armor-total-metrics">${armorStatRow('Miễn nhiễm',totals.immunity)}${armorStatRow('Bền bỉ',totals.robustness)}${armorStatRow('Tập trung',totals.focus)}${armorStatRow('Sinh lực',totals.vitality)}</div></section></div><div class="armor-total-footer"><div>Mảnh giáp<b>${totals.matched.length}/4</b></div><div>Poise<b>${formatArmorValue(totals.poise)}</b></div><div>Trọng lượng<b>${formatArmorValue(totals.weight)}</b></div><div>Vật lý<b>${formatArmorValue(neg.physical)}%</b></div><div>Phép<b>${formatArmorValue(neg.magic)}%</b></div><div>Thánh<b>${formatArmorValue(neg.holy)}%</b></div></div>${totals.unmatched.length?`<div class="armor-unmatched">Chưa khớp chỉ số: ${totals.unmatched.map(piece=>esc(piece.name)).join(', ')}</div>`:''}`;
+  host.innerHTML=`<div class="armor-loadout-head"><h3>Tổng chỉ số bộ giáp (2)</h3><span>${totals.matched.length} / 4 mảnh có dữ liệu</span></div><div class="armor-piece-list">${pieces}</div><div class="armor-total-grid"><section class="armor-total-group"><h4>Giảm sát thương tổng hợp (%)</h4><div class="armor-total-metrics">${armorStatRow('Vật lý',neg.physical,'physical')}${armorStatRow('Đập',neg.strike,'physical')}${armorStatRow('Chém',neg.slash,'physical')}${armorStatRow('Đâm',neg.pierce,'physical')}${armorStatRow('Phép',neg.magic,'magic')}${armorStatRow('Lửa',neg.fire,'fire')}${armorStatRow('Sét',neg.lightning,'lightning')}${armorStatRow('Thánh',neg.holy,'holy')}</div></section><section class="armor-total-group"><h4>Kháng trạng thái cộng dồn</h4><div class="armor-total-metrics">${armorStatRow('Miễn nhiễm',totals.immunity)}${armorStatRow('Bền bỉ',totals.robustness)}${armorStatRow('Tập trung',totals.focus)}${armorStatRow('Sinh lực',totals.vitality)}</div></section></div><div class="armor-total-footer"><div>Mảnh giáp<b>${totals.matched.length}/4</b></div><div>Poise<b>${formatArmorValue(totals.poise)}</b></div><div>Trọng lượng<b>${formatArmorValue(totals.weight)}</b></div><div>Vật lý<b>${formatArmorValue(neg.physical)}%</b></div><div>Phép<b>${formatArmorValue(neg.magic)}%</b></div><div>Thánh<b>${formatArmorValue(neg.holy)}%</b></div></div>${totals.unmatched.length?`<div class="armor-unmatched">Chưa khớp chỉ số: ${totals.unmatched.map(piece=>esc(piece.name)).join(', ')}</div>`:''}`;
 }
 
+
+function initAsideToggles(){
+  document.querySelectorAll('.aside-section-hdr').forEach(function(hdr){
+    hdr.addEventListener('click', function(){
+      hdr.closest('.aside-section').classList.toggle('closed');
+    });
+  });
+}
 function openItemDetail(id){
   const item=collectionItemById(id);if(!item)return;itemModalTitle.textContent=item.name;itemModal.classList.add('show');
   const weapon=WEAPON_GROUPS.has(item.group),armorItem=isArmorItem(item),talismanItem=isTalismanItem(item),wiki=itemWikiUrl(item),entries=itemAcquisition.get(normalizeItemName(item.name))||[];
