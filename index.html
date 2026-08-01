@@ -236,6 +236,13 @@ label.caption{font-size:13px;color:var(--muted);letter-spacing:.08em;text-transf
 .subsection-title{font-family:"Noto Serif Display", Georgia, serif;font-size:14px;color:var(--gold-bright);letter-spacing:.08em;margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--line)}
 .slot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .talisman-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.utility-loadout-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:0 0 12px}
+.utility-loadout-tab{min-height:40px;border:1px solid var(--line-strong);background:rgba(0,0,0,.18);color:var(--muted);font-family:"Noto Serif",Georgia,serif;cursor:pointer;padding:8px 10px;transition:.16s ease}
+.utility-loadout-tab:hover,.utility-loadout-tab:focus-visible{color:var(--text);border-color:var(--gold-dim);background:rgba(201,183,125,.06);outline:none}
+.utility-loadout-tab.active{color:var(--gold-bright);border-color:var(--gold);background:linear-gradient(145deg,rgba(201,183,125,.16),rgba(201,183,125,.035));box-shadow:inset 0 0 0 1px rgba(201,183,125,.08)}
+.utility-loadout-group-label{grid-column:1/-1;color:var(--gold-bright);font-family:"Noto Serif",Georgia,serif;font-size:12px;text-transform:uppercase;letter-spacing:.08em;padding:8px 0 2px;border-bottom:1px solid var(--line)}
+.utility-loadout-note{margin-top:12px}.utility-loadout-note input{width:100%}
+.utility-loadout-status{margin-top:7px;color:var(--dim);font-size:12px;line-height:1.4}
 textarea{min-height:110px;resize:vertical;line-height:1.45}
 .summary-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:12px}
 .summary-box{border:1px solid var(--line);background:rgba(0,0,0,.2);padding:11px;text-align:center}
@@ -482,7 +489,7 @@ html[lang="vi"] .map-note-tag{
 
 /* Infor Boss */
 .boss-source-note{display:grid;grid-template-columns:auto minmax(0,1fr);gap:14px;align-items:center;border:1px solid var(--line);border-left:2px solid #a86f58;background:linear-gradient(90deg,rgba(151,72,48,.10),rgba(12,15,12,.64));padding:13px 15px;margin-bottom:16px}.boss-source-note strong{color:#efc1a8}.boss-source-note p{margin:4px 0 0;color:var(--muted);font-size:15px;line-height:1.42}
-.boss-controls{padding:13px;display:grid;grid-template-columns:minmax(260px,1fr) repeat(3,minmax(170px,.32fr));gap:9px}.boss-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.boss-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(31,25,22,.88),rgba(12,15,12,.88));display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:11px;position:relative;min-height:146px}.boss-card:hover{border-color:rgba(225,177,139,.52);background:linear-gradient(145deg,rgba(49,33,27,.92),rgba(13,16,13,.9))}.boss-card.done{opacity:.62}.boss-card.done .boss-name{text-decoration:line-through;color:var(--dim)}.boss-icon{width:92px;height:112px;border:1px solid rgba(225,177,139,.24);background:radial-gradient(circle,rgba(168,92,65,.12),rgba(0,0,0,.25));display:grid;place-items:center;overflow:hidden}.boss-icon img{width:100%;height:100%;object-fit:cover;padding:0;filter:drop-shadow(0 5px 6px rgba(0,0,0,.55))}.boss-icon .icon-fallback{font-size:25px;color:#a66d58}.boss-icon img+.icon-fallback{display:none}.boss-icon.missing .icon-fallback{display:block}.boss-info{min-width:0;display:flex;flex-direction:column}.boss-name{font-family:"Noto Serif",Georgia,serif;color:#f0decf;font-size:15px;font-weight:600;line-height:1.3}.boss-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.boss-region{color:var(--muted);font-size:12px;line-height:1.35;margin-top:7px}.boss-reward{color:var(--dim);font-size:12px;line-height:1.35;margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.boss-actions{display:flex;gap:7px;margin-top:auto;padding-top:9px}.boss-check,.boss-detail{border:1px solid var(--line-strong);background:rgba(0,0,0,.24);color:var(--gold-bright);cursor:pointer;padding:6px 8px;font-size:11px}.boss-check.done{background:rgba(139,132,82,.23)}.boss-detail:hover,.boss-check:hover{border-color:var(--gold);background:rgba(201,183,125,.11)}.boss-badge{font-size:9px;text-transform:uppercase;border:1px solid rgba(215,205,158,.22);padding:3px 5px;color:var(--muted)}.boss-badge.dlc{color:#efa888;border-color:rgba(206,118,76,.48)}.boss-detail-section{margin-top:14px;border:1px solid var(--line);background:rgba(0,0,0,.16);padding:12px}.boss-detail-section h3{font-size:14px;color:var(--gold-bright);margin:0 0 8px}.boss-detail-section ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.55}.boss-detail-section li+li{margin-top:4px}.boss-combat-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.boss-combat-chip{font-size:9px;border:1px solid rgba(215,205,158,.22);padding:3px 5px;color:var(--muted);background:rgba(0,0,0,.18)}.boss-combat-chip.weak{color:#a9cc91;border-color:rgba(147,196,125,.42)}.boss-combat-chip.resist{color:#e3a994;border-color:rgba(206,118,76,.42)}.boss-combat-chip.aoe-high{color:#efa184;border-color:rgba(224,102,102,.52)}.boss-combat-chip.aoe-mid{color:#e5ca70;border-color:rgba(255,217,102,.42)}.boss-combat-chip.aoe-low{color:#9fc6dd;border-color:rgba(128,151,164,.42)}.boss-combat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-top:14px}.boss-combat-box{border:1px solid var(--line);background:rgba(0,0,0,.18);padding:11px}.boss-combat-box span{display:block;color:var(--dim);font-size:10px;text-transform:uppercase}.boss-combat-box strong{display:block;color:var(--text);font-size:13px;line-height:1.4;margin-top:5px}.boss-tactics{border-left:3px solid #a86f58;background:rgba(151,72,48,.07);padding:11px 13px;color:var(--muted);line-height:1.5}.boss-tactics strong{color:#efc1a8}.boss-hero-image{width:160px;height:132px;flex:0 0 160px}.boss-hero-image img{width:100%;height:100%;object-fit:cover;padding:0}.boss-data-source{margin-top:8px;color:var(--dim);font-size:11px;line-height:1.4}
+.boss-controls{padding:13px;display:grid;grid-template-columns:minmax(260px,1fr) repeat(3,minmax(170px,.32fr));gap:9px}.boss-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}.boss-card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(31,25,22,.88),rgba(12,15,12,.88));display:grid;grid-template-columns:92px minmax(0,1fr);gap:12px;padding:11px;position:relative;min-height:146px}.boss-card:hover{border-color:rgba(225,177,139,.52);background:linear-gradient(145deg,rgba(49,33,27,.92),rgba(13,16,13,.9))}.boss-card.done{opacity:.62}.boss-card.done .boss-name{text-decoration:line-through;color:var(--dim)}.boss-icon{width:92px;height:112px;border:1px solid rgba(225,177,139,.24);background:radial-gradient(circle,rgba(168,92,65,.12),rgba(0,0,0,.25));display:grid;place-items:center;overflow:hidden}.boss-icon img{width:100%;height:100%;object-fit:cover;padding:0;filter:drop-shadow(0 5px 6px rgba(0,0,0,.55))}.boss-icon .icon-fallback{font-size:25px;color:#a66d58}.boss-icon img+.icon-fallback{display:none}.boss-icon.missing .icon-fallback{display:block}.boss-info{min-width:0;display:flex;flex-direction:column}.boss-name{font-family:"Noto Serif",Georgia,serif;color:#f0decf;font-size:15px;font-weight:600;line-height:1.3}.boss-meta{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}.boss-region{color:var(--muted);font-size:12px;line-height:1.35;margin-top:7px}.boss-reward{color:var(--dim);font-size:12px;line-height:1.35;margin-top:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.boss-actions{display:flex;gap:7px;margin-top:auto;padding-top:9px}.boss-check,.boss-detail{border:1px solid var(--line-strong);background:rgba(0,0,0,.24);color:var(--gold-bright);cursor:pointer;padding:6px 8px;font-size:11px}.boss-check.done{background:rgba(139,132,82,.23)}.boss-detail:hover,.boss-check:hover{border-color:var(--gold);background:rgba(201,183,125,.11)}.boss-badge{font-size:9px;text-transform:uppercase;border:1px solid rgba(215,205,158,.22);padding:3px 5px;color:var(--muted)}.boss-badge.dlc{color:#efa888;border-color:rgba(206,118,76,.48)}.boss-detail-section{margin-top:14px;border:1px solid var(--line);background:rgba(0,0,0,.16);padding:12px}.boss-detail-section h3{font-size:14px;color:var(--gold-bright);margin:0 0 8px}.boss-detail-section ul{margin:0;padding-left:20px;color:var(--muted);line-height:1.55}.boss-detail-section li+li{margin-top:4px}.boss-combat-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.boss-combat-chip{font-size:9px;border:1px solid rgba(215,205,158,.22);padding:3px 5px;color:var(--muted);background:rgba(0,0,0,.18)}.boss-combat-chip.weak{color:#a9cc91;border-color:rgba(147,196,125,.42)}.boss-combat-chip.resist{color:#e3a994;border-color:rgba(206,118,76,.42)}.boss-combat-chip.damage{color:#f1df76;border-color:rgba(240,226,85,.48);background:rgba(240,226,85,.06)}.boss-combat-chip.aoe-high{color:#efa184;border-color:rgba(224,102,102,.52)}.boss-combat-chip.aoe-mid{color:#e5ca70;border-color:rgba(255,217,102,.42)}.boss-combat-chip.aoe-low{color:#9fc6dd;border-color:rgba(128,151,164,.42)}.boss-combat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:9px;margin-top:14px}.boss-combat-box{border:1px solid var(--line);background:rgba(0,0,0,.18);padding:11px}.boss-combat-box span{display:block;color:var(--dim);font-size:10px;text-transform:uppercase}.boss-combat-box strong{display:block;color:var(--text);font-size:13px;line-height:1.4;margin-top:5px}.boss-tactics{border-left:3px solid #a86f58;background:rgba(151,72,48,.07);padding:11px 13px;color:var(--muted);line-height:1.5}.boss-tactics strong{color:#efc1a8}.boss-hero-image{width:160px;height:132px;flex:0 0 160px}.boss-hero-image img{width:100%;height:100%;object-fit:cover;padding:0}.boss-data-source{margin-top:8px;color:var(--dim);font-size:11px;line-height:1.4}
 @media(max-width:1050px){.boss-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.boss-controls{grid-template-columns:1fr 1fr}.boss-controls .wide{grid-column:1/-1}}@media(max-width:650px){.boss-source-note{grid-template-columns:1fr}.boss-controls{grid-template-columns:1fr}.boss-controls .wide{grid-column:auto}.boss-grid{grid-template-columns:1fr}.boss-card{grid-template-columns:78px minmax(0,1fr)}.boss-icon{width:78px;height:98px}.boss-combat-grid{grid-template-columns:1fr 1fr}.boss-hero-image{width:96px;height:96px;flex-basis:96px}}
 
 
@@ -725,7 +732,7 @@ html[lang="vi"] .map-note-tag{
   <div class="topbar">
     <div class="brand">
       <button class="brand-mark" id="mobileNavToggle" type="button" aria-label="Mở danh sách tab chính" aria-controls="mobileNavMenu" aria-expanded="false"></button>
-      <div class="brand-title">Elden Ring Companion<small>Version 1.2</small></div>
+      <div class="brand-title">Elden Ring Companion<small>Version 1.2.5</small></div>
     </div>
     <nav class="nav" aria-label="Điều hướng chính">
       <button class="nav-btn active" data-tab="map">Bản đồ Check-in</button>
@@ -915,7 +922,7 @@ html[lang="vi"] .map-note-tag{
       </div>
       <div class="boss-source-note" role="note">
         <span class="map-note-tag">Infor Boss</span>
-        <div><strong>Boss game chính và Shadow of the Erdtree.</strong><p>Ảnh Boss được tải trực tiếp từ Elden Ring API cùng kho ảnh Eldenpedia (wiki.gg), nên cần kết nối mạng để hiển thị. Khi offline, khung ảnh sẽ dùng biểu tượng thay thế; nút “Chi tiết” và dữ liệu checklist vẫn hoạt động bình thường.</p></div>
+        <div><strong>Boss game chính và Shadow of the Erdtree.</strong><p>Ảnh Boss dùng nhiều nguồn dự phòng: Elden Ring API, Eldenpedia (wiki.gg), Fandom và máy chủ ảnh trung gian khi nguồn gốc chặn tải. Mỗi thẻ Boss nay hiển thị thêm hệ sát thương chính; dữ liệu này mang tính tham khảo vì một số Boss đổi hệ theo pha.</p></div>
       </div>
       <section class="panel">
         <div class="panel-title"><h2>Danh sách Boss</h2><span class="badge" id="bossVisibleCount">0 Boss</span></div>
@@ -960,6 +967,10 @@ html[lang="vi"] .map-note-tag{
         <div class="planner-content">
           <section class="panel"><div class="panel-title"><h2>Vũ khí &amp; Ash of War</h2><span class="badge planner-catalog-badge" id="plannerCatalogBadge">Đang chuẩn bị dữ liệu</span></div><div class="subsection">
             <div class="planner-data-note"><div class="planner-data-icon">◆</div><div><strong id="plannerDataStatus">Kho vũ khí, giáp và Ash of War sẽ tự mở khi vào tab.</strong><p>Gõ để tìm theo tên. Nút “Xem” mở đúng mục trong tab Tra cứu, gồm vị trí và bảng chỉ số nếu có.</p></div></div>
+            <div class="utility-loadout-tabs" id="weaponLoadoutTabs" role="tablist" aria-label="Loadout vũ khí" style="margin-top:12px">
+              <button class="utility-loadout-tab" type="button" data-weapon-loadout="1" role="tab">Vũ khí 1</button><button class="utility-loadout-tab" type="button" data-weapon-loadout="2" role="tab">Vũ khí 2</button><button class="utility-loadout-tab" type="button" data-weapon-loadout="3" role="tab">Vũ khí 3</button>
+            </div>
+            <div class="utility-loadout-note" style="margin:0 0 12px"><label class="caption" for="weaponLoadoutNote">Ghi chú loadout vũ khí</label><input id="weaponLoadoutNote" type="text" maxlength="180" placeholder="Ví dụ: đánh Boss, đi map, PvP, khiên + giáo…"><div class="utility-loadout-status" id="weaponLoadoutStatus">Đang dùng Vũ khí 1</div></div>
             <div class="weapon-loadout-grid">
               <div class="planner-slot-card" data-planer-slot="weaponR1"><div class="planner-slot-head"><h3>Tay phải 1</h3><span class="planner-slot-tag">RH1</span></div><div class="planner-slot-main"><div><label class="caption">Vũ khí</label><input id="weaponR1" type="text" list="plannerWeaponList" placeholder="Tìm vũ khí…"></div><button class="btn planner-view-item" type="button" data-planer-field="weaponR1">Xem</button></div><div class="planner-slot-controls"><div><label>Cấp nâng</label><select id="weaponR1Upgrade" class="planner-upgrade"></select></div><div><label>Affinity</label><select id="weaponR1Affinity" class="planner-affinity"></select></div><div><label>Ash of War</label><input id="weaponR1Ash" type="text" list="plannerAshList" placeholder="Chọn Ash of War…"></div></div><span class="planner-picker-state" id="weaponR1State"></span></div>
               <div class="planner-slot-card" data-planer-slot="weaponL1"><div class="planner-slot-head"><h3>Tay trái 1</h3><span class="planner-slot-tag">LH1</span></div><div class="planner-slot-main"><div><label class="caption">Vũ khí / Khiên / Pháp cụ</label><input id="weaponL1" type="text" list="plannerWeaponList" placeholder="Tìm vũ khí, khiên hoặc pháp cụ…"></div><button class="btn planner-view-item" type="button" data-planer-field="weaponL1">Xem</button></div><div class="planner-slot-controls"><div><label>Cấp nâng</label><select id="weaponL1Upgrade" class="planner-upgrade"></select></div><div><label>Affinity</label><select id="weaponL1Affinity" class="planner-affinity"></select></div><div><label>Ash of War</label><input id="weaponL1Ash" type="text" list="plannerAshList" placeholder="Chọn Ash of War…"></div></div><span class="planner-picker-state" id="weaponL1State"></span></div>
@@ -976,20 +987,52 @@ html[lang="vi"] .map-note-tag{
             <div class="equipment-field"><label class="caption">Giáp chân</label><div class="input-with-action"><input id="legs" type="text" list="plannerLegList" placeholder="Chọn giáp chân…"><button class="btn planner-view-item" type="button" data-planer-field="legs">Xem</button></div></div>
             <div class="equipment-field wide"><label class="caption">Great Rune</label><div class="input-with-action"><input id="greatRune" type="text" list="plannerGreatRuneList" placeholder="Chọn Great Rune…"><button class="btn planner-view-item" type="button" data-planer-field="greatRune">Xem</button></div></div>
           </div><div class="armor-loadout-summary" id="plannerArmorSummary"></div></div></section>
-          <section class="panel"><div class="panel-title"><h2>Bùa hộ mệnh &amp; Wondrous Physick</h2><span class="badge">4 + 2 Slots</span></div><div class="subsection"><div class="talisman-grid">
-            <input id="talisman1" type="text" list="plannerTalismanList" placeholder="Talisman 1"><input id="talisman2" type="text" list="plannerTalismanList" placeholder="Talisman 2"><input id="talisman3" type="text" list="plannerTalismanList" placeholder="Talisman 3"><input id="talisman4" type="text" list="plannerTalismanList" placeholder="Talisman 4">
-            <input id="physick1" type="text" list="plannerCrystalTearList" placeholder="Crystal Tear 1"><input id="physick2" type="text" list="plannerCrystalTearList" placeholder="Crystal Tear 2">
-          </div></div></section>
-          <section class="panel"><div class="panel-title"><h2>Phép thuật &amp; Ghi chú Build</h2><span class="badge">Memory</span></div><div class="subsection form-grid">
-            <div><label class="caption">Sorceries / Incantations</label><textarea id="spells" placeholder="Mỗi dòng một phép…"></textarea></div>
-            <div><label class="caption">Build Notes</label><textarea id="buildNotes" placeholder="Combo, thứ tự buff, mục tiêu soft cap…"></textarea></div>
+          <section class="panel"><div class="panel-title"><h2>Bùa hộ mệnh &amp; Wondrous Physick</h2><span class="badge">3 Loadout · 8 Bùa · 4 Crystal Tears</span></div><div class="subsection"><div class="planner-data-note" style="margin-bottom:10px"><div class="planner-data-icon">◇</div><div><strong>Ba loadout đổi nhanh cho Bùa và Crystal Tears.</strong><p>Mỗi loadout lưu riêng 4 bùa chính, 4 bùa dự phòng, 4 lựa chọn Crystal Tears và một dòng ghi chú.</p></div></div>
+            <div class="utility-loadout-tabs" id="utilityLoadoutTabs" role="tablist" aria-label="Loadout bùa và Crystal Tears">
+              <button class="utility-loadout-tab" type="button" data-utility-loadout="1" role="tab">Loadout 1</button><button class="utility-loadout-tab" type="button" data-utility-loadout="2" role="tab">Loadout 2</button><button class="utility-loadout-tab" type="button" data-utility-loadout="3" role="tab">Loadout 3</button>
+            </div>
+            <div class="talisman-grid">
+              <div class="utility-loadout-group-label">Bùa chính</div>
+              <input id="talisman1" type="text" list="plannerTalismanList" placeholder="Talisman 1"><input id="talisman2" type="text" list="plannerTalismanList" placeholder="Talisman 2"><input id="talisman3" type="text" list="plannerTalismanList" placeholder="Talisman 3"><input id="talisman4" type="text" list="plannerTalismanList" placeholder="Talisman 4">
+              <div class="utility-loadout-group-label">Bùa dự phòng / lựa chọn khác</div>
+              <input id="talismanAlt1" type="text" list="plannerTalismanList" placeholder="Bùa dự phòng 1"><input id="talismanAlt2" type="text" list="plannerTalismanList" placeholder="Bùa dự phòng 2"><input id="talismanAlt3" type="text" list="plannerTalismanList" placeholder="Bùa dự phòng 3"><input id="talismanAlt4" type="text" list="plannerTalismanList" placeholder="Bùa dự phòng 4">
+              <div class="utility-loadout-group-label">Crystal Tears</div>
+              <input id="physick1" type="text" list="plannerCrystalTearList" placeholder="Crystal Tear 1"><input id="physick2" type="text" list="plannerCrystalTearList" placeholder="Crystal Tear 2"><input id="physick3" type="text" list="plannerCrystalTearList" placeholder="Crystal Tear 3"><input id="physick4" type="text" list="plannerCrystalTearList" placeholder="Crystal Tear 4">
+            </div>
+            <div class="utility-loadout-note"><label class="caption" for="utilityLoadoutNote">Ghi chú loadout</label><input id="utilityLoadoutNote" type="text" maxlength="180" placeholder="Ví dụ: dùng khi đánh Boss hệ Sét, ưu tiên chống choáng…"><div class="utility-loadout-status" id="utilityLoadoutStatus">Đang dùng Loadout 1</div></div>
+          </div></section>
+          <section class="panel"><div class="panel-title"><h2>Phép trang bị &amp; Ghi chú Build</h2><span class="badge">10 Slots</span></div><div class="subsection">
+            <div class="planner-data-note" style="margin-bottom:10px"><div class="planner-data-icon">✦</div><div><strong>Thêm các ô phép để lưu spell loadout.</strong><p>Mỗi ô có thể chọn Sorcery hoặc Incantation, bấm “Xem” để mở chi tiết và công dụng.</p></div></div>
+            <div class="equipment-grid">
+              <div class="equipment-field"><label class="caption">Phép 1</label><div class="input-with-action"><input id="spell1" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell1">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 2</label><div class="input-with-action"><input id="spell2" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell2">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 3</label><div class="input-with-action"><input id="spell3" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell3">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 4</label><div class="input-with-action"><input id="spell4" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell4">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 5</label><div class="input-with-action"><input id="spell5" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell5">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 6</label><div class="input-with-action"><input id="spell6" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell6">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 7</label><div class="input-with-action"><input id="spell7" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell7">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 8</label><div class="input-with-action"><input id="spell8" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell8">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 9</label><div class="input-with-action"><input id="spell9" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell9">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Phép 10</label><div class="input-with-action"><input id="spell10" type="text" list="plannerSpellList" placeholder="Chọn phép…"><button class="btn planner-view-item" type="button" data-planer-field="spell10">Xem</button></div></div>
+            </div>
+            <div class="form-grid" style="margin-top:12px"><div><label class="caption">Build Notes</label><textarea id="buildNotes" placeholder="Combo, thứ tự buff, mục tiêu soft cap…"></textarea></div></div>
+          </div></section>
+          <section class="panel"><div class="panel-title"><h2>Vật phẩm trang bị nhanh</h2><span class="badge">5 Slots</span></div><div class="subsection">
+            <div class="planner-data-note" style="margin-bottom:10px"><div class="planner-data-icon">◈</div><div><strong>5 ô vật phẩm nhanh để lưu consumable / tool bạn thường dùng.</strong><p>Bấm “Xem” để mở vị trí và công dụng của vật phẩm.</p></div></div>
+            <div class="equipment-grid">
+              <div class="equipment-field"><label class="caption">Vật phẩm 1</label><div class="input-with-action"><input id="quickItem1" type="text" list="plannerItemList" placeholder="Chọn vật phẩm…"><button class="btn planner-view-item" type="button" data-planer-field="quickItem1">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Vật phẩm 2</label><div class="input-with-action"><input id="quickItem2" type="text" list="plannerItemList" placeholder="Chọn vật phẩm…"><button class="btn planner-view-item" type="button" data-planer-field="quickItem2">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Vật phẩm 3</label><div class="input-with-action"><input id="quickItem3" type="text" list="plannerItemList" placeholder="Chọn vật phẩm…"><button class="btn planner-view-item" type="button" data-planer-field="quickItem3">Xem</button></div></div>
+              <div class="equipment-field"><label class="caption">Vật phẩm 4</label><div class="input-with-action"><input id="quickItem4" type="text" list="plannerItemList" placeholder="Chọn vật phẩm…"><button class="btn planner-view-item" type="button" data-planer-field="quickItem4">Xem</button></div></div>
+              <div class="equipment-field wide"><label class="caption">Vật phẩm 5</label><div class="input-with-action"><input id="quickItem5" type="text" list="plannerItemList" placeholder="Chọn vật phẩm…"><button class="btn planner-view-item" type="button" data-planer-field="quickItem5">Xem</button></div></div>
+            </div>
           </div></section>
           <section class="panel"><div class="panel-title"><h2>Tổng kết Build</h2><span class="badge">Planner</span></div><div class="subsection">
             <div class="summary-grid planer-summary"><div class="summary-box"><span>Level build</span><b id="sumLevel">9</b></div><div class="summary-box"><span>Level đang có</span><b id="sumOwnedLevel">150</b></div><div class="summary-box"><span>Chỉ số chính</span><b id="sumPrimary">VIG</b></div><div class="summary-box"><span>Cao nhất</span><b id="sumHighest">15</b></div><div class="summary-box"><span>Điểm còn cộng</span><b id="sumLeft">141</b></div><div class="summary-box"><span>Vũ khí</span><b id="sumWeapons">0 / 6</b></div><div class="summary-box"><span>Trang bị</span><b id="sumGear">0 / 9</b></div></div>
           </div></section>
         </div>
       </div>
-      <datalist id="plannerWeaponList"></datalist><datalist id="plannerAshList"></datalist><datalist id="plannerHelmList"></datalist><datalist id="plannerChestList"></datalist><datalist id="plannerGauntletList"></datalist><datalist id="plannerLegList"></datalist><datalist id="plannerTalismanList"></datalist><datalist id="plannerCrystalTearList"></datalist><datalist id="plannerGreatRuneList"></datalist>
+      <datalist id="plannerWeaponList"></datalist><datalist id="plannerAshList"></datalist><datalist id="plannerHelmList"></datalist><datalist id="plannerChestList"></datalist><datalist id="plannerGauntletList"></datalist><datalist id="plannerLegList"></datalist><datalist id="plannerTalismanList"></datalist><datalist id="plannerCrystalTearList"></datalist><datalist id="plannerGreatRuneList"></datalist><datalist id="plannerSpellList"></datalist><datalist id="plannerItemList"></datalist>
     </section>
 
     <div class="footer"><strong>Desgin by KVHao</strong><span>Share nhớ ghi nguồn</span></div>
@@ -1027,7 +1070,7 @@ html[lang="vi"] .map-note-tag{
 <input type="file" id="fileImport" accept="application/json,.json" class="hidden">
 <script type="application/json" id="offlineData">{}</script>
 <script>
-const APP_VERSION='1.2';
+const APP_VERSION='1.2.5';
 const STORAGE_KEY='kvhao_elden_ring_companion_v1';
 const $=id=>document.getElementById(id);
 const mapSearch=$('mapSearch'), mapRegion=$('mapRegion'), mapCategory=$('mapCategory'), mapStatus=$('mapStatus'), locationList=$('locationList'), mapVisibleCount=$('mapVisibleCount'), mapProgressText=$('mapProgressText'), mapProgressBar=$('mapProgressBar');
@@ -1459,12 +1502,22 @@ const BOSS_WEB_IMAGE_OVERRIDES=Object.freeze({
 const WEAPON_REGULATION_URL='https://raw.githubusercontent.com/ThomasJClark/elden-ring-weapon-calculator/refs/heads/master/public/regulation-vanilla-v1.14.js';
 const FEXTRA_READER_PREFIX='https://r.jina.ai/';
 const ITEM_GROUP_LABELS={
-  'Melee Armaments':'Vũ khí cận chiến','Ranged Weapons':'Vũ khí tầm xa','Magic Weapons':'Pháp cụ','Catalysts':'Pháp cụ','Shields':'Khiên','Armors & Talismans':'Giáp & Bùa hộ mệnh','Armors & Talimans':'Giáp & Bùa hộ mệnh','Spells':'Phép thuật','Items':'Vật phẩm','Gestures':'Cử chỉ','Enemies':'Kẻ địch','Sites of Grace':'Ân Điển'
+  'Melee Armaments':'Vũ khí cận chiến','Ranged Weapons':'Vũ khí tầm xa','Magic Weapons':'Pháp cụ','Catalysts':'Pháp cụ','Shields':'Khiên','Armors':'Giáp','Talismans':'Bùa hộ mệnh','Armors & Talismans':'Giáp & Bùa hộ mệnh','Armors & Talimans':'Giáp & Bùa hộ mệnh','Spells':'Phép thuật','Items':'Vật phẩm','Gestures':'Cử chỉ','Enemies':'Kẻ địch','Sites of Grace':'Ân Điển'
 };
 function canonicalItemGroup(group=''){return group==='Armors & Talimans'?'Armors & Talismans':group}
-function normalizedUiLabel(value=''){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
+function resolvedItemGroup(categoryName='',group=''){
+  const canon=canonicalItemGroup(group);
+  const category=String(categoryName||'').trim();
+  if(canon==='Armors & Talismans'){
+    if(category==='Talismans')return 'Talismans';
+    if(['Helms','Chest Armors','Gauntlets','Legs'].includes(category)||/\((Helms|Chest Armors|Gauntlets|Legs)\)\s*$/i.test(category))return 'Armors';
+  }
+  return canon;
+}
+function itemGroupLabel(categoryName='',group=''){const key=resolvedItemGroup(categoryName,group);return ITEM_GROUP_LABELS[key]||key}
+function normalizedUiLabel(value=''){return String(value||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim()}
 function categoryGroupBadge(cat){
-  const group=canonicalItemGroup(cat?.group||''),label=ITEM_GROUP_LABELS[group]||group;
+  const label=itemGroupLabel(cat?.name||'',cat?.group||'');
   return normalizedUiLabel(cat?.name)===normalizedUiLabel(label)?'':`<span class="item-badge">${esc(label)}</span>`;
 }
 const WEAPON_GROUPS=new Set(['Melee Armaments','Ranged Weapons','Magic Weapons','Catalysts','Shields']);
@@ -1683,6 +1736,134 @@ function renderSpecialEffectPanel(item){
   return `<section class="special-effect-panel"><div class="special-effect-head"><h3>◆ Hiệu ứng đặc biệt</h3><span class="special-effect-kind">${esc(info.kind)}</span></div><p class="special-effect-copy">${esc(info.effect)}</p>${info.note?`<p class="special-effect-note">${esc(info.note)}</p>`:''}<div class="special-effect-disclaimer">Hiệu ứng có thể thay đổi theo bản vá hoặc chế độ PvP. Mở Wiki trong khung chi tiết để kiểm tra thông số mới nhất.</div></section>`;
 }
 
+const talismanEffectCache=new Map();
+function isTalismanItem(item){return item?.category==='Talismans'}
+function renderTalismanEffectPanel(item){
+  if(!isTalismanItem(item))return'';
+  return `<section class="special-effect-panel" id="talismanEffectPanel" data-item-id="${esc(item.id)}"><div class="special-effect-head"><h3>◇ Công dụng bùa hộ mệnh</h3><span class="special-effect-kind">Đang tải</span></div><p class="special-effect-copy">Đang tải mô tả công dụng từ wiki của món bùa này…</p><div class="special-effect-disclaimer">Tool sẽ cố tự lấy công dụng từ trang wiki của vật phẩm. Nếu mạng bị chặn, bạn vẫn có thể bấm nút Fextralife ở trên để xem thủ công.</div></section>`;
+}
+function parseWikiTalismanEffect(markdown=''){
+  const lines=String(markdown).replace(/\r/g,'').split('\n').map(line=>cleanWikiCell(line).replace(/^[-•#>\s]+/,'').trim()).filter(Boolean);
+  const explicitPatterns=[/(?:Talisman\s+)?Effects?\s*[:：-]\s*(.+)$/i,/(?:Passive\s+)?Effects?\s*[:：-]\s*(.+)$/i,/(?:Talisman\s+)?Bonus\s*[:：-]\s*(.+)$/i];
+  for(const line of lines.slice(0,180)){
+    for(const pattern of explicitPatterns){
+      const match=line.match(pattern);
+      if(match&&match[1]){
+        const effect=match[1].replace(/\s*\|.*$/,'').trim();
+        if(effect&&effect.length>=8&&effect.length<=260)return{effect,note:'Nguồn tự động từ wiki Fextralife.'};
+      }
+    }
+  }
+  const keyword=/\b(raises?|boosts?|increases?|improves?|enhances?|greatly\s+(?:raises?|boosts?|increases?|improves?|enhances?)|slightly\s+(?:raises?|boosts?|increases?)|reduces?|lowers?|restores?|recovers?|negates?|protects?|extends?|shortens?|prevents?|makes?)\b/i;
+  const skip=/\b(where to find|location|upgrade|notes? & tips|elden ring wiki guide|image|video location|builds?)\b/i;
+  const headingIndex=lines.findIndex(line=>/^(?:talisman\s+)?effects?$|^description$/i.test(line));
+  if(headingIndex>=0){
+    for(const line of lines.slice(headingIndex+1,headingIndex+8)){
+      if(keyword.test(line)&&!skip.test(line)&&line.length<=260)return{effect:line,note:'Nguồn tự động từ wiki Fextralife.'};
+    }
+  }
+  for(const line of lines.slice(0,200)){
+    if(keyword.test(line)&&!skip.test(line)&&line.length>=12&&line.length<=260)return{effect:line,note:'Nguồn tự động từ wiki Fextralife.'};
+  }
+  return null;
+}
+async function ensureTalismanEffect(item,force=false){
+  const wiki=itemWikiUrl(item),cacheKey=wiki.toLowerCase();if(!force&&talismanEffectCache.has(cacheKey))return talismanEffectCache.get(cacheKey);
+  const promise=(async()=>{
+    if(!force){try{const cached=await offlineDbGet('talisman:'+cacheKey);if(cached?.effect)return cached}catch(error){}}
+    const markdown=await fetchTextResource(FEXTRA_READER_PREFIX+wiki);const parsed=parseWikiTalismanEffect(markdown);
+    if(!parsed)throw new Error('Không trích xuất được công dụng từ wiki');
+    try{await offlineDbSet('talisman:'+cacheKey,parsed)}catch(error){}
+    return parsed;
+  })().catch(error=>{talismanEffectCache.delete(cacheKey);throw error});
+  talismanEffectCache.set(cacheKey,promise);return promise;
+}
+async function hydrateTalismanEffectPanel(item){
+  if(!isTalismanItem(item))return;
+  const host=itemModalBody.querySelector('#talismanEffectPanel');if(!host||host.dataset.itemId!==item.id)return;
+  try{
+    const data=await ensureTalismanEffect(item);
+    const live=itemModalBody.querySelector('#talismanEffectPanel');if(!live||live.dataset.itemId!==item.id)return;
+    const kind=live.querySelector('.special-effect-kind'),copy=live.querySelector('.special-effect-copy'),note=live.querySelector('.special-effect-disclaimer');
+    if(kind)kind.textContent='Theo wiki';
+    if(copy)copy.textContent=data.effect||'Chưa có mô tả.';
+    if(note)note.textContent=data.note||'Tóm tắt tự động từ trang wiki của vật phẩm. Có thể khác nhẹ theo bản vá hoặc trong PvP.';
+  }catch(error){
+    const live=itemModalBody.querySelector('#talismanEffectPanel');if(!live||live.dataset.itemId!==item.id)return;
+    const kind=live.querySelector('.special-effect-kind'),copy=live.querySelector('.special-effect-copy'),note=live.querySelector('.special-effect-disclaimer');
+    if(kind)kind.textContent='Chưa đọc được';
+    if(copy)copy.textContent='Chưa tự lấy được công dụng của bùa này từ wiki. Bạn vẫn có thể mở nút Fextralife ở trên để xem trực tiếp.';
+    if(note)note.textContent='Lý do thường gặp: mạng chặn truy cập wiki, proxy đọc trang tạm lỗi hoặc bài viết có định dạng khó trích xuất.';
+  }
+}
+
+const wikiEffectCache=new Map();
+function dynamicEffectMeta(item){
+  if(!item)return null;
+  if(item.category==='Great Runes')return{title:'☉ Công dụng Great Rune',kind:'Great Rune'};
+  if(item.category==='Crystal Tears')return{title:'✧ Hiệu ứng Crystal Tear',kind:'Crystal Tear'};
+  if(item.category==='Ashes of War')return{title:'⚔ Hiệu ứng Ash of War',kind:'Ash of War'};
+  if(item.group==='Spells')return{title:'✦ Mô tả phép thuật',kind:'Spell'};
+  if(item.group==='Items')return{title:'◈ Công dụng vật phẩm',kind:'Item'};
+  return null;
+}
+function renderDynamicEffectPanel(item){
+  const meta=dynamicEffectMeta(item);if(!meta)return'';
+  return `<section class="special-effect-panel" id="dynamicEffectPanel" data-item-id="${esc(item.id)}"><div class="special-effect-head"><h3>${meta.title}</h3><span class="special-effect-kind">Đang tải</span></div><p class="special-effect-copy">Đang tải mô tả / công dụng từ wiki…</p><div class="special-effect-disclaimer">Nếu mạng chặn wiki, bạn vẫn có thể dùng nút Fextralife để xem trực tiếp.</div></section>`;
+}
+function parseWikiGenericEffect(markdown='',item=null){
+  const lines=String(markdown).replace(/\r/g,'').split('\n').map(line=>cleanWikiCell(line).replace(/^[-•#>\s]+/,'').trim()).filter(Boolean);
+  const explicitPatterns=[/(?:Effects?|Effect|Description|Skill|Use|Uses)\s*[:：-]\s*(.+)$/i,/(?:item|spell|sorcery|incantation|ash of war)\s+effects?\s*[:：-]\s*(.+)$/i];
+  for(const line of lines.slice(0,220)){
+    for(const pattern of explicitPatterns){
+      const match=line.match(pattern);
+      if(match&&match[1]){const effect=match[1].replace(/\s*\|.*$/,'').trim();if(effect&&effect.length>=12&&effect.length<=320)return{effect,note:'Nguồn tự động từ wiki Fextralife.'}}
+    }
+  }
+  const skip=/\b(where to find|location|sell value|type|fp cost|slots used|int requirement|faith requirement|arc requirement|stamina cost|attack type|weight|effect id|builds?|notes? & tips|video location|elden ring wiki guide|max amount|crafting materials?)\b/i;
+  const headingIndex=lines.findIndex(line=>/^(description|effect|effects|skill|usage)$/i.test(line));
+  if(headingIndex>=0){
+    for(const line of lines.slice(headingIndex+1,headingIndex+9)){
+      if(!skip.test(line)&&line.length>=12&&line.length<=320)return{effect:line,note:'Nguồn tự động từ wiki Fextralife.'};
+    }
+  }
+  const keyword=/\b(creates?|casts?|summons?|fires?|launches?|enchants?|boosts?|raises?|increases?|improves?|enhances?|restores?|reduces?|negates?|temporarily|gradually|greatly|slightly|uses?|causes?|builds up|coats?|imbues?|grants?|bestows?|reveals?|heals?)\b/i;
+  for(const line of lines.slice(0,200)){
+    if(skip.test(line))continue;
+    if((keyword.test(line)||dynamicEffectMeta(item)?.kind==='Spell')&&line.length>=18&&line.length<=320)return{effect:line,note:'Nguồn tự động từ wiki Fextralife.'};
+  }
+  return null;
+}
+async function ensureDynamicEffect(item,force=false){
+  const wiki=itemWikiUrl(item),cacheKey='wiki-effect:'+wiki.toLowerCase();if(!force&&wikiEffectCache.has(cacheKey))return wikiEffectCache.get(cacheKey);
+  const promise=(async()=>{
+    if(!force){try{const cached=await offlineDbGet(cacheKey);if(cached?.effect)return cached}catch(error){}}
+    const markdown=await fetchTextResource(FEXTRA_READER_PREFIX+wiki);const parsed=parseWikiGenericEffect(markdown,item);
+    if(!parsed)throw new Error('Không trích xuất được công dụng từ wiki');
+    try{await offlineDbSet(cacheKey,parsed)}catch(error){}
+    return parsed;
+  })().catch(error=>{wikiEffectCache.delete(cacheKey);throw error});
+  wikiEffectCache.set(cacheKey,promise);return promise;
+}
+async function hydrateDynamicEffectPanel(item){
+  if(!dynamicEffectMeta(item))return;
+  const host=itemModalBody.querySelector('#dynamicEffectPanel');if(!host||host.dataset.itemId!==item.id)return;
+  try{
+    const data=await ensureDynamicEffect(item);
+    const live=itemModalBody.querySelector('#dynamicEffectPanel');if(!live||live.dataset.itemId!==item.id)return;
+    const kind=live.querySelector('.special-effect-kind'),copy=live.querySelector('.special-effect-copy'),note=live.querySelector('.special-effect-disclaimer');
+    if(kind)kind.textContent='Theo wiki';
+    if(copy)copy.textContent=data.effect||'Chưa có mô tả.';
+    if(note)note.textContent=data.note||'Tóm tắt tự động từ trang wiki của vật phẩm. Có thể khác nhẹ theo bản vá hoặc trong PvP.';
+  }catch(error){
+    const live=itemModalBody.querySelector('#dynamicEffectPanel');if(!live||live.dataset.itemId!==item.id)return;
+    const kind=live.querySelector('.special-effect-kind'),copy=live.querySelector('.special-effect-copy'),note=live.querySelector('.special-effect-disclaimer');
+    if(kind)kind.textContent='Chưa đọc được';
+    if(copy)copy.textContent='Chưa tự lấy được công dụng từ wiki. Bạn vẫn có thể bấm nút Fextralife ở trên để xem trực tiếp.';
+    if(note)note.textContent='Lý do thường gặp: mạng chặn truy cập wiki, proxy đọc trang tạm lỗi hoặc bài viết có định dạng khó trích xuất.';
+  }
+}
+
 function itemWikiUrl(item){const base=itemChecklistData?.wikiUrlPrefix||'https://eldenring.wiki.fextralife.com/';const target=String(item.href||item.name||'').trim();if(/^https?:\/\//i.test(target))return target;return base+encodeURIComponent(target).replace(/%20/g,'+')}
 function addAcquisition(name,entry){
   const key=normalizeItemName(name);if(!key)return;const current=itemAcquisition.get(key)||[];
@@ -1817,7 +1998,7 @@ function updateItemProgress(){
 function itemMatches(item,query,group,part,status,effectMode='all'){
   const done=!!state.itemDone?.[item.id],effect=specialEffectForItem(item),acq=(itemAcquisition.get(normalizeItemName(item.name))||[]).map(x=>`${x.type} ${x.source} ${(x.maps||[]).join(' ')}`).join(' ');
   const hay=`${item.name} ${item.group} ${item.category} ${(item.maps||[]).join(' ')} ${item.startsWith||''} ${item.missable||''} ${acq} ${specialEffectSearchText(item)}`.toLowerCase();
-  return(!query||hay.includes(query))&&(group==='all'||canonicalItemGroup(item.group)===canonicalItemGroup(group))&&(part==='all'||(part==='dlc'&&item.dlc)||(part==='main'&&!item.dlc))&&(status==='all'||(status==='done'&&done)||(status==='todo'&&!done))&&(effectMode!=='special'||!!effect);
+  return(!query||hay.includes(query))&&(group==='all'||resolvedItemGroup(item.category,item.group)===resolvedItemGroup('',group))&&(part==='all'||(part==='dlc'&&item.dlc)||(part==='main'&&!item.dlc))&&(status==='all'||(status==='done'&&done)||(status==='todo'&&!done))&&(effectMode!=='special'||!!effect);
 }
 function itemLocationSummary(item){
   const entries=itemAcquisition.get(normalizeItemName(item.name))||[];
@@ -1833,7 +2014,7 @@ function renderItemChecklist(){
   let visibleTotal=0;
   const html=[];
   itemCategories.forEach(cat=>{
-    if(group!=='all'&&canonicalItemGroup(cat.group)!==canonicalItemGroup(group))return;
+    if(group!=='all'&&resolvedItemGroup(cat.name,cat.group)!==resolvedItemGroup('',group))return;
     const visible=cat.items.filter(item=>itemMatches(item,query,group,part,status,effectMode));if(!visible.length)return;visibleTotal+=visible.length;
     const done=cat.items.filter(x=>state.itemDone?.[x.id]).length,open=isItemCategoryOpen(cat,filtering),groupBadge=categoryGroupBadge(cat);
     html.push(`<section class="item-category ${open?'open':''}" data-item-category="${esc(cat.id)}"><button class="item-category-toggle" type="button" data-item-category-toggle="${esc(cat.id)}" aria-expanded="${open}"><div class="item-category-title"><h2>${esc(cat.name)}</h2><div class="item-category-sub">${groupBadge}<span>${visible.length} mục đang hiện</span></div></div><div class="item-category-count"><strong>${done} / ${cat.items.length}</strong><span>đã có</span></div><span class="item-category-chevron">⌄</span></button>${open?`<div class="item-category-body"><div class="item-list">${visible.map(item=>renderCollectionRow(item)).join('')}</div></div>`:''}</section>`);
@@ -1846,8 +2027,8 @@ function renderItemChecklist(){
   hydrateItemOnlineImages(itemAccordion);
 }
 function renderCollectionRow(item){
-  const done=!!state.itemDone?.[item.id],weapon=WEAPON_GROUPS.has(item.group),effect=specialEffectForItem(item);
-  return `<div class="item-row ${done?'done':''}"><button class="item-check" type="button" data-item-check="${esc(item.id)}" title="Đổi trạng thái">✓</button>${renderItemIcon(item)}<div class="item-copy"><div class="item-name">${esc(item.name)}</div><div class="item-meta"><span>${esc(item.category)}</span>${item.dlc?'<span class="item-badge dlc">DLC</span>':''}${item.missable?'<span class="item-badge" style="color:#e79b8f;border-color:rgba(224,102,102,.38)">Missable</span>':''}${effect?'<span class="item-badge effect">◆ Có hiệu ứng</span>':''}${weapon?'<span class="item-badge" style="color:#9fc6dd">Bảng nâng cấp</span>':''}</div>${effect?`<div class="item-effect-summary">${esc(effect.effect)}</div>`:''}<div class="item-location">${esc(itemLocationSummary(item))}</div></div><button class="item-detail-btn" type="button" data-item-detail="${esc(item.id)}">${effect?'Hiệu ứng & chi tiết':(weapon?'Chỉ số & vị trí':'Xem vị trí')}</button></div>`;
+  const done=!!state.itemDone?.[item.id],weapon=WEAPON_GROUPS.has(item.group),effect=specialEffectForItem(item),talisman=isTalismanItem(item),detailLabel=talisman?'Công dụng & chi tiết':(effect?'Hiệu ứng & chi tiết':(weapon?'Chỉ số & vị trí':'Xem vị trí'));
+  return `<div class="item-row ${done?'done':''}"><button class="item-check" type="button" data-item-check="${esc(item.id)}" title="Đổi trạng thái">✓</button>${renderItemIcon(item)}<div class="item-copy"><div class="item-name">${esc(item.name)}</div><div class="item-meta"><span>${esc(item.category)}</span>${item.dlc?'<span class="item-badge dlc">DLC</span>':''}${item.missable?'<span class="item-badge" style="color:#e79b8f;border-color:rgba(224,102,102,.38)">Missable</span>':''}${talisman?'<span class="item-badge" style="color:#b8cda3">◇ Công dụng</span>':''}${effect?'<span class="item-badge effect">◆ Có hiệu ứng</span>':''}${weapon?'<span class="item-badge" style="color:#9fc6dd">Bảng nâng cấp</span>':''}</div>${effect?`<div class="item-effect-summary">${esc(effect.effect)}</div>`:''}<div class="item-location">${esc(itemLocationSummary(item))}</div></div><button class="item-detail-btn" type="button" data-item-detail="${esc(item.id)}">${detailLabel}</button></div>`;
 }
 async function fetchJsonResource(url){const response=await fetch(url,{cache:'force-cache'});if(!response.ok)throw new Error(`HTTP ${response.status}`);const raw=await response.text();return JSON.parse(raw.replace(/^\uFEFF/,''))}
 async function fetchTextResource(url){const response=await fetch(url,{cache:'force-cache'});if(!response.ok)throw new Error(`HTTP ${response.status}`);return response.text()}
@@ -1860,9 +2041,9 @@ async function initItemChecklist(){
       if(cached){itemChecklistData=cached;itemDataBadge.textContent=EMBEDDED_OFFLINE_DATA?.itemChecklistData?'Đã nhúng':'Offline';}
       else{itemChecklistData=await fetchJsonResource(ITEM_CHECKLIST_URL);await offlineDbSet('itemChecklistData',itemChecklistData);itemDataBadge.textContent='Đã lưu';}
       const preparedCategories=supplementalItemCategories(flattenItemCategories(itemChecklistData));bossCategories=preparedCategories.filter(isBossCategory);itemCategories=preparedCategories.filter(cat=>!isBossCategory(cat)&&!['Enemies','Sites of Grace'].includes(canonicalItemGroup(cat.group)));indexAcquisition(itemChecklistData);
-      const groups=[...new Set(itemCategories.map(x=>canonicalItemGroup(x.group)))];itemGroup.innerHTML='<option value="all">Tất cả nhóm</option>'+groups.map(group=>`<option value="${esc(group)}">${esc(ITEM_GROUP_LABELS[group]||group)}</option>`).join('');
+      const groups=[...new Set(itemCategories.map(x=>resolvedItemGroup(x.name,x.group)))];itemGroup.innerHTML='<option value="all">Tất cả nhóm</option>'+groups.map(group=>`<option value="${esc(group)}">${esc(ITEM_GROUP_LABELS[group]||group)}</option>`).join('');
       if(bossCategory)bossCategory.innerHTML='<option value="all">Tất cả loại Boss</option>'+bossCategories.map(cat=>`<option value="${esc(cat.id)}">${esc(cat.name)}</option>`).join('');
-      itemGroup.value=state.itemGroup||'all';itemPart.value=state.itemPart||'all';itemStatus.value=state.itemStatus||'all';state.itemEffect=state.itemEffect==='special'?'special':'all';updateItemEffectTabs();
+      if(![...itemGroup.options].some(option=>option.value===(state.itemGroup||'all')))state.itemGroup='all';itemGroup.value=state.itemGroup||'all';itemPart.value=state.itemPart||'all';itemStatus.value=state.itemStatus||'all';state.itemEffect=state.itemEffect==='special'?'special':'all';updateItemEffectTabs();
       if(!itemSearch.dataset.bound){itemSearch.dataset.bound='1';itemSearch.addEventListener('input',renderItemChecklist);itemGroup.addEventListener('change',()=>{state.itemGroup=itemGroup.value;saveState();renderItemChecklist()});itemPart.addEventListener('change',()=>{state.itemPart=itemPart.value;saveState();renderItemChecklist()});itemStatus.addEventListener('change',()=>{state.itemStatus=itemStatus.value;saveState();renderItemChecklist()});itemEffectTabs.forEach(tab=>tab.addEventListener('click',()=>{state.itemEffect=tab.dataset.itemEffectTab==='special'?'special':'all';saveState();renderItemChecklist()}))}
       if(bossSearch&&!bossSearch.dataset.bound){bossSearch.dataset.bound='1';bossSearch.addEventListener('input',renderBossChecklist);bossCategory.addEventListener('change',renderBossChecklist);bossPart.addEventListener('change',renderBossChecklist);bossStatus.addEventListener('change',renderBossChecklist)}
       itemLoadStatus.innerHTML=`Đã mở <strong>${allCollectionItems().length}</strong> mục vật phẩm · <strong>${allBossItems().length}</strong> Boss đã chuyển sang tab Infor Boss · dữ liệu ${esc(itemChecklistData.patch||'')}`;renderItemChecklist();updateItemProgress();renderBossChecklist();updateBossProgress();updateOfflineSummary();initBossExtraData();
@@ -1873,27 +2054,94 @@ function collectionItemById(id){for(const cat of [...itemCategories,...bossCateg
 
 const BOSS_NAME_ALIASES=Object.freeze({
   'erdtree burial watchdog':'burial tree watchdog','beast of farum azula':'beastman of farum azula',
-  "commander o'neil":"commander o'neil",'borealis the freezing fog':'borealis the freezing fog',
-  'maliketh the black blade':'maliketh the black blade','sir gideon ofnir the all knowing':'sir gideon ofnir the all knowing',
-  'rellana twin moon knight':'rellana twin moon knight','promised consort radahn':'promised consort radahn',
-  'radahn consort of miquella':'radahn consort of miquella','scadutree avatar':'scadutree avatar phase 1'
+  'abductor virgin':'abductor virgins','abductor virgins':'abductor virgin','crystalian':'crystalians','crystalians':'crystalian',
+  'demi human chief':'demi human chiefs','demi human chiefs':'demi human chief','valiant gargoyle':'valiant gargoyles','valiant gargoyles':'valiant gargoyle',
+  'nox swordstress and nox priest':'nox swordstress nox priest','nox swordstress nox priest':'nox swordstress and nox priest',
+  "commander o'neil":"commander oneil",'commander oneil':"commander o'neil",'borealis freezing fog':'borealis the freezing fog',
+  'maliketh black blade':'maliketh the black blade','sir gideon ofnir all knowing':'sir gideon ofnir the all knowing',
+  'rellana twin moon knight':'rellana twin moon knight','promised consort radahn':'radahn consort of miquella',
+  'radahn consort of miquella':'promised consort radahn','scadutree avatar':'scadutree avatar phase 1',
+  'divine beast dancing lion':'divine beast dancing lion','putrescent knight':'putrescent knight','romina saint bud':'romina saint of the bud'
 });
 function normalizeBossName(value=''){
   return String(value).normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[’‘]/g,"'").toLowerCase().replace(/\bthe\b/g,' ').replace(/[^a-z0-9']+/g,' ').replace(/\s+/g,' ').trim();
 }
+function bossSingularKey(value=''){
+  return String(value||'').split(' ').map(word=>{
+    if(/(?:ss|us|is)$/.test(word))return word;
+    if(/ies$/.test(word))return word.slice(0,-3)+'y';
+    if(/s$/.test(word)&&word.length>4)return word.slice(0,-1);
+    return word;
+  }).join(' ');
+}
 function bossLookupKeys(value=''){
-  const raw=String(value||'').trim(),keys=[];const push=v=>{v=normalizeBossName(v);if(v&&!keys.includes(v))keys.push(v)};
-  push(raw);push(raw.replace(/\s*\([^)]*\)\s*$/,''));push(raw.replace(/\bphase\s*\d+\b/ig,''));push(raw.replace(/\bancient ruins of rauh\b/ig,''));
+  const raw=String(value||'').trim(),keys=[];const push=v=>{v=normalizeBossName(v).replace(/\bo['’]?neil\b/g,'oneil');if(v&&!keys.includes(v))keys.push(v)};
+  push(raw);push(raw.replace(/\s*\([^)]*\)\s*$/,''));push(raw.replace(/\bphase\s*\d+\b/ig,''));push(raw.replace(/\bancient ruins of rauh\b/ig,''));push(raw.replace(/\bsaint\b/ig,'st'));
+  [...keys].forEach(k=>push(bossSingularKey(k)));
   [...keys].forEach(k=>{if(BOSS_NAME_ALIASES[k])push(BOSS_NAME_ALIASES[k])});return keys;
 }
 function bossIndexRecord(index,record){bossLookupKeys(record?.name).forEach(key=>{if(!index.has(key))index.set(key,record)})}
-function bossFind(index,item){for(const key of bossLookupKeys(item?.name)){if(index.has(key))return index.get(key)}return null}
+function bossTokenScore(a='',b=''){
+  const stop=new Set(['of','and','the','a','an','lord','boss']);
+  const ta=new Set(String(a).split(' ').filter(x=>x&&!stop.has(x))),tb=new Set(String(b).split(' ').filter(x=>x&&!stop.has(x)));
+  if(!ta.size||!tb.size)return 0;let common=0;ta.forEach(x=>{if(tb.has(x))common++});
+  const coverage=common/Math.min(ta.size,tb.size),balance=common/Math.max(ta.size,tb.size);return coverage*.72+balance*.28;
+}
+function bossFind(index,item){
+  const keys=bossLookupKeys(item?.name);for(const key of keys){if(index.has(key))return index.get(key)}
+  let best=null,bestScore=0;const seen=new Set();
+  for(const record of index.values()){
+    if(!record||seen.has(record))continue;seen.add(record);
+    for(const a of keys)for(const b of bossLookupKeys(record.name)){
+      const score=(a.includes(b)||b.includes(a))&&Math.min(a.length,b.length)>=7?0.9:bossTokenScore(a,b);
+      if(score>bestScore){bestScore=score;best=record}
+    }
+  }
+  return bestScore>=0.82?best:null;
+}
 function parseBossCombatSource(source=''){
   const out=[];const re=/\{\s*name:\s*(?:'([^']*)'|"([^"]*)"),\s*game:\s*'Elden Ring',\s*health:\s*(\d+),\s*souls:\s*(\d+),\s*weaknesses:\s*\[([^\]]*)\],\s*resistances:\s*\[([^\]]*)\]\s*\}/gs;
   const parseList=s=>[...String(s).matchAll(/['"]([^'"]+)['"]/g)].map(m=>m[1]);let m;
   while((m=re.exec(source)))out.push({name:m[1]||m[2],health:Number(m[3]),runes:Number(m[4]),weaknesses:parseList(m[5]),resistances:parseList(m[6])});return out;
 }
-function damageTypeVi(type){return({physical:'Vật lý',slash:'Chém',thrust:'Đâm',strike:'Đập',magic:'Phép',fire:'Lửa',lightning:'Sét',holy:'Thánh'})[type]||type}
+function damageTypeVi(type){return({physical:'Vật lý',slash:'Chém',thrust:'Đâm',strike:'Đập',magic:'Phép',fire:'Lửa',lightning:'Sét',holy:'Thánh',frost:'Băng giá',bleed:'Chảy máu',rot:'Đỏ thối',poison:'Độc',death:'Tử khí',madness:'Điên loạn'})[type]||type}
+const BOSS_DAMAGE_OVERRIDES=Object.freeze({
+  'ancient dragon lansseax':['physical','lightning'],'lichdragon fortissax':['physical','lightning','death'],'dragonlord placidusax':['physical','lightning','fire'],
+  'draconic tree sentinel':['physical','lightning','fire'],'dragonkin soldier of nokstella':['physical','lightning','frost'],'commander niall':['physical','lightning','frost'],
+  'borealis freezing fog':['physical','frost'],'ancient hero of zamor':['physical','frost'],'adan thief of fire':['physical','fire'],'magma wyrm':['physical','fire'],
+  'magma wyrm makar':['physical','fire'],'rykard lord of blasphemy':['physical','fire'],'god devouring serpent':['physical','fire'],'fire giant':['physical','fire'],
+  'godskin apostle':['physical','fire'],'godskin noble':['physical','fire'],'godskin duo':['physical','fire'],'godrick grafted':['physical','fire'],
+  'rennala queen full moon':['magic'],'red wolf radagon':['physical','magic'],'royal knight loretta':['physical','magic'],'loretta knight haligtree':['physical','magic'],
+  'astel naturalborn void':['physical','magic'],'astel stars darkness':['physical','magic'],'fallingstar beast':['physical','magic'],'full grown fallingstar beast':['physical','magic'],
+  'alabaster lord':['physical','magic'],'onyx lord':['physical','magic'],'crystalian':['physical','magic'],'glintstone dragon adula':['physical','magic','frost'],
+  'glintstone dragon smarag':['physical','magic'],'starscourge radahn':['physical','magic'],'radahn consort of miquella':['physical','magic','holy'],
+  'promised consort radahn':['physical','magic','holy'],'elden beast':['holy'],'radagon golden order':['physical','holy'],'erdtree avatar':['physical','holy'],
+  'putrid avatar':['physical','holy','rot'],'tree sentinel':['physical','holy'],'margit fell omen':['physical','holy'],'morgott omen king':['physical','holy'],
+  'maliketh black blade':['physical','holy'],'black blade kindred':['physical','holy'],'black knife assassin':['physical','holy'],'alecto black knife ringleader':['physical','holy'],
+  'decaying ekzykes':['physical','rot'],'malenia blade of miquella':['physical','rot'],'malenia goddess rot':['physical','rot'],'cleanrot knight':['physical','rot'],
+  'kindred of rot':['physical','rot','poison'],'romina saint bud':['physical','rot'],'mohg lord blood':['physical','fire','bleed'],'mohg omen':['physical','bleed'],
+  'esgar priest blood':['physical','bleed'],'sanguine noble':['physical','bleed'],'death rite bird':['physical','magic','frost'],'deathbird':['physical','magic'],
+  'sir gideon ofnir all knowing':['magic','fire','holy'],'divine beast dancing lion':['physical','lightning','frost'],'rellana twin moon knight':['physical','magic','fire'],
+  'messmer impaler':['physical','fire'],'putrescent knight':['physical','magic','frost'],'metyr mother fingers':['physical','magic'],'midra lord frenzied flame':['physical','fire','madness'],
+  'bayle dread':['physical','fire','lightning'],'commander gaius':['physical','magic'],'scadutree avatar':['physical','holy'],'death knight':['physical','lightning'],
+  'ancient dragon senessax':['physical','lightning'],'ghostflame dragon':['physical','magic','frost'],'furnace golem':['physical','fire'],'jagged peak drake':['physical','fire','lightning']
+});
+function bossDamageProfile(item,api){
+  for(const key of bossLookupKeys(item?.name)){if(BOSS_DAMAGE_OVERRIDES[key])return BOSS_DAMAGE_OVERRIDES[key]}
+  const hay=`${item?.name||''} ${api?.description||''}`.toLowerCase();const types=[];const add=t=>{if(!types.includes(t))types.push(t)};
+  if(!/rennala|elden beast/.test(hay))add('physical');
+  if(/lightning|thunder|storm|dragon cult|lansseax|fortissax|placidusax|senessax/.test(hay))add('lightning');
+  if(/fire|flame|magma|fell god|messmer|rykard|godskin|furnace/.test(hay))add('fire');
+  if(/magic|sorcer|glintstone|crystal|gravity|star|void|moon|astel|fallingstar|alabaster|onyx|finger/.test(hay))add('magic');
+  if(/holy|golden|erdtree|elden beast|black blade|destined death|margit|morgott/.test(hay))add('holy');
+  if(/frost|freez|ice|zamor|ghostflame/.test(hay))add('frost');
+  if(/scarlet rot|putrid|decay|malenia|romina|kindred of rot/.test(hay))add('rot');
+  if(/blood|bleed|sanguine|mohg/.test(hay))add('bleed');
+  if(/poison/.test(hay))add('poison');
+  if(/death blight|death rite|lichdragon|wormface/.test(hay))add('death');
+  if(/frenzied|madness|midra/.test(hay))add('madness');
+  return types.length?types:['physical'];
+}
 function bossAoeProfile(item,api){
   const hay=`${item?.name||''} ${api?.description||''}`.toLowerCase();
   const high=/dragon|wyrm|giant|astel|elden beast|radahn|rennala|rykard|mohg|malenia|fortissax|placidusax|avatar|tree spirit|death rite|dancing lion|hippopotamus|messmer|metyr|romina|bayle|putrescent|gargoyle|duo|champions|fallingstar|ulcerated|wormface|fire giant/.test(hay);
@@ -1907,8 +2155,8 @@ function bossAoeProfile(item,api){
   return{level,note};
 }
 function bossCombatInfo(item){
-  const api=bossFind(bossApiIndex,item),combat=bossFind(bossCombatIndex,item),aoe=bossAoeProfile(item,api);
-  return{api,combat,aoe,image:api?.image||bossWikiImage(item),health:combat?.health||api?.healthPoints||'',weaknesses:combat?.weaknesses||null,resistances:combat?.resistances||null};
+  const api=bossFind(bossApiIndex,item),combat=bossFind(bossCombatIndex,item),aoe=bossAoeProfile(item,api),damage=bossDamageProfile(item,api);
+  return{api,combat,aoe,damage,image:api?.image||bossWikiImage(item),health:combat?.health||api?.healthPoints||'',weaknesses:combat?.weaknesses||null,resistances:combat?.resistances||null};
 }
 function bossWikiImage(item){for(const key of bossLookupKeys(item?.name)){if(bossWikiImageIndex.has(key))return bossWikiImageIndex.get(key)}return''}
 async function loadBossWikiImages(items=[]){
@@ -1949,23 +2197,34 @@ function bossStaticImageCandidates(item){
     files.slice(0,2).forEach(file=>candidates.push(`https://eldenring.fandom.com/wiki/Special:Redirect/file/${encodeURIComponent(file)}`));
   });return candidates;
 }
+function bossImageSourceVariants(url=''){
+  const clean=String(url||'').trim();if(!clean)return[];const out=[clean];
+  if(/^https?:\/\//i.test(clean)&&!/wsrv\.nl/i.test(clean))out.push(`https://wsrv.nl/?url=${encodeURIComponent(clean)}&w=640&h=760&fit=cover&output=webp`);
+  return out;
+}
 function bossImageDescriptor(item){
-  const info=bossCombatInfo(item),candidates=[],override=bossWebOverride(item);if(override)candidates.push(override);if(info.image)candidates.push(info.image);candidates.push(...bossStaticImageCandidates(item));const legacy=itemIconDescriptor(item);if(legacy?.candidates)candidates.push(...legacy.candidates.slice(0,12));const unique=[...new Set(candidates.filter(Boolean))];return unique.length?{url:unique[0],candidates:unique}:null;
+  const info=bossCombatInfo(item),raw=[],override=bossWebOverride(item);if(override)raw.push(override);if(info.image)raw.push(info.image);if(info.api?.id)raw.push(`https://eldenring.fanapis.com/images/bosses/${encodeURIComponent(info.api.id)}.png`);raw.push(...bossStaticImageCandidates(item));const legacy=itemIconDescriptor(item);if(legacy?.candidates)raw.push(...legacy.candidates.slice(0,16));
+  const unique=[...new Set(raw.filter(Boolean).flatMap(bossImageSourceVariants))];return unique.length?{url:unique[0],candidates:unique}:null;
+}
+function installBossOnlineImage(parent,name,url){
+  if(!parent||!url)return;const candidates=bossImageSourceVariants(url);let index=0;const img=document.createElement('img');img.alt=name;img.loading='lazy';img.referrerPolicy='no-referrer';
+  img.onerror=()=>{index++;if(index<candidates.length){img.src=candidates[index];return}img.remove();parent.classList.add('missing')};img.src=candidates[0];parent.prepend(img);parent.classList.remove('missing');
 }
 function tryNextBossIcon(img){
   let candidates=[];try{candidates=JSON.parse(decodeURIComponent(img.dataset.iconCandidates||'[]'))}catch(error){}let index=Number(img.dataset.iconIndex||0)+1;
   if(index<candidates.length){img.dataset.iconIndex=String(index);img.src=candidates[index];return}
   const parent=img.parentElement,name=img.dataset.bossName||img.alt||'';img.onerror=null;img.remove();parent?.classList.add('missing');
-  searchBossImageOnline(name).then(url=>{if(!url||!parent?.isConnected)return;const next=document.createElement('img');next.src=url;next.alt=name;next.loading='lazy';next.onerror=()=>{next.remove();parent.classList.add('missing')};parent.prepend(next);parent.classList.remove('missing')}).catch(()=>{});
+  searchBossImageOnline(name).then(url=>{if(url&&parent?.isConnected)installBossOnlineImage(parent,name,url)}).catch(()=>{});
 }
 function hydrateBossOnlineImages(root=document){
-  root.querySelectorAll('[data-boss-name].missing').forEach(box=>{if(box.dataset.searching==='1')return;box.dataset.searching='1';searchBossImageOnline(box.dataset.bossName).then(url=>{if(!url||!box.isConnected)return;const img=document.createElement('img');img.src=url;img.alt=box.dataset.bossName;img.loading='lazy';img.onerror=()=>{img.remove();box.classList.add('missing')};box.prepend(img);box.classList.remove('missing')}).finally(()=>{delete box.dataset.searching})});
+  root.querySelectorAll('[data-boss-name].missing').forEach(box=>{if(box.dataset.searching==='1')return;box.dataset.searching='1';searchBossImageOnline(box.dataset.bossName).then(url=>{if(url&&box.isConnected)installBossOnlineImage(box,box.dataset.bossName,url)}).finally(()=>{delete box.dataset.searching})});
 }
-function renderBossHeroImage(item){const icon=bossImageDescriptor(item),name=esc(item.name);if(!icon)return`<span class="item-icon-box large boss-hero-image missing" data-boss-name="${name}"><span class="icon-fallback">◇</span></span>`;return`<span class="item-icon-box large boss-hero-image" data-boss-name="${name}"><img src="${esc(icon.url)}" data-icon-candidates="${iconCandidateData(icon)}" data-icon-index="0" data-boss-name="${name}" alt="${name}" onerror="tryNextBossIcon(this)"><span class="icon-fallback">◇</span></span>`}
+function renderBossHeroImage(item){const icon=bossImageDescriptor(item),name=esc(item.name);if(!icon)return`<span class="item-icon-box large boss-hero-image missing" data-boss-name="${name}"><span class="icon-fallback">◇</span></span>`;return`<span class="item-icon-box large boss-hero-image" data-boss-name="${name}"><img src="${esc(icon.url)}" data-icon-candidates="${iconCandidateData(icon)}" data-icon-index="0" data-boss-name="${name}" alt="${name}" referrerpolicy="no-referrer" onerror="tryNextBossIcon(this)"><span class="icon-fallback">◇</span></span>`}
 function bossCombatChips(info){
   const weak=info.weaknesses?.length?info.weaknesses.map(damageTypeVi).join(', '):info.weaknesses?'Không nổi bật':'Chưa xác minh';
   const resist=info.resistances?.length?info.resistances.map(damageTypeVi).join(', '):info.resistances?'Không nổi bật':'Chưa xác minh';
-  const cls=info.aoe.level==='Nhiều'?'aoe-high':info.aoe.level==='Ít'?'aoe-low':'aoe-mid';return`<div class="boss-combat-chips"><span class="boss-combat-chip ${cls}">AOE: ${esc(info.aoe.level)}</span><span class="boss-combat-chip weak">Yếu: ${esc(weak)}</span><span class="boss-combat-chip resist">Kháng: ${esc(resist)}</span></div>`;
+  const damage=(info.damage||['physical']).map(damageTypeVi).join(', ');
+  const cls=info.aoe.level==='Nhiều'?'aoe-high':info.aoe.level==='Ít'?'aoe-low':'aoe-mid';return`<div class="boss-combat-chips"><span class="boss-combat-chip damage">Sát thương: ${esc(damage)}</span><span class="boss-combat-chip ${cls}">AOE: ${esc(info.aoe.level)}</span><span class="boss-combat-chip weak">Yếu: ${esc(weak)}</span><span class="boss-combat-chip resist">Kháng: ${esc(resist)}</span></div>`;
 }
 
 function bossRewards(item){
@@ -1974,10 +2233,10 @@ function bossRewards(item){
 function bossLocations(item){return[...new Set(item.maps||[])];}
 function updateBossProgress(){const all=allBossItems(),done=all.filter(x=>state.itemDone?.[x.id]).length;if(bossProgressText)bossProgressText.textContent=`${done} / ${all.length}`;if(bossProgressBar)bossProgressBar.style.width=`${all.length?done/all.length*100:0}%`;}
 function bossMatches(item,query,categoryId,part,status){
-  const done=!!state.itemDone?.[item.id],rewards=bossRewards(item).join(' '),locations=bossLocations(item).join(' '),cat=bossCategories.find(c=>c.items.includes(item));
-  const hay=`${item.name} ${cat?.name||''} ${locations} ${rewards}`.toLowerCase();return(!query||hay.includes(query))&&(categoryId==='all'||cat?.id===categoryId)&&(part==='all'||(part==='dlc'&&item.dlc)||(part==='main'&&!item.dlc))&&(status==='all'||(status==='done'&&done)||(status==='todo'&&!done));
+  const done=!!state.itemDone?.[item.id],rewards=bossRewards(item).join(' '),locations=bossLocations(item).join(' '),cat=bossCategories.find(c=>c.items.includes(item)),damage=bossCombatInfo(item).damage.map(damageTypeVi).join(' ');
+  const hay=`${item.name} ${cat?.name||''} ${locations} ${rewards} ${damage}`.toLowerCase();return(!query||hay.includes(query))&&(categoryId==='all'||cat?.id===categoryId)&&(part==='all'||(part==='dlc'&&item.dlc)||(part==='main'&&!item.dlc))&&(status==='all'||(status==='done'&&done)||(status==='todo'&&!done));
 }
-function renderBossIcon(item){const icon=bossImageDescriptor(item),name=esc(item.name);if(!icon)return`<div class="boss-icon missing" data-boss-name="${name}"><span class="icon-fallback">◇</span></div>`;return`<div class="boss-icon" data-boss-name="${name}"><img src="${esc(icon.url)}" data-icon-candidates="${iconCandidateData(icon)}" data-icon-index="0" data-boss-name="${name}" alt="${name}" loading="lazy" onerror="tryNextBossIcon(this)"><span class="icon-fallback">◇</span></div>`}
+function renderBossIcon(item){const icon=bossImageDescriptor(item),name=esc(item.name);if(!icon)return`<div class="boss-icon missing" data-boss-name="${name}"><span class="icon-fallback">◇</span></div>`;return`<div class="boss-icon" data-boss-name="${name}"><img src="${esc(icon.url)}" data-icon-candidates="${iconCandidateData(icon)}" data-icon-index="0" data-boss-name="${name}" alt="${name}" loading="lazy" referrerpolicy="no-referrer" onerror="tryNextBossIcon(this)"><span class="icon-fallback">◇</span></div>`}
 function renderBossChecklist(){
   if(!bossGrid||!itemChecklistData)return;const query=(bossSearch?.value||'').trim().toLowerCase(),category=bossCategory?.value||'all',part=bossPart?.value||'all',status=bossStatus?.value||'all';let visible=[];
   bossCategories.forEach(cat=>cat.items.forEach(item=>{if(bossMatches(item,query,category,part,status))visible.push(item)}));
@@ -1990,8 +2249,9 @@ function openBossDetail(id){
   const item=collectionItemById(id);if(!item)return;const cat=bossCategories.find(c=>c.items.includes(item)),locations=bossLocations(item),rewards=bossRewards(item),wiki=itemWikiUrl(item),info=bossCombatInfo(item);
   const weak=info.weaknesses?.length?info.weaknesses.map(damageTypeVi).join(', '):info.weaknesses?'Không có hệ nổi bật':'Chưa xác minh';
   const resist=info.resistances?.length?info.resistances.map(damageTypeVi).join(', '):info.resistances?'Không có hệ nổi bật':'Chưa xác minh';
+  const damage=(info.damage||['physical']).map(damageTypeVi).join(', ');
   itemModalTitle.textContent=item.name;itemModal.classList.add('show');
-  itemModalBody.innerHTML=`<div class="item-hero"><div class="item-hero-main">${renderBossHeroImage(item)}<div><h2>${esc(item.name)}</h2><p>${esc(cat?.name||'Boss')}${item.dlc?' · Shadow of the Erdtree':' · Game chính'}</p><div class="boss-data-source">Chỉ số yếu/kháng là dữ liệu tham khảo; có thể khác theo pha hoặc biến thể Boss.</div></div></div><div class="item-hero-actions"><a class="btn primary" href="${esc(wiki)}" target="_blank" rel="noopener">Fextralife: thông tin Boss ↗</a></div></div><div class="boss-combat-grid"><div class="boss-combat-box"><span>HP tham khảo</span><strong>${esc(String(info.health||'Chưa xác minh'))}</strong></div><div class="boss-combat-box"><span>Mức AOE</span><strong>${esc(info.aoe.level)}</strong></div><div class="boss-combat-box"><span>Yếu trước</span><strong>${esc(weak)}</strong></div><div class="boss-combat-box"><span>Kháng tốt</span><strong>${esc(resist)}</strong></div></div><section class="boss-detail-section"><h3>Đặc điểm chiến đấu</h3><div class="boss-tactics"><strong>AOE ${esc(info.aoe.level)}:</strong> ${esc(info.aoe.note)}</div></section><section class="boss-detail-section"><h3>Địa điểm xuất hiện</h3>${locations.length?`<ul>${locations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'<p style="color:var(--muted);margin:0">Chưa có địa điểm trong bộ dữ liệu.</p>'}</section><section class="boss-detail-section"><h3>Phần thưởng / vật phẩm rơi</h3>${rewards.length?`<ul>${rewards.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'<p style="color:var(--muted);margin:0">Checklist không ghi phần thưởng riêng cho Boss này.</p>'}</section>${item.missable?`<div class="weapon-reference-note"><strong>Có thể bỏ lỡ:</strong> ${esc(translateAcquisitionText(item.missable)||item.missable)}</div>`:''}`;hydrateBossOnlineImages(itemModalBody);
+  itemModalBody.innerHTML=`<div class="item-hero"><div class="item-hero-main">${renderBossHeroImage(item)}<div><h2>${esc(item.name)}</h2><p>${esc(cat?.name||'Boss')}${item.dlc?' · Shadow of the Erdtree':' · Game chính'}</p><div class="boss-data-source">Hệ sát thương, yếu/kháng là dữ liệu tham khảo; một số Boss có thể đổi hệ theo pha hoặc chiêu thức.</div></div></div><div class="item-hero-actions"><a class="btn primary" href="${esc(wiki)}" target="_blank" rel="noopener">Fextralife: thông tin Boss ↗</a></div></div><div class="boss-combat-grid"><div class="boss-combat-box"><span>HP tham khảo</span><strong>${esc(String(info.health||'Chưa xác minh'))}</strong></div><div class="boss-combat-box"><span>Sát thương chính</span><strong>${esc(damage)}</strong></div><div class="boss-combat-box"><span>Mức AOE</span><strong>${esc(info.aoe.level)}</strong></div><div class="boss-combat-box"><span>Yếu trước</span><strong>${esc(weak)}</strong></div><div class="boss-combat-box"><span>Kháng tốt</span><strong>${esc(resist)}</strong></div></div><section class="boss-detail-section"><h3>Đặc điểm chiến đấu</h3><div class="boss-tactics"><strong>AOE ${esc(info.aoe.level)}:</strong> ${esc(info.aoe.note)}</div></section><section class="boss-detail-section"><h3>Địa điểm xuất hiện</h3>${locations.length?`<ul>${locations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'<p style="color:var(--muted);margin:0">Chưa có địa điểm trong bộ dữ liệu.</p>'}</section><section class="boss-detail-section"><h3>Phần thưởng / vật phẩm rơi</h3>${rewards.length?`<ul>${rewards.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:'<p style="color:var(--muted);margin:0">Checklist không ghi phần thưởng riêng cho Boss này.</p>'}</section>${item.missable?`<div class="weapon-reference-note"><strong>Có thể bỏ lỡ:</strong> ${esc(translateAcquisitionText(item.missable)||item.missable)}</div>`:''}`;hydrateBossOnlineImages(itemModalBody);
 }
 
 function translateAcquisitionSentence(sentence=''){
@@ -2219,9 +2479,10 @@ function renderPlannerArmorSummary(){
 
 function openItemDetail(id){
   const item=collectionItemById(id);if(!item)return;itemModalTitle.textContent=item.name;itemModal.classList.add('show');
-  const weapon=WEAPON_GROUPS.has(item.group),armorItem=isArmorItem(item),wiki=itemWikiUrl(item),entries=itemAcquisition.get(normalizeItemName(item.name))||[];
-  itemModalBody.innerHTML=`<div class="item-hero"><div class="item-hero-main">${renderItemIcon(item,'large')}<div><h2>${esc(item.name)}</h2><p>${esc(ITEM_GROUP_LABELS[item.group]||item.group)} · ${esc(item.category)}${item.dlc?' · Shadow of the Erdtree':''}</p></div></div><div class="item-hero-actions"><a class="btn primary" href="${esc(wiki)}" target="_blank" rel="noopener">Fextralife: cách lấy ↗</a><a class="btn" href="https://scripterswar.com/EldenRing/completion" target="_blank" rel="noopener">Checklist gốc ↗</a></div></div><div class="item-detail-grid"><div class="item-detail-box"><span>Phân loại</span><strong>${esc(item.category)}</strong></div><div class="item-detail-box"><span>Khu vực</span><strong>${esc(item.maps?.join(', ')||'Xem các nguồn bên dưới')}</strong></div><div class="item-detail-box"><span>Số cách lấy</span><strong>${entries.length||'Chưa xác định'}</strong></div></div>${renderSpecialEffectPanel(item)}<h3 style="color:var(--gold-bright);font-size:17px">Cách lấy</h3><div class="acquisition-list">${renderAcquisition(item)}</div>${armorItem?renderArmorStatsPanel(item):''}${weapon?`<div class="weapon-panel" id="weaponPanel" data-item-id="${esc(item.id)}">${renderEmbeddedWeaponPanel(item)}</div>`:''}`;
+  const weapon=WEAPON_GROUPS.has(item.group),armorItem=isArmorItem(item),talismanItem=isTalismanItem(item),wiki=itemWikiUrl(item),entries=itemAcquisition.get(normalizeItemName(item.name))||[];
+  itemModalBody.innerHTML=`<div class="item-hero"><div class="item-hero-main">${renderItemIcon(item,'large')}<div><h2>${esc(item.name)}</h2><p>${esc(itemGroupLabel(item.category,item.group))} · ${esc(item.category)}${item.dlc?' · Shadow of the Erdtree':''}</p></div></div><div class="item-hero-actions"><a class="btn primary" href="${esc(wiki)}" target="_blank" rel="noopener">Fextralife: cách lấy ↗</a><a class="btn" href="https://scripterswar.com/EldenRing/completion" target="_blank" rel="noopener">Checklist gốc ↗</a></div></div><div class="item-detail-grid"><div class="item-detail-box"><span>Phân loại</span><strong>${esc(item.category)}</strong></div><div class="item-detail-box"><span>Khu vực</span><strong>${esc(item.maps?.join(', ')||'Xem các nguồn bên dưới')}</strong></div><div class="item-detail-box"><span>Số cách lấy</span><strong>${entries.length||'Chưa xác định'}</strong></div></div>${talismanItem?renderTalismanEffectPanel(item):''}${!talismanItem&&dynamicEffectMeta(item)?renderDynamicEffectPanel(item):''}${renderSpecialEffectPanel(item)}<h3 style="color:var(--gold-bright);font-size:17px">Cách lấy</h3><div class="acquisition-list">${renderAcquisition(item)}</div>${armorItem?renderArmorStatsPanel(item):''}${weapon?`<div class="weapon-panel" id="weaponPanel" data-item-id="${esc(item.id)}">${renderEmbeddedWeaponPanel(item)}</div>`:''}`;
   hydrateItemOnlineImages(itemModalBody);
+  if(talismanItem)hydrateTalismanEffectPanel(item); else if(dynamicEffectMeta(item))hydrateDynamicEffectPanel(item);
   if(weapon){bindInstantWeaponControls(item);silentlyHydrateWeaponPanel(item)}
 }
 closeItemModal.addEventListener('click',()=>itemModal.classList.remove('show'));itemModal.addEventListener('click',event=>{if(event.target===itemModal)itemModal.classList.remove('show')});
@@ -2229,7 +2490,22 @@ async function ensureWeaponRegulation(){
   if(weaponRegulation)return weaponRegulation;if(weaponLoadPromise)return weaponLoadPromise;
   weaponLoadPromise=(async()=>{const cached=await offlineDbGet('weaponRegulation');if(cached){weaponRegulation=cached;return cached}const data=await fetchJsonResource(WEAPON_REGULATION_URL);weaponRegulation=data;await offlineDbSet('weaponRegulation',data);return data})().catch(error=>{weaponLoadPromise=null;throw error});return weaponLoadPromise;
 }
-function weaponAffinityName(weapon){if(weapon.name===weapon.weaponName)return 'Standard';let label=weapon.name.replace(weapon.weaponName,'').trim();if(!label&&weapon.variant)label=weapon.variant;return label||`Affinity ${weapon.affinityId}`}
+function affinityNameFromText(value=''){
+  const text=String(value||'').replace(/\+\d+.*$/,'').replace(/_/g,' ').trim();
+  const ordered=[['Flame Art',/flame\s*art/i],['Lightning',/lightning/i],['Sacred',/sacred/i],['Quality',/quality/i],['Occult',/occult/i],['Standard',/standard|^std$/i],['Heavy',/heavy|^hvy$/i],['Keen',/keen/i],['Fire',/(?:^|\s)fire(?:\s|$)/i],['Magic',/magic|^mag$/i],['Cold',/cold|^col$/i],['Poison',/poison|^poi$/i],['Blood',/blood/i]];
+  for(const [label,pattern] of ordered)if(pattern.test(text))return label;
+  return text||'Standard';
+}
+function weaponAffinityName(weapon){
+  if(weapon.name===weapon.weaponName)return 'Standard';
+  let label=String(weapon.name||'').trim(),base=String(weapon.weaponName||'').trim();
+  const baseLower=base.toLowerCase();
+  if(base&&label.toLowerCase().startsWith(baseLower))label=label.slice(base.length).trim();
+  if(base&&label.toLowerCase().endsWith(baseLower))label=label.slice(0,Math.max(0,label.length-base.length)).trim();
+  if(!label&&weapon.variant)label=weapon.variant;
+  const normalized=affinityNameFromText(label||weapon.variant||weapon.name||'');
+  return normalized||`Affinity ${weapon.affinityId}`;
+}
 function findWeaponVariants(name){const target=normalizeItemName(name);return (weaponRegulation?.weapons||[]).filter(w=>normalizeItemName(w.weaponName)===target||normalizeItemName(w.name)===target)}
 function scalingGrade(value){if(!value)return'-';const tiers=[...(weaponRegulation?.scalingTiers||[])].sort((a,b)=>a[0]-b[0]);let label='-';for(const [threshold,tier] of tiers)if(value>=threshold)label=tier;return `${label}<span class="scaling-number">(${Math.round(value)})</span>`}
 function decodeWeaponUpgradeRows(weapon){
@@ -2381,29 +2657,106 @@ cacheBasicOfflineBtn.addEventListener('click',cacheBasicOfflineData);cacheFullOf
 
 const PLANER_WEAPON_SLOTS=['weaponR1','weaponL1','weaponR2','weaponL2','weaponR3','weaponL3'];
 const PLANER_AFFINITIES=['Standard','Heavy','Keen','Quality','Fire','Flame Art','Lightning','Sacred','Magic','Cold','Poison','Blood','Occult'];
+const WEAPON_LOADOUT_FIELD_IDS=PLANER_WEAPON_SLOTS.flatMap(slot=>[slot,slot+'Upgrade',slot+'Affinity',slot+'Ash']);
+function activeWeaponLoadoutIndex(){return Math.max(1,Math.min(3,Number(state.planner?.weaponLoadoutActive)||1))}
+function ensureWeaponLoadouts(){
+  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.weaponLoadouts=state.planner.weaponLoadouts||{};
+  const legacy={note:String(state.planner.fields.weaponLoadoutNote||'')};WEAPON_LOADOUT_FIELD_IDS.forEach(id=>legacy[id]=String(state.planner.fields[id]??(id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':'')));
+  for(let index=1;index<=3;index++){
+    const key=String(index),source=state.planner.weaponLoadouts[key]||state.planner.weaponLoadouts[index]||(index===1?legacy:{}),entry={note:String(source.note||'')};
+    WEAPON_LOADOUT_FIELD_IDS.forEach(id=>entry[id]=String(source[id]??(id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':'')));state.planner.weaponLoadouts[key]=entry;
+  }
+  state.planner.weaponLoadoutActive=activeWeaponLoadoutIndex();syncActiveWeaponLoadoutToPlannerFields();
+}
+function ensureWeaponLoadoutsShallow(){
+  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.weaponLoadouts=state.planner.weaponLoadouts||{};
+  for(let index=1;index<=3;index++){
+    const key=String(index);if(!state.planner.weaponLoadouts[key])state.planner.weaponLoadouts[key]={note:''};
+    WEAPON_LOADOUT_FIELD_IDS.forEach(id=>{if(typeof state.planner.weaponLoadouts[key][id]!=='string')state.planner.weaponLoadouts[key][id]=id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':''});
+    if(typeof state.planner.weaponLoadouts[key].note!=='string')state.planner.weaponLoadouts[key].note='';
+  }
+}
+function activeWeaponLoadout(){ensureWeaponLoadoutsShallow();return state.planner.weaponLoadouts[String(activeWeaponLoadoutIndex())]}
+function syncActiveWeaponLoadoutToPlannerFields(){
+  ensureWeaponLoadoutsShallow();const loadout=state.planner.weaponLoadouts[String(activeWeaponLoadoutIndex())];
+  WEAPON_LOADOUT_FIELD_IDS.forEach(id=>state.planner.fields[id]=loadout[id]??(id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':''));state.planner.fields.weaponLoadoutNote=loadout.note||'';
+}
+function saveActiveWeaponLoadoutFromDom(){
+  ensureWeaponLoadoutsShallow();const loadout=state.planner.weaponLoadouts[String(activeWeaponLoadoutIndex())];
+  WEAPON_LOADOUT_FIELD_IDS.forEach(id=>{const fallback=id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':'';const value=$(id)?.value??state.planner.fields[id]??fallback;loadout[id]=String(value);state.planner.fields[id]=String(value)});
+  const note=$('weaponLoadoutNote')?.value??state.planner.fields.weaponLoadoutNote??'';loadout.note=String(note);state.planner.fields.weaponLoadoutNote=String(note);
+}
+function renderWeaponLoadoutTabs(){
+  const active=activeWeaponLoadoutIndex();document.querySelectorAll('[data-weapon-loadout]').forEach(button=>{const selected=Number(button.dataset.weaponLoadout)===active;button.classList.toggle('active',selected);button.setAttribute('aria-selected',String(selected))});
+  const status=$('weaponLoadoutStatus');if(status)status.textContent=`Đang dùng Vũ khí ${active} · lưu riêng 6 ô, cấp nâng, hệ và AoW`;
+}
+function applyActiveWeaponLoadoutToDom(){
+  syncActiveWeaponLoadoutToPlannerFields();
+  WEAPON_LOADOUT_FIELD_IDS.forEach(id=>{const el=$(id);if(!el)return;el.value=state.planner.fields[id]??(id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':'');if(id.endsWith('Affinity'))el.dispatchEvent(new Event('change',{bubbles:true}))});
+  const note=$('weaponLoadoutNote');if(note)note.value=state.planner.fields.weaponLoadoutNote||'';
+  PLANER_WEAPON_SLOTS.forEach(slot=>{updatePlanerSlotState(slot);updatePlannerFieldIcon(slot);updatePlannerFieldIcon(slot+'Ash')});
+  renderWeaponLoadoutTabs();renderPlannerSummary();
+}
+function switchWeaponLoadout(index){
+  const target=Math.max(1,Math.min(3,Number(index)||1));if(target===activeWeaponLoadoutIndex())return;
+  saveActiveWeaponLoadoutFromDom();state.planner.weaponLoadoutActive=target;applyActiveWeaponLoadoutToDom();saveState();toast(`Đã chuyển sang Vũ khí ${target}`);
+}
+const UTILITY_LOADOUT_FIELD_IDS=['talisman1','talisman2','talisman3','talisman4','talismanAlt1','talismanAlt2','talismanAlt3','talismanAlt4','physick1','physick2','physick3','physick4'];
+function activeUtilityLoadoutIndex(){return Math.max(1,Math.min(3,Number(state.planner?.utilityLoadoutActive)||1))}
+function ensureUtilityLoadouts(){
+  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.utilityLoadouts=state.planner.utilityLoadouts||{};
+  const legacy={note:String(state.planner.fields.utilityLoadoutNote||'')};UTILITY_LOADOUT_FIELD_IDS.forEach(id=>legacy[id]=String(state.planner.fields[id]||''));
+  for(let index=1;index<=3;index++){
+    const key=String(index),source=state.planner.utilityLoadouts[key]||state.planner.utilityLoadouts[index]||(index===1?legacy:{}),entry={note:String(source.note||'')};
+    UTILITY_LOADOUT_FIELD_IDS.forEach(id=>entry[id]=String(source[id]||''));state.planner.utilityLoadouts[key]=entry;
+  }
+  state.planner.utilityLoadoutActive=activeUtilityLoadoutIndex();syncActiveUtilityLoadoutToPlannerFields();
+}
+function activeUtilityLoadout(){ensureUtilityLoadoutsShallow();return state.planner.utilityLoadouts[String(activeUtilityLoadoutIndex())]}
+function ensureUtilityLoadoutsShallow(){
+  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.utilityLoadouts=state.planner.utilityLoadouts||{};
+  for(let index=1;index<=3;index++){const key=String(index);if(!state.planner.utilityLoadouts[key])state.planner.utilityLoadouts[key]={note:''};UTILITY_LOADOUT_FIELD_IDS.forEach(id=>{if(typeof state.planner.utilityLoadouts[key][id]!=='string')state.planner.utilityLoadouts[key][id]=''});if(typeof state.planner.utilityLoadouts[key].note!=='string')state.planner.utilityLoadouts[key].note=''}
+}
+function syncActiveUtilityLoadoutToPlannerFields(){
+  ensureUtilityLoadoutsShallow();const loadout=state.planner.utilityLoadouts[String(activeUtilityLoadoutIndex())];UTILITY_LOADOUT_FIELD_IDS.forEach(id=>state.planner.fields[id]=loadout[id]||'');state.planner.fields.utilityLoadoutNote=loadout.note||'';
+}
+function saveActiveUtilityLoadoutFromDom(){
+  ensureUtilityLoadoutsShallow();const loadout=state.planner.utilityLoadouts[String(activeUtilityLoadoutIndex())];UTILITY_LOADOUT_FIELD_IDS.forEach(id=>{const value=$(id)?.value??state.planner.fields[id]??'';loadout[id]=String(value);state.planner.fields[id]=String(value)});const note=$('utilityLoadoutNote')?.value??state.planner.fields.utilityLoadoutNote??'';loadout.note=String(note);state.planner.fields.utilityLoadoutNote=String(note);
+}
+function renderUtilityLoadoutTabs(){
+  const active=activeUtilityLoadoutIndex();document.querySelectorAll('[data-utility-loadout]').forEach(button=>{const selected=Number(button.dataset.utilityLoadout)===active;button.classList.toggle('active',selected);button.setAttribute('aria-selected',String(selected))});const status=$('utilityLoadoutStatus');if(status)status.textContent=`Đang dùng Loadout ${active} · dữ liệu được lưu riêng`;
+}
+function applyActiveUtilityLoadoutToDom(){
+  syncActiveUtilityLoadoutToPlannerFields();UTILITY_LOADOUT_FIELD_IDS.forEach(id=>{const el=$(id);if(el)el.value=state.planner.fields[id]||'';updatePlannerFieldIcon(id)});const note=$('utilityLoadoutNote');if(note)note.value=state.planner.fields.utilityLoadoutNote||'';renderUtilityLoadoutTabs();renderPlannerSummary();
+}
+function switchUtilityLoadout(index){
+  const target=Math.max(1,Math.min(3,Number(index)||1));if(target===activeUtilityLoadoutIndex())return;saveActiveUtilityLoadoutFromDom();state.planner.utilityLoadoutActive=target;applyActiveUtilityLoadoutToDom();saveState();toast(`Đã chuyển sang Loadout ${target}`);
+}
 let plannerPickerTarget='';
 function plannerItemsForField(fieldId){
   const all=allCollectionItems();
   if(PLANER_WEAPON_SLOTS.includes(fieldId))return all.filter(item=>WEAPON_GROUPS.has(item.group));
   if(fieldId.endsWith('Ash'))return all.filter(item=>item.category==='Ashes of War');
-  const categoryMap={helm:'Helms',chestArmor:'Chest Armors',gauntlets:'Gauntlets',legs:'Legs',greatRune:'Great Runes',talisman1:'Talismans',talisman2:'Talismans',talisman3:'Talismans',talisman4:'Talismans',physick1:'Crystal Tears',physick2:'Crystal Tears'};
+  const categoryMap={helm:'Helms',chestArmor:'Chest Armors',gauntlets:'Gauntlets',legs:'Legs',greatRune:'Great Runes',talisman1:'Talismans',talisman2:'Talismans',talisman3:'Talismans',talisman4:'Talismans',talismanAlt1:'Talismans',talismanAlt2:'Talismans',talismanAlt3:'Talismans',talismanAlt4:'Talismans',physick1:'Crystal Tears',physick2:'Crystal Tears',physick3:'Crystal Tears',physick4:'Crystal Tears',spell1:'Spells',spell2:'Spells',spell3:'Spells',spell4:'Spells',spell5:'Spells',spell6:'Spells',spell7:'Spells',spell8:'Spells',spell9:'Spells',spell10:'Spells',quickItem1:'Items',quickItem2:'Items',quickItem3:'Items',quickItem4:'Items',quickItem5:'Items'};
+  if(categoryMap[fieldId]==='Spells')return all.filter(item=>item.group==='Spells');
+  if(categoryMap[fieldId]==='Items')return all.filter(item=>item.group==='Items'&&item.category!=='Crystal Tears');
   return categoryMap[fieldId]?all.filter(item=>item.category===categoryMap[fieldId]):[];
 }
 function plannerFieldDisplayValue(fieldId,item){return fieldId.endsWith('Ash')?item.name.replace(/^Ash of War:\s*/i,''):item.name}
-function plannerCurrentItem(fieldId){const value=$(fieldId)?.value||'';if(fieldId.endsWith('Ash')){const key=normalizeItemName(value.replace(/^Ash of War:\s*/i,''));return allCollectionItems().find(item=>item.category==='Ashes of War'&&normalizeItemName(item.name.replace(/^Ash of War:\s*/i,''))===key)||null}return findPlanerItem(value)}
+function plannerCurrentItem(fieldId){const value=$(fieldId)?.value||'';if(fieldId.endsWith('Ash')){const key=normalizeItemName(value.replace(/^Ash of War:\s*/i,''));return allCollectionItems().find(item=>item.category==='Ashes of War'&&normalizeItemName(item.name.replace(/^Ash of War:\s*/i,''))===key)||null}const key=normalizeItemName(value);if(!key)return null;const candidates=plannerItemsForField(fieldId);return candidates.find(item=>normalizeItemName(item.name)===key)||findPlanerItem(value)}
 function updatePlannerFieldIcon(fieldId){const button=document.querySelector(`[data-planner-icon-field="${fieldId}"]`);if(!button)return;const item=plannerCurrentItem(fieldId),icon=itemIconDescriptor(item);button.title=item?item.name:'Chọn bằng hình';button.dataset.itemName=item?.name||'';button.dataset.itemGroup=item?.group||'';button.dataset.itemCategory=item?.category||'';button.innerHTML=icon?`<img src="${esc(icon.url)}" data-icon-candidates="${iconCandidateData(icon)}" data-icon-index="0" data-item-name="${esc(item.name)}" data-item-group="${esc(item.group||'')}" data-item-category="${esc(item.category||'')}" alt="${esc(item.name)}" onerror="tryNextItemIcon(this)">`:'<span class="empty-icon">◇</span>';if(item&&!icon)requestOnlineItemImage(button,itemImageMeta(button));const clear=document.querySelector(`[data-planner-clear-field="${fieldId}"]`);if(clear)clear.disabled=!String($(fieldId)?.value||'').trim()}
 function clearPlannerField(fieldId){
-  const input=$(fieldId);if(!input)return;state.planner.fields=state.planner.fields||{};input.value='';state.planner.fields[fieldId]='';
+  const input=$(fieldId);if(!input)return;state.planner.fields=state.planner.fields||{};input.value='';state.planner.fields[fieldId]='';if(WEAPON_LOADOUT_FIELD_IDS.includes(fieldId))activeWeaponLoadout()[fieldId]='';if(UTILITY_LOADOUT_FIELD_IDS.includes(fieldId))activeUtilityLoadout()[fieldId]='';
   if(PLANER_WEAPON_SLOTS.includes(fieldId)){
-    const upgrade=$(fieldId+'Upgrade'),affinity=$(fieldId+'Affinity'),ash=$(fieldId+'Ash');if(upgrade)upgrade.value='0';if(affinity)affinity.value='Standard';if(ash)ash.value='';state.planner.fields[fieldId+'Upgrade']='0';state.planner.fields[fieldId+'Affinity']='Standard';state.planner.fields[fieldId+'Ash']='';updatePlanerSlotState(fieldId);updatePlannerFieldIcon(fieldId+'Ash');
+    const upgrade=$(fieldId+'Upgrade'),affinity=$(fieldId+'Affinity'),ash=$(fieldId+'Ash');if(upgrade)upgrade.value='0';if(affinity)affinity.value='Standard';if(ash)ash.value='';state.planner.fields[fieldId+'Upgrade']='0';state.planner.fields[fieldId+'Affinity']='Standard';state.planner.fields[fieldId+'Ash']='';const weaponLoadout=activeWeaponLoadout();weaponLoadout[fieldId]='';weaponLoadout[fieldId+'Upgrade']='0';weaponLoadout[fieldId+'Affinity']='Standard';weaponLoadout[fieldId+'Ash']='';updatePlanerSlotState(fieldId);updatePlannerFieldIcon(fieldId+'Ash');
   }
   saveState();updatePlannerFieldIcon(fieldId);renderPlannerSummary();toast(`Đã xóa ${plannerFieldLabel(fieldId)}`);
 }
 function enhancePlannerIconFields(){
-  const ids=[...PLANER_WEAPON_SLOTS,...PLANER_WEAPON_SLOTS.map(x=>x+'Ash'),'helm','chestArmor','gauntlets','legs','greatRune','talisman1','talisman2','talisman3','talisman4','physick1','physick2'];
+  const ids=[...PLANER_WEAPON_SLOTS,...PLANER_WEAPON_SLOTS.map(x=>x+'Ash'),'helm','chestArmor','gauntlets','legs','greatRune','talisman1','talisman2','talisman3','talisman4','talismanAlt1','talismanAlt2','talismanAlt3','talismanAlt4','physick1','physick2','physick3','physick4','spell1','spell2','spell3','spell4','spell5','spell6','spell7','spell8','spell9','spell10','quickItem1','quickItem2','quickItem3','quickItem4','quickItem5'];
   ids.forEach(id=>{const input=$(id);if(!input||document.querySelector(`[data-planner-icon-field="${id}"]`))return;const wrap=document.createElement('div');wrap.className='planner-input-icon-row';input.parentNode.insertBefore(wrap,input);const button=document.createElement('button');button.type='button';button.className='planner-icon-button';button.dataset.plannerIconField=id;button.setAttribute('aria-label','Chọn bằng hình');const clear=document.createElement('button');clear.type='button';clear.className='planner-clear-item';clear.dataset.plannerClearField=id;clear.title='Xóa trang bị đã chọn';clear.setAttribute('aria-label','Xóa trang bị đã chọn');clear.textContent='×';wrap.append(button,input,clear);button.addEventListener('click',()=>openPlannerPicker(id));clear.addEventListener('click',()=>clearPlannerField(id));updatePlannerFieldIcon(id)});
 }
-function plannerFieldLabel(fieldId){const labels={weaponR1:'Tay phải 1',weaponL1:'Tay trái 1',weaponR2:'Tay phải 2',weaponL2:'Tay trái 2',weaponR3:'Tay phải 3',weaponL3:'Tay trái 3',weaponR1Ash:'Ash of War · Tay phải 1',weaponL1Ash:'Ash of War · Tay trái 1',weaponR2Ash:'Ash of War · Tay phải 2',weaponL2Ash:'Ash of War · Tay trái 2',weaponR3Ash:'Ash of War · Tay phải 3',weaponL3Ash:'Ash of War · Tay trái 3',helm:'Mũ',chestArmor:'Giáp ngực',gauntlets:'Găng tay',legs:'Giáp chân',greatRune:'Great Rune',talisman1:'Talisman 1',talisman2:'Talisman 2',talisman3:'Talisman 3',talisman4:'Talisman 4',physick1:'Crystal Tear 1',physick2:'Crystal Tear 2'};return labels[fieldId]||fieldId}
+function plannerFieldLabel(fieldId){const labels={weaponR1:'Tay phải 1',weaponL1:'Tay trái 1',weaponR2:'Tay phải 2',weaponL2:'Tay trái 2',weaponR3:'Tay phải 3',weaponL3:'Tay trái 3',weaponR1Ash:'Ash of War · Tay phải 1',weaponL1Ash:'Ash of War · Tay trái 1',weaponR2Ash:'Ash of War · Tay phải 2',weaponL2Ash:'Ash of War · Tay trái 2',weaponR3Ash:'Ash of War · Tay phải 3',weaponL3Ash:'Ash of War · Tay trái 3',helm:'Mũ',chestArmor:'Giáp ngực',gauntlets:'Găng tay',legs:'Giáp chân',greatRune:'Great Rune',talisman1:'Talisman 1',talisman2:'Talisman 2',talisman3:'Talisman 3',talisman4:'Talisman 4',talismanAlt1:'Bùa dự phòng 1',talismanAlt2:'Bùa dự phòng 2',talismanAlt3:'Bùa dự phòng 3',talismanAlt4:'Bùa dự phòng 4',physick1:'Crystal Tear 1',physick2:'Crystal Tear 2',physick3:'Crystal Tear 3',physick4:'Crystal Tear 4',spell1:'Phép 1',spell2:'Phép 2',spell3:'Phép 3',spell4:'Phép 4',spell5:'Phép 5',spell6:'Phép 6',spell7:'Phép 7',spell8:'Phép 8',spell9:'Phép 9',spell10:'Phép 10',quickItem1:'Vật phẩm 1',quickItem2:'Vật phẩm 2',quickItem3:'Vật phẩm 3',quickItem4:'Vật phẩm 4',quickItem5:'Vật phẩm 5',utilityLoadoutNote:'Ghi chú loadout'};return labels[fieldId]||fieldId}
 async function openPlannerPicker(fieldId){await initPlannerCatalogs();plannerPickerTarget=fieldId;plannerPickerSearch.value='';const items=plannerItemsForField(fieldId),cats=[...new Set(items.map(x=>x.category))].sort();plannerPickerCategory.innerHTML='<option value="all">Tất cả loại</option>'+cats.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');plannerPickerTitle.textContent=`Chọn bằng hình · ${plannerFieldLabel(fieldId)}`;plannerPickerModal.classList.add('show');renderPlannerPickerGrid()}
 function renderPlannerPickerGrid(){const q=plannerPickerSearch.value.trim().toLowerCase(),cat=plannerPickerCategory.value,selected=normalizeItemName($(plannerPickerTarget)?.value||'');const items=plannerItemsForField(plannerPickerTarget).filter(item=>(cat==='all'||item.category===cat)&&(!q||`${item.name} ${item.category}`.toLowerCase().includes(q)));plannerPickerGrid.innerHTML=items.length?items.map(item=>{const icon=itemIconDescriptor(item),display=plannerFieldDisplayValue(plannerPickerTarget,item),isSelected=normalizeItemName(display)===selected,attrs=`data-item-name="${esc(item.name)}" data-item-group="${esc(item.group||'')}" data-item-category="${esc(item.category||'')}"`;return`<button type="button" class="planner-grid-item ${isSelected?'selected':''}" data-planner-grid-id="${esc(item.id)}"><span class="planner-grid-icon${icon?'':' missing'}" ${attrs}>${icon?`<img src="${esc(icon.url)}" data-icon-candidates="${iconCandidateData(icon)}" data-icon-index="0" ${attrs} alt="${esc(item.name)}" loading="lazy" onerror="tryNextItemIcon(this)">`:'<span class="icon-fallback">◇</span>'}</span><span class="planner-grid-name">${esc(display)}</span></button>`}).join(''):'<div class="planner-picker-empty">Không tìm thấy trang bị phù hợp.</div>';plannerPickerGrid.querySelectorAll('[data-planner-grid-id]').forEach(btn=>btn.onclick=()=>{const item=allCollectionItems().find(x=>x.id===btn.dataset.plannerGridId),input=$(plannerPickerTarget);if(!item||!input)return;input.value=plannerFieldDisplayValue(plannerPickerTarget,item);input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));updatePlannerFieldIcon(plannerPickerTarget);plannerPickerModal.classList.remove('show')});hydrateItemOnlineImages(plannerPickerGrid)}
 
@@ -2420,9 +2773,9 @@ async function initPlannerCatalogs(){
   plannerCatalogBadge.textContent='Đang tải dữ liệu';plannerDataStatus.textContent='Đang mở danh sách vũ khí, giáp và Ash of War…';
   try{
     await initItemChecklist();
-    const all=allCollectionItems(),weapons=all.filter(item=>WEAPON_GROUPS.has(item.group)),ashes=all.filter(item=>item.category==='Ashes of War'),helms=all.filter(item=>item.category==='Helms'),chests=all.filter(item=>item.category==='Chest Armors'),hands=all.filter(item=>item.category==='Gauntlets'),legs=all.filter(item=>item.category==='Legs'),talismans=all.filter(item=>item.category==='Talismans'),tears=all.filter(item=>item.category==='Crystal Tears'),runes=all.filter(item=>item.category==='Great Runes');
-    fillPlanerDatalist('plannerWeaponList',weapons);fillPlanerDatalist('plannerAshList',ashes.map(item=>({...item,name:item.name.replace(/^Ash of War:\s*/i,'')})));fillPlanerDatalist('plannerHelmList',helms);fillPlanerDatalist('plannerChestList',chests);fillPlanerDatalist('plannerGauntletList',hands);fillPlanerDatalist('plannerLegList',legs);fillPlanerDatalist('plannerTalismanList',talismans);fillPlanerDatalist('plannerCrystalTearList',tears);fillPlanerDatalist('plannerGreatRuneList',runes);
-    plannerCatalogReady=true;plannerCatalogBadge.textContent='Dữ liệu đã sẵn sàng';plannerCatalogBadge.classList.add('ready');plannerDataStatus.textContent=`${weapons.length} vũ khí/khiên/pháp cụ · ${ashes.length} Ash of War · ${helms.length+chests.length+hands.length+legs.length} mảnh giáp · ${talismans.length} Talisman.`;
+    const all=allCollectionItems(),weapons=all.filter(item=>WEAPON_GROUPS.has(item.group)),ashes=all.filter(item=>item.category==='Ashes of War'),helms=all.filter(item=>item.category==='Helms'),chests=all.filter(item=>item.category==='Chest Armors'),hands=all.filter(item=>item.category==='Gauntlets'),legs=all.filter(item=>item.category==='Legs'),talismans=all.filter(item=>item.category==='Talismans'),tears=all.filter(item=>item.category==='Crystal Tears'),runes=all.filter(item=>item.category==='Great Runes'),spells=all.filter(item=>item.group==='Spells'),quickItems=all.filter(item=>item.group==='Items'&&item.category!=='Crystal Tears');
+    fillPlanerDatalist('plannerWeaponList',weapons);fillPlanerDatalist('plannerAshList',ashes.map(item=>({...item,name:item.name.replace(/^Ash of War:\s*/i,'')})));fillPlanerDatalist('plannerHelmList',helms);fillPlanerDatalist('plannerChestList',chests);fillPlanerDatalist('plannerGauntletList',hands);fillPlanerDatalist('plannerLegList',legs);fillPlanerDatalist('plannerTalismanList',talismans);fillPlanerDatalist('plannerCrystalTearList',tears);fillPlanerDatalist('plannerGreatRuneList',runes);fillPlanerDatalist('plannerSpellList',spells);fillPlanerDatalist('plannerItemList',quickItems);
+    plannerCatalogReady=true;plannerCatalogBadge.textContent='Dữ liệu đã sẵn sàng';plannerCatalogBadge.classList.add('ready');plannerDataStatus.textContent=`${weapons.length} vũ khí/khiên/pháp cụ · ${ashes.length} Ash of War · ${helms.length+chests.length+hands.length+legs.length} mảnh giáp · ${talismans.length} Talisman · ${spells.length} phép · ${quickItems.length} vật phẩm.`;
     PLANER_WEAPON_SLOTS.forEach(updatePlanerSlotState);document.querySelectorAll('[data-planner-icon-field]').forEach(button=>updatePlannerFieldIcon(button.dataset.plannerIconField));
   }catch(error){console.error(error);plannerCatalogBadge.textContent='Không mở được dữ liệu';plannerDataStatus.textContent='Không thể tải kho vật phẩm. Các ô Planner vẫn cho phép nhập tay.'}
 }
@@ -2437,11 +2790,14 @@ function initPlanner(){
   state.planner.fields=state.planner.fields||{};
   if(state.planner.fields.armorSet&&!state.planner.fields.chestArmor)state.planner.fields.chestArmor=state.planner.fields.armorSet;
   if(state.planner.fields.ashOfWar&&!state.planner.fields.weaponR1Ash)state.planner.fields.weaponR1Ash=state.planner.fields.ashOfWar.replace(/^Ash of War:\s*/i,'');
+  if(state.planner.fields.spells&&!state.planner.fields.spell1){String(state.planner.fields.spells||'').split(/\n+/).map(x=>x.trim()).filter(Boolean).slice(0,10).forEach((value,index)=>state.planner.fields['spell'+(index+1)]=value)}
+  ensureWeaponLoadouts();
+  ensureUtilityLoadouts();
   document.querySelectorAll('.planner-upgrade').forEach(el=>{if(!el.options.length)el.innerHTML=Array.from({length:26},(_,i)=>`<option value="${i}">+${i}</option>`).join('')});
   document.querySelectorAll('.planner-affinity').forEach(el=>{if(!el.options.length)el.innerHTML=PLANER_AFFINITIES.map(value=>`<option value="${value}">${value}</option>`).join('')});
-  const fields=[...PLANER_WEAPON_SLOTS,...PLANER_WEAPON_SLOTS.flatMap(slot=>[slot+'Upgrade',slot+'Affinity',slot+'Ash']),'helm','chestArmor','gauntlets','legs','greatRune','talisman1','talisman2','talisman3','talisman4','physick1','physick2','spells','buildNotes'];
-  fields.forEach(id=>{const el=$(id);if(!el)return;const defaultValue=id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':'';el.value=state.planner.fields[id]??defaultValue;const save=()=>{state.planner.fields[id]=el.value;saveState();if(PLANER_WEAPON_SLOTS.includes(id))updatePlanerSlotState(id);if(!id.endsWith('Upgrade')&&!id.endsWith('Affinity'))updatePlannerFieldIcon(id);renderPlannerSummary()};el.oninput=save;el.onchange=save});enhanceAffinitySelects(document);enhancePlannerIconFields();
-  document.querySelectorAll('.planner-view-item').forEach(btn=>btn.onclick=async()=>{await initPlannerCatalogs();const field=$(btn.dataset.planerField),item=findPlanerItem(field?.value||'');if(!field?.value?.trim()){toast('Chưa chọn vật phẩm');return}if(!item){toast('Tên chưa khớp kho vật phẩm');return}openItemDetail(item.id)});
+  const fields=[...PLANER_WEAPON_SLOTS,...PLANER_WEAPON_SLOTS.flatMap(slot=>[slot+'Upgrade',slot+'Affinity',slot+'Ash']),'helm','chestArmor','gauntlets','legs','greatRune','talisman1','talisman2','talisman3','talisman4','talismanAlt1','talismanAlt2','talismanAlt3','talismanAlt4','physick1','physick2','physick3','physick4','spell1','spell2','spell3','spell4','spell5','spell6','spell7','spell8','spell9','spell10','quickItem1','quickItem2','quickItem3','quickItem4','quickItem5','weaponLoadoutNote','utilityLoadoutNote','buildNotes'];
+  fields.forEach(id=>{const el=$(id);if(!el)return;const defaultValue=id.endsWith('Affinity')?'Standard':id.endsWith('Upgrade')?'0':'';el.value=state.planner.fields[id]??defaultValue;const save=()=>{state.planner.fields[id]=el.value;if(WEAPON_LOADOUT_FIELD_IDS.includes(id))activeWeaponLoadout()[id]=el.value;if(id==='weaponLoadoutNote')activeWeaponLoadout().note=el.value;if(UTILITY_LOADOUT_FIELD_IDS.includes(id))activeUtilityLoadout()[id]=el.value;if(id==='utilityLoadoutNote')activeUtilityLoadout().note=el.value;saveState();if(PLANER_WEAPON_SLOTS.includes(id))updatePlanerSlotState(id);if(!id.endsWith('Upgrade')&&!id.endsWith('Affinity')&&id!=='utilityLoadoutNote'&&id!=='weaponLoadoutNote')updatePlannerFieldIcon(id);renderPlannerSummary()};el.oninput=save;el.onchange=save});document.querySelectorAll('[data-weapon-loadout]').forEach(button=>button.onclick=()=>switchWeaponLoadout(button.dataset.weaponLoadout));document.querySelectorAll('[data-utility-loadout]').forEach(button=>button.onclick=()=>switchUtilityLoadout(button.dataset.utilityLoadout));renderWeaponLoadoutTabs();renderUtilityLoadoutTabs();enhanceAffinitySelects(document);enhancePlannerIconFields();
+  document.querySelectorAll('.planner-view-item').forEach(btn=>btn.onclick=async()=>{await initPlannerCatalogs();const fieldId=btn.dataset.planerField,field=$(fieldId),item=plannerCurrentItem(fieldId);if(!field?.value?.trim()){toast('Chưa chọn vật phẩm');return}if(!item){toast('Tên chưa khớp kho vật phẩm');return}openItemDetail(item.id)});
 }
 function renderPlanner(){
   const base=classBase();classBadge.textContent=state.planner.className+(base.upcoming?' · Sắp ra mắt':'');classSelect.value=state.planner.className;
@@ -2460,13 +2816,13 @@ function renderPlannerSummary(){
 function weaponBuildLine(p,slot,label){const name=p[slot]||'-';if(name==='-')return`${label}: -`;const up=p[slot+'Upgrade']??'0',aff=p[slot+'Affinity']||'Standard',ash=p[slot+'Ash']||'-';return`${label}: ${name} +${up} · ${aff} · Ash: ${ash}`}
 function buildText(){
   const p=state.planner.fields||{},s=state.planner.stats;
-  return [`ELDEN RING — BUILD PLANER`,`Class: ${state.planner.className}`,`Build Level: ${calcCurrentLevel()} / Current ${state.planner.ownedLevel||classBase().level}`,'',...Object.keys(STAT_LABELS).map(k=>`${STAT_LABELS[k]}: ${s[k]}`),'',weaponBuildLine(p,'weaponR1','Right Hand 1'),weaponBuildLine(p,'weaponL1','Left Hand 1'),weaponBuildLine(p,'weaponR2','Right Hand 2'),weaponBuildLine(p,'weaponL2','Left Hand 2'),weaponBuildLine(p,'weaponR3','Right Hand 3'),weaponBuildLine(p,'weaponL3','Left Hand 3'),'',`Helm: ${p.helm||'-'}`,`Chest: ${p.chestArmor||'-'}`,`Gauntlets: ${p.gauntlets||'-'}`,`Legs: ${p.legs||'-'}`,`Great Rune: ${p.greatRune||'-'}`,'',`Talismans: ${[p.talisman1,p.talisman2,p.talisman3,p.talisman4].filter(Boolean).join(' / ')||'-'}`,`Physick: ${[p.physick1,p.physick2].filter(Boolean).join(' + ')||'-'}`,'',`Spells:\n${p.spells||'-'}`,'',`Notes:\n${p.buildNotes||'-'}`,'',`Nguồn: Elden Ring Companion · Desgin by KVHao`].join('\n')
+  return [`ELDEN RING — BUILD PLANER`,`Class: ${state.planner.className}`,`Build Level: ${calcCurrentLevel()} / Current ${state.planner.ownedLevel||classBase().level}`,'',...Object.keys(STAT_LABELS).map(k=>`${STAT_LABELS[k]}: ${s[k]}`),'',`Weapon Loadout: ${activeWeaponLoadoutIndex()}`,weaponBuildLine(p,'weaponR1','Right Hand 1'),weaponBuildLine(p,'weaponL1','Left Hand 1'),weaponBuildLine(p,'weaponR2','Right Hand 2'),weaponBuildLine(p,'weaponL2','Left Hand 2'),weaponBuildLine(p,'weaponR3','Right Hand 3'),weaponBuildLine(p,'weaponL3','Left Hand 3'),`Weapon note: ${p.weaponLoadoutNote||'-'}`,'',`Helm: ${p.helm||'-'}`,`Chest: ${p.chestArmor||'-'}`,`Gauntlets: ${p.gauntlets||'-'}`,`Legs: ${p.legs||'-'}`,`Great Rune: ${p.greatRune||'-'}`,'',`Utility Loadout: ${activeUtilityLoadoutIndex()}`,`Talismans: ${[p.talisman1,p.talisman2,p.talisman3,p.talisman4].filter(Boolean).join(' / ')||'-'}`,`Alt Talismans: ${[p.talismanAlt1,p.talismanAlt2,p.talismanAlt3,p.talismanAlt4].filter(Boolean).join(' / ')||'-'}`,`Crystal Tears: ${[p.physick1,p.physick2,p.physick3,p.physick4].filter(Boolean).join(' / ')||'-'}`,`Loadout note: ${p.utilityLoadoutNote||'-'}`,'',`Spells: ${[p.spell1,p.spell2,p.spell3,p.spell4,p.spell5,p.spell6,p.spell7,p.spell8,p.spell9,p.spell10].filter(Boolean).join(' / ')||'-'}`,'',`Quick Items: ${[p.quickItem1,p.quickItem2,p.quickItem3,p.quickItem4,p.quickItem5].filter(Boolean).join(' / ')||'-'}`,'',`Notes:\n${p.buildNotes||'-'}`,'',`Nguồn: Elden Ring Companion · Desgin by KVHao`].join('\n')
 }
 copyBuildBtn.onclick=()=>navigator.clipboard.writeText(buildText()).then(()=>toast('Đã sao chép build ✓')).catch(()=>prompt('Sao chép nội dung:',buildText()));
 resetBuildBtn.onclick=()=>{const base=classBase(),name=state.planner.className;if(!confirm(`Đưa chỉ số ${name} về mặc định Level ${base.level}?`))return;state.planner.stats={...base.stats};state.planner.ownedLevel=base.level;saveState();initPlanner();renderPlanner();toast(`Đã reset chỉ số ${name}`)};
 
 if(saveBtn) saveBtn.onclick=()=>saveState(true);
-if(downloadBtn) downloadBtn.onclick=()=>{const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='elden-ring-companion-v1.1.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
+if(downloadBtn) downloadBtn.onclick=()=>{const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='elden-ring-companion-v1.2.5.html';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)};
 if(dataBtn) dataBtn.onclick=()=>{dataModal.classList.add('show');dataBox.value=JSON.stringify(state,null,2)};closeModal.onclick=()=>dataModal.classList.remove('show');dataModal.onclick=e=>{if(e.target===dataModal)dataModal.classList.remove('show')};
 exportBtn.onclick=()=>{const ok=confirm('Vui lòng để file HTML trong một thư mục riêng để dễ quản lý vì sẽ tạo một file lưu checklist liên kết với file HTML này. Khi có bản cập nhật HTML mới, hãy đặt file mới vào cùng thư mục và dùng lại file checklist để cập nhật tiến trình.\n\nNhấn OK để tạo file lưu checklist.');if(!ok)return;dataBox.value=JSON.stringify(state,null,2);const blob=new Blob([dataBox.value],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='elden-ring-companion-checklist-save.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('Đã tạo file lưu checklist ✓')};
 copyDataBtn.onclick=()=>{if(!dataBox.value)dataBox.value=JSON.stringify(state,null,2);navigator.clipboard.writeText(dataBox.value).then(()=>toast('Đã sao chép JSON ✓'))};
