@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#10120f">
-<title>Elden Ring Companion 1.4</title>
+<title>Elden Ring Companion 1.4.4 — Native Armor Loadouts</title>
 <style>
 html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:Georgia,serif}
 #errorWrap{display:none;min-height:100vh;place-items:center;padding:24px}
@@ -20,52 +20,38 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
 (async function(){
   "use strict";
 
-  // Dùng bản patch ổn định trước đó làm nền và ép toàn bộ nhãn phát hành thành 1.4.
-  // Script bên trong được chạy trực tiếp để tránh document.write lồng nhau.
+  // Nền ổn định đang được bản 1.4.4 sử dụng. Chỉ chèn thêm Loadout Giáp,
+  // không sửa setTab(), nav-btn, mobile tab hay router của trang.
   const PATCHED_BASE = "https://raw.githubusercontent.com/KVHao/ER-guild-VN/84181bd/index.html";
   const errorWrap = document.getElementById("errorWrap");
   const errorBox = document.getElementById("error");
 
   function applySummaryLayout(html){
-    // Đồng bộ nhãn phiên bản hiển thị trên toàn bộ giao diện.
     html = html
-      // Đổi tuyệt đối mọi chuỗi phiên bản cũ, kể cả chuỗi nằm trong JavaScript
-      // và các badge được render động sau khi trang khởi tạo.
-      .replace(/1\.3\.2/g, '1.4')
-      .replace(/VERSION\s*1\.4/gi, 'VERSION 1.4')
-      .replace(/Version\s*1\.4/gi, 'Version 1.4')
-      .replace(/V1\.4/gi, 'V1.4')
-      .replace(/Elden Ring Companion 1\.4/gi, 'Elden Ring Companion 1.4');
-    // Sửa các ký tự UTF-8 bị hỏng (�) đã lọt vào dữ liệu nguồn.
-    // Chỉ thay theo ngữ cảnh đã đối chiếu để không làm sai các chữ tiếng Việt khác.
-    const textRepairs = [
-      // Bản đồ Check-in
-      [/dữ liệu lưu c\uFFFD+a Elden Ring Companion/g, 'dữ liệu lưu của Elden Ring Companion'],
+      .replace(/1\.3\.2/g, '1.4.4')
+      .replace(/VERSION\s*1\.4(?:\.[0-9]+)?/gi, 'VERSION 1.4.4')
+      .replace(/Version\s*1\.4(?:\.[0-9]+)?/gi, 'Version 1.4.4')
+      .replace(/V1\.4(?:\.[0-9]+)?/gi, 'V1.4.4')
+      .replace(/Elden Ring Companion 1\.4(?:\.[0-9]+)?/gi, 'Elden Ring Companion 1.4.4');
 
-      // Tra cứu
+    // Các sửa lỗi UTF-8 đang có ở bản 1.4 hiện tại.
+    const textRepairs = [
+      [/dữ liệu lưu c\uFFFD+a Elden Ring Companion/g, 'dữ liệu lưu của Elden Ring Companion'],
       [/pháp c\uFFFD+(?=, phép và vật phẩm)/g, 'pháp cụ'],
       [/>Chưa c\uFFFD+(?=<)/g, '>Chưa có'],
-
-      // Planner
       [/bấm “Xem\uFFFD+ để mở chi tiết và công dụng\./g, 'bấm “Xem” để mở chi tiết và công dụng.'],
       [/placeholder="Chọn phép\uFFFD+"/g, 'placeholder="Chọn phép…"'],
-
-      // Tiến trình / nhiệm vụ NPC
       [/Nói chuyện v\uFFFD+\s*i D/g, 'Nói chuyện với D'],
       [/sau khi đ\uFFFD+ nói với Rogier/g, 'sau khi đã nói với Rogier'],
       [/Nh\uFFFD+ lấy Sanctified Whetblade/g, 'Nhớ lấy Sanctified Whetblade'],
       [/Khi khám phá, b\uFFFD+n sẽ thấy message trên đất\./g, 'Khi khám phá, bạn sẽ thấy message trên đất.'],
       [/tháo toàn bộ trang b\uFFFD+ như Hyetta nói/g, 'tháo toàn bộ trang bị như Hyetta nói'],
-
-      // Dữ liệu trang bị / Talisman
       [/Loại các bản ghi giáp cũ rồi d\uFFFD+ng lại trọn bộ/g, 'Loại các bản ghi giáp cũ rồi dựng lại trọn bộ'],
       [/Chỉ s\uFFFD+\/Storm/g, 'Chỉ số/Storm'],
       [/tiêu di\uFFFD+t k\uFFFD+ địch/g, 'tiêu diệt kẻ địch'],
       [/một kho\uFFFD+ng thời gian/g, 'một khoảng thời gian'],
       [/được tri\uFFFD+u hồi chết/g, 'được triệu hồi chết'],
       [/hiệu qu\uFFFD+ cao h\uFFFD+n/g, 'hiệu quả cao hơn'],
-
-      // Phép
       [/Dữ li\uFFFD+u/g, 'Dữ liệu'],
       [/Dữ liệu nhúng tr\uFFFD+c tiếp/g, 'Dữ liệu nhúng trực tiếp'],
       [/Holy m\uFFFD+i đòn đánh/g, 'Holy mỗi đòn đánh'],
@@ -74,155 +60,128 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
       [/che giấu ng\uFFFD+ời thi triển/g, 'che giấu người thi triển']
     ];
     for(const [pattern,replacement] of textRepairs) html = html.replace(pattern,replacement);
-
-    // Quét bảo vệ lần cuối cho đúng các từ lỗi đã xác định ở source hiện tại.
-    // Không xóa mù ký tự U+FFFD vì có thể làm sai nghĩa nếu source thay đổi về sau.
     html = html
       .replace(/c\uFFFD{2,4}a Elden Ring Companion/g, 'của Elden Ring Companion')
       .replace(/kho\uFFFD{2,4}ng thời gian/g, 'khoảng thời gian')
       .replace(/Dữ li\uFFFD+u/g, 'Dữ liệu');
 
-    // Nếu upstream phát sinh lỗi mới, ghi rõ ngữ cảnh vào console để không bị bỏ sót âm thầm.
     const unresolvedUtf8 = html.match(/.{0,60}\uFFFD.{0,60}/g);
     if(unresolvedUtf8?.length) console.warn('[ER Companion] Ký tự UTF-8 chưa ánh xạ:', unresolvedUtf8);
 
     const css = `
 .spell-nyasu-source{display:none!important}
 #buildToolsPanel{display:none!important}
-
 /* === Tổng kết Build · bố cục 1.4 refresh === */
-#tab-planner .planer-summary{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:10px!important;
-  margin-top:0!important;
-  padding:2px 0 4px;
-}
-#tab-planner .planer-summary:before{
-  content:'TỔNG QUAN BUILD';
-  grid-column:1/-1;
-  display:flex;
-  align-items:center;
-  min-height:28px;
-  padding:0 2px 7px;
-  border-bottom:1px solid var(--line);
-  color:var(--gold-bright);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.09em;
-}
-#tab-planner .planer-summary>.summary-box{
-  position:relative;
-  min-height:76px;
-  padding:13px 12px 12px!important;
-  overflow:hidden;
-  border:1px solid rgba(215,205,158,.22)!important;
-  background:linear-gradient(180deg,rgba(201,183,125,.075),rgba(0,0,0,.20) 46%,rgba(0,0,0,.14))!important;
-  text-align:left!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
-}
-#tab-planner .planer-summary>.summary-box:after{
-  content:'';
-  position:absolute;
-  left:0;top:0;bottom:0;
-  width:2px;
-  background:rgba(201,183,125,.48);
-}
-#tab-planner .planer-summary>.summary-box span{
-  color:var(--dim)!important;
-  font-size:10px!important;
-  line-height:1.25;
-}
-#tab-planner .planer-summary>.summary-box b{
-  margin-top:8px!important;
-  color:var(--text)!important;
-  font-size:22px!important;
-  line-height:1.1;
-}
-#tab-planner #sumLevel,
-#tab-planner #sumLeft,
-#tab-planner #sumPrimary{color:var(--gold-bright)!important}
-
-#buildSummaryMetricsMirror{
-  margin-top:18px!important;
-  padding-top:4px;
-}
-#buildSummaryMetricsMirror .build-calc-grid{
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  gap:9px!important;
-  margin-top:14px!important;
-}
+#tab-planner .planer-summary{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:10px!important;margin-top:0!important;padding:2px 0 4px}
+#tab-planner .planer-summary:before{content:'TỔNG QUAN BUILD';grid-column:1/-1;display:flex;align-items:center;min-height:28px;padding:0 2px 7px;border-bottom:1px solid var(--line);color:var(--gold-bright);font-size:11px;font-weight:700;letter-spacing:.09em}
+#tab-planner .planer-summary>.summary-box{position:relative;min-height:76px;padding:13px 12px 12px!important;overflow:hidden;border:1px solid rgba(215,205,158,.22)!important;background:linear-gradient(180deg,rgba(201,183,125,.075),rgba(0,0,0,.20) 46%,rgba(0,0,0,.14))!important;text-align:left!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.025)}
+#tab-planner .planer-summary>.summary-box:after{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:rgba(201,183,125,.48)}
+#tab-planner .planer-summary>.summary-box span{color:var(--dim)!important;font-size:10px!important;line-height:1.25}
+#tab-planner .planer-summary>.summary-box b{margin-top:8px!important;color:var(--text)!important;font-size:22px!important;line-height:1.1}
+#tab-planner #sumLevel,#tab-planner #sumLeft,#tab-planner #sumPrimary{color:var(--gold-bright)!important}
+#buildSummaryMetricsMirror{margin-top:18px!important;padding-top:4px}
+#buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:9px!important;margin-top:14px!important}
 #buildSummaryMetricsMirror .build-calc-grid:first-child{margin-top:0!important}
-#buildSummaryMetricsMirror .build-calc-grid:before{
-  grid-column:1/-1;
-  display:flex;
-  align-items:center;
-  min-height:29px;
-  padding:0 2px 7px;
-  border-bottom:1px solid var(--line);
-  color:var(--gold-bright);
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:.08em;
-}
+#buildSummaryMetricsMirror .build-calc-grid:before{grid-column:1/-1;display:flex;align-items:center;min-height:29px;padding:0 2px 7px;border-bottom:1px solid var(--line);color:var(--gold-bright);font-size:11px;font-weight:700;letter-spacing:.08em}
 #buildSummaryMetricsMirror .build-calc-grid:first-child:before{content:'SINH TỒN & TẢI TRỌNG'}
 #buildSummaryMetricsMirror .build-calc-grid:nth-child(2):before{content:'KHÁNG SÁT THƯƠNG'}
-#buildSummaryMetricsMirror .build-metric{
-  position:relative;
-  min-height:80px;
-  padding:12px 11px!important;
-  border:1px solid rgba(215,205,158,.18)!important;
-  background:rgba(0,0,0,.18)!important;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.02);
-  transition:border-color .15s ease,background .15s ease,transform .15s ease;
-}
-#buildSummaryMetricsMirror .build-metric:hover{
-  border-color:rgba(234,220,166,.36)!important;
-  background:rgba(201,183,125,.055)!important;
-  transform:translateY(-1px);
-}
-#buildSummaryMetricsMirror .build-metric span{
-  color:var(--dim)!important;
-  font-size:10px!important;
-  line-height:1.25;
-}
-#buildSummaryMetricsMirror .build-metric b{
-  margin-top:7px!important;
-  color:var(--gold-bright)!important;
-  font-size:18px!important;
-  line-height:1.15;
-}
-#buildSummaryMetricsMirror .build-metric small{
-  margin-top:6px!important;
-  color:var(--muted)!important;
-  font-size:10px!important;
-  line-height:1.35;
-}
-#buildSummaryMetricsMirror .build-calc-grid:nth-child(2) .build-metric{
-  min-height:62px;
-  background:rgba(0,0,0,.145)!important;
-}
+#buildSummaryMetricsMirror .build-metric{position:relative;min-height:80px;padding:12px 11px!important;border:1px solid rgba(215,205,158,.18)!important;background:rgba(0,0,0,.18)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.02);transition:border-color .15s ease,background .15s ease,transform .15s ease}
+#buildSummaryMetricsMirror .build-metric:hover{border-color:rgba(234,220,166,.36)!important;background:rgba(201,183,125,.055)!important;transform:translateY(-1px)}
+#buildSummaryMetricsMirror .build-metric span{color:var(--dim)!important;font-size:10px!important;line-height:1.25}
+#buildSummaryMetricsMirror .build-metric b{margin-top:7px!important;color:var(--gold-bright)!important;font-size:18px!important;line-height:1.15}
+#buildSummaryMetricsMirror .build-metric small{margin-top:6px!important;color:var(--muted)!important;font-size:10px!important;line-height:1.35}
+#buildSummaryMetricsMirror .build-calc-grid:nth-child(2) .build-metric{min-height:62px;background:rgba(0,0,0,.145)!important}
 #buildSummaryMetricsMirror .build-calc-grid:nth-child(2) .build-metric b{font-size:16px!important}
 
-@media(max-width:1050px){
-  #tab-planner .planer-summary,
-  #buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-}
-@media(max-width:560px){
-  #tab-planner .planer-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}
-  #tab-planner .planer-summary>.summary-box{min-height:70px;padding:11px 10px!important}
-  #tab-planner .planer-summary>.summary-box b{font-size:19px!important}
-  #buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:1fr 1fr!important;gap:7px!important}
-  #buildSummaryMetricsMirror .build-metric{min-height:70px;padding:10px 9px!important}
-  #buildSummaryMetricsMirror .build-metric b{font-size:16px!important}
-}`;
+/* === 1.4.4 · Loadout Giáp native như Bùa === */
+#armorLoadoutTabs{margin:0 0 10px}
+#armorLoadoutTabs{position:relative;z-index:2}#armorLoadoutTabs .utility-loadout-tab{min-width:108px;position:relative;z-index:3;pointer-events:auto!important;touch-action:manipulation}
+#armorLoadoutStatus{margin-top:7px;color:var(--dim);font-size:12px;line-height:1.4}
+@media(max-width:1050px){#tab-planner .planer-summary,#buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:560px){#tab-planner .planer-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}#tab-planner .planer-summary>.summary-box{min-height:70px;padding:11px 10px!important}#tab-planner .planer-summary>.summary-box b{font-size:19px!important}#buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:1fr 1fr!important;gap:7px!important}#buildSummaryMetricsMirror .build-metric{min-height:70px;padding:10px 9px!important}#buildSummaryMetricsMirror .build-metric b{font-size:16px!important}#armorLoadoutTabs{display:grid;grid-template-columns:repeat(3,1fr)}#armorLoadoutTabs .utility-loadout-tab{min-width:0}}
+`;
+    if(html.includes('</style>')) html = html.replace('</style>', css + '\n</style>');
+    else if(html.includes('</head>')) html = html.replace('</head>', '<style>'+css+'</style></head>');
 
-    if(html.includes('</style>')) return html.replace('</style>', css + '\n</style>');
-    if(html.includes('</head>')) return html.replace('</head>', '<style>'+css+'</style></head>');
+    // Chèn UI đúng vào panel Giáp; không thêm/sửa bất kỳ data-tab nào.
+    const armorMarker = '<section class="panel"><div class="panel-title"><h2>Giáp &amp; Trang bị nhân vật</h2><span class="badge">Equipment</span></div><div class="subsection"><div class="equipment-grid">';
+    const armorUi = '<section class="panel"><div class="panel-title"><h2>Giáp và Great Rune</h2><span class="badge">3 Loadout · Giáp + Great Rune</span></div><div class="subsection">' +
+      '<div class="planner-data-note" style="margin-bottom:10px"><div class="planner-data-icon">◇</div><div><strong>Ba loadout đổi nhanh cho Giáp và Great Rune.</strong><p>Mỗi loadout lưu riêng Mũ, Giáp ngực, Găng tay, Giáp chân và Great Rune, giống cơ chế Loadout ở phần Bùa.</p></div></div>' +
+      '<div class="utility-loadout-tabs" id="armorLoadoutTabs" role="tablist" aria-label="Loadout giáp và Great Rune">' +
+      '<button class="utility-loadout-tab" type="button" data-armor-loadout="1" role="tab">Loadout 1</button>' +
+      '<button class="utility-loadout-tab" type="button" data-armor-loadout="2" role="tab">Loadout 2</button>' +
+      '<button class="utility-loadout-tab" type="button" data-armor-loadout="3" role="tab">Loadout 3</button>' +
+      '</div>' +
+      '<div class="utility-loadout-status" id="armorLoadoutStatus">Đang dùng Loadout 1 · dữ liệu được lưu riêng</div>' +
+      '<div class="equipment-grid" style="margin-top:12px">';
+    if(html.includes(armorMarker)) html = html.replace(armorMarker, armorUi);
+    else console.warn('[ER Companion] Không tìm thấy marker panel Giáp để chèn loadout.');
+
+    // Reset Planner phải xóa luôn 2 loadout giáp. Đây chỉ là bổ sung state, không đụng router/tab.
+    // === 1.4.4: đưa Loadout Giáp vào CHÍNH luồng Planner, cùng cơ chế với Loadout Bùa ===
+    // 1) Khai báo + hàm loadout đặt cạnh Utility Loadout gốc.
+    const armorNative = `
+const ARMOR_LOADOUT_FIELD_IDS=['helm','chestArmor','gauntlets','legs','greatRune'];
+function activeArmorLoadoutIndex(){return Math.max(1,Math.min(3,Number(state.planner?.armorLoadoutActive)||1))}
+function ensureArmorLoadouts(){
+  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.armorLoadouts=state.planner.armorLoadouts||{};
+  const legacy={};ARMOR_LOADOUT_FIELD_IDS.forEach(id=>legacy[id]=String(state.planner.fields[id]||''));
+  for(let index=1;index<=3;index++){
+    const key=String(index),source=state.planner.armorLoadouts[key]||state.planner.armorLoadouts[index]||(index===1?legacy:{}),entry={};
+    ARMOR_LOADOUT_FIELD_IDS.forEach(id=>entry[id]=String(source[id]||''));state.planner.armorLoadouts[key]=entry;
+  }
+  state.planner.armorLoadoutActive=activeArmorLoadoutIndex();syncActiveArmorLoadoutToPlannerFields();
+}
+function activeArmorLoadout(){ensureArmorLoadoutsShallow();return state.planner.armorLoadouts[String(activeArmorLoadoutIndex())]}
+function ensureArmorLoadoutsShallow(){
+  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.armorLoadouts=state.planner.armorLoadouts||{};
+  for(let index=1;index<=3;index++){const key=String(index);if(!state.planner.armorLoadouts[key])state.planner.armorLoadouts[key]={};ARMOR_LOADOUT_FIELD_IDS.forEach(id=>{if(typeof state.planner.armorLoadouts[key][id]!=='string')state.planner.armorLoadouts[key][id]=''});}
+}
+function syncActiveArmorLoadoutToPlannerFields(){
+  ensureArmorLoadoutsShallow();const loadout=state.planner.armorLoadouts[String(activeArmorLoadoutIndex())];ARMOR_LOADOUT_FIELD_IDS.forEach(id=>state.planner.fields[id]=loadout[id]||'');
+}
+function saveActiveArmorLoadoutFromDom(){
+  ensureArmorLoadoutsShallow();const loadout=state.planner.armorLoadouts[String(activeArmorLoadoutIndex())];ARMOR_LOADOUT_FIELD_IDS.forEach(id=>{const value=$(id)?.value??state.planner.fields[id]??'';loadout[id]=String(value);state.planner.fields[id]=String(value)});
+}
+function renderArmorLoadoutTabs(){
+  const active=activeArmorLoadoutIndex();document.querySelectorAll('[data-armor-loadout]').forEach(button=>{const selected=Number(button.dataset.armorLoadout)===active;button.classList.toggle('active',selected);button.setAttribute('aria-selected',String(selected))});const status=$('armorLoadoutStatus');if(status)status.textContent=\`Đang dùng Loadout \${active} · dữ liệu được lưu riêng\`;
+}
+function applyActiveArmorLoadoutToDom(){
+  syncActiveArmorLoadoutToPlannerFields();ARMOR_LOADOUT_FIELD_IDS.forEach(id=>{const el=$(id);if(el)el.value=state.planner.fields[id]||'';updatePlannerFieldIcon(id)});renderArmorLoadoutTabs();renderPlannerSummary();
+}
+function switchArmorLoadout(index){
+  const target=Math.max(1,Math.min(3,Number(index)||1));if(target===activeArmorLoadoutIndex())return;saveActiveArmorLoadoutFromDom();state.planner.armorLoadoutActive=target;applyActiveArmorLoadoutToDom();saveState();toast(\`Đã chuyển sang Loadout \${target}\`);
+}
+`;
+    if(html.includes("const UTILITY_LOADOUT_FIELD_IDS=")) html = html.replace("const UTILITY_LOADOUT_FIELD_IDS=", armorNative + "const UTILITY_LOADOUT_FIELD_IDS=");
+    else console.warn('[ER Companion] Không tìm thấy Utility Loadout để chèn Armor Loadout native.');
+
+    // 2) Khởi tạo Giáp ngay giữa Weapon và Utility, giống cấu trúc gốc.
+    html = html.replace('ensureWeaponLoadouts();\n  ensureUtilityLoadouts();','ensureWeaponLoadouts();\n  ensureArmorLoadouts();\n  ensureUtilityLoadouts();');
+
+    // 3) Mọi thay đổi field Giáp được ghi thẳng vào loadout đang active, giống Bùa.
+    html = html.replace(
+      "if(id==='weaponLoadoutNote')activeWeaponLoadout().note=el.value;if(UTILITY_LOADOUT_FIELD_IDS.includes(id))activeUtilityLoadout()[id]=el.value;",
+      "if(id==='weaponLoadoutNote')activeWeaponLoadout().note=el.value;if(ARMOR_LOADOUT_FIELD_IDS.includes(id))activeArmorLoadout()[id]=el.value;if(UTILITY_LOADOUT_FIELD_IDS.includes(id))activeUtilityLoadout()[id]=el.value;"
+    );
+
+    // 4) Gắn onclick + render ngay trong initPlanner, cùng hàng với Weapon/Utility.
+    html = html.replace(
+      "document.querySelectorAll('[data-weapon-loadout]').forEach(button=>button.onclick=()=>switchWeaponLoadout(button.dataset.weaponLoadout));document.querySelectorAll('[data-utility-loadout]').forEach(button=>button.onclick=()=>switchUtilityLoadout(button.dataset.utilityLoadout));renderWeaponLoadoutTabs();renderUtilityLoadoutTabs();",
+      "document.querySelectorAll('[data-weapon-loadout]').forEach(button=>button.onclick=()=>switchWeaponLoadout(button.dataset.weaponLoadout));document.querySelectorAll('[data-armor-loadout]').forEach(button=>button.onclick=()=>switchArmorLoadout(button.dataset.armorLoadout));document.querySelectorAll('[data-utility-loadout]').forEach(button=>button.onclick=()=>switchUtilityLoadout(button.dataset.utilityLoadout));renderWeaponLoadoutTabs();renderArmorLoadoutTabs();renderUtilityLoadoutTabs();"
+    );
+
+    // 5) Reset Planner xóa cả 3 bộ Giáp và quay về Loadout 1.
+    html = html.replace('state.planner.utilityLoadouts={};','state.planner.utilityLoadouts={};\n  state.planner.armorLoadouts={};state.planner.armorLoadoutActive=1;');
+
+    // 6) Build text ghi rõ loadout Giáp đang dùng.
+    html = html.replace("'',`Helm: ${p.helm||'-'}`", "'',`Armor Loadout: ${activeArmorLoadoutIndex()}`,`Helm: ${p.helm||'-'}`");
+
     return html;
   }
 
   try{
-    // Chặn write cuối của loader nền để chèn layout mới vào HTML thật.
+    // Chặn write cuối của loader nền để chèn patch vào HTML thật.
     const nativeWrite = Document.prototype.write;
     let finalWritten = false;
     Document.prototype.write = function(){
@@ -238,15 +197,12 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
     };
 
     const response = await fetch(PATCHED_BASE, {cache:'no-cache'});
-    if(!response.ok) throw new Error('Không tải được bản nền cho phiên bản 1.4: HTTP '+response.status);
+    if(!response.ok) throw new Error('Không tải được bản nền cho phiên bản 1.4.4: HTTP '+response.status);
     const loaderHtml = await response.text();
-
     const parsed = new DOMParser().parseFromString(loaderHtml, 'text/html');
     const scripts = Array.from(parsed.querySelectorAll('script'));
     const loaderScript = scripts.length ? scripts[scripts.length-1].textContent : '';
-    if(!loaderScript.trim()) throw new Error('Không tìm thấy script khởi tạo của phiên bản 1.4.');
-
-    // Chạy thẳng logic patch của bản nền, không đưa giao diện loading trung gian vào DOM.
+    if(!loaderScript.trim()) throw new Error('Không tìm thấy script khởi tạo của phiên bản 1.4.4.');
     (0,eval)(loaderScript);
   }catch(err){
     errorBox.textContent = String(err && err.stack || err);
