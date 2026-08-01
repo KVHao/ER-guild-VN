@@ -75,67 +75,6 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
     ];
     for(const [pattern,replacement] of textRepairs) html = html.replace(pattern,replacement);
 
-    // Planner 1.4 · 2 loadout riêng cho Giáp + Great Rune.
-    // Đổi tên mục theo yêu cầu và thêm hai tab đổi nhanh.
-    html = html.replace(/Giáp &amp; Trang bị nhân vật/g, 'Giáp &amp; Great Rune');
-    html = html.replace(
-      '<section class="panel"><div class="panel-title"><h2>Giáp &amp; Great Rune</h2><span class="badge">Equipment</span></div><div class="subsection"><div class="equipment-grid">',
-      '<section class="panel"><div class="panel-title"><h2>Giáp &amp; Great Rune</h2><span class="badge">2 Loadout</span></div><div class="subsection"><div class="planner-data-note" style="margin-bottom:10px"><div class="planner-data-icon">◇</div><div><strong>Hai loadout riêng cho bộ giáp và Great Rune.</strong><p>Mỗi loadout lưu riêng Mũ, Giáp ngực, Găng tay, Giáp chân và Great Rune để đổi nhanh theo tình huống.</p></div></div><div class="utility-loadout-tabs" id="armorLoadoutTabs" role="tablist" aria-label="Loadout giáp và Great Rune"><button class="utility-loadout-tab" type="button" data-armor-loadout="1" role="tab">Loadout 1</button><button class="utility-loadout-tab" type="button" data-armor-loadout="2" role="tab">Loadout 2</button></div><div class="utility-loadout-status" id="armorLoadoutStatus" style="margin:0 0 12px">Đang dùng Loadout 1</div><div class="equipment-grid">'
-    );
-
-    // Chèn logic lưu/chuyển 2 loadout Giáp + Great Rune vào Planner.
-    const armorLoadoutLogic = String.raw`
-const ARMOR_LOADOUT_FIELD_IDS=['helm','chestArmor','gauntlets','legs','greatRune'];
-function activeArmorLoadoutIndex(){return Math.max(1,Math.min(2,Number(state.planner?.armorLoadoutActive)||1))}
-function ensureArmorLoadouts(){
-  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.armorLoadouts=state.planner.armorLoadouts||{};
-  const legacy={};ARMOR_LOADOUT_FIELD_IDS.forEach(id=>legacy[id]=String(state.planner.fields[id]||''));
-  for(let index=1;index<=2;index++){
-    const key=String(index),source=state.planner.armorLoadouts[key]||state.planner.armorLoadouts[index]||(index===1?legacy:{}),entry={};
-    ARMOR_LOADOUT_FIELD_IDS.forEach(id=>entry[id]=String(source[id]||''));state.planner.armorLoadouts[key]=entry;
-  }
-  state.planner.armorLoadoutActive=activeArmorLoadoutIndex();syncActiveArmorLoadoutToPlannerFields();
-}
-function ensureArmorLoadoutsShallow(){
-  state.planner=state.planner||{};state.planner.fields=state.planner.fields||{};state.planner.armorLoadouts=state.planner.armorLoadouts||{};
-  for(let index=1;index<=2;index++){const key=String(index);if(!state.planner.armorLoadouts[key])state.planner.armorLoadouts[key]={};ARMOR_LOADOUT_FIELD_IDS.forEach(id=>{if(typeof state.planner.armorLoadouts[key][id]!=='string')state.planner.armorLoadouts[key][id]=''})}
-}
-function activeArmorLoadout(){ensureArmorLoadoutsShallow();return state.planner.armorLoadouts[String(activeArmorLoadoutIndex())]}
-function syncActiveArmorLoadoutToPlannerFields(){ensureArmorLoadoutsShallow();const loadout=state.planner.armorLoadouts[String(activeArmorLoadoutIndex())];ARMOR_LOADOUT_FIELD_IDS.forEach(id=>state.planner.fields[id]=loadout[id]||'')}
-function saveActiveArmorLoadoutFromDom(){ensureArmorLoadoutsShallow();const loadout=state.planner.armorLoadouts[String(activeArmorLoadoutIndex())];ARMOR_LOADOUT_FIELD_IDS.forEach(id=>{const value=$(id)?.value??state.planner.fields[id]??'';loadout[id]=String(value);state.planner.fields[id]=String(value)})}
-function renderArmorLoadoutTabs(){
-  const active=activeArmorLoadoutIndex();document.querySelectorAll('[data-armor-loadout]').forEach(button=>{const selected=Number(button.dataset.armorLoadout)===active;button.classList.toggle('active',selected);button.setAttribute('aria-selected',String(selected))});
-  const status=$('armorLoadoutStatus');if(status)status.textContent=\`Đang dùng Loadout \${active} · lưu riêng 4 mảnh giáp + Great Rune\`;
-}
-function applyActiveArmorLoadoutToDom(){
-  syncActiveArmorLoadoutToPlannerFields();ARMOR_LOADOUT_FIELD_IDS.forEach(id=>{const el=$(id);if(el)el.value=state.planner.fields[id]||'';updatePlannerFieldIcon(id)});renderArmorLoadoutTabs();renderPlannerSummary();
-}
-function switchArmorLoadout(index){
-  const target=Math.max(1,Math.min(2,Number(index)||1));if(target===activeArmorLoadoutIndex())return;saveActiveArmorLoadoutFromDom();state.planner.armorLoadoutActive=target;applyActiveArmorLoadoutToDom();saveState();toast(\`Đã chuyển sang Giáp + Great Rune Loadout \${target}\`);
-}
-`;
-    if(!html.includes('const ARMOR_LOADOUT_FIELD_IDS=')) html = html.replace("let plannerPickerTarget='';", armorLoadoutLogic + "\nlet plannerPickerTarget='';");
-
-    // Khởi tạo/load/save các ô giáp theo loadout đang chọn.
-    html = html.replace('  ensureWeaponLoadouts();\n  ensureUtilityLoadouts();', '  ensureWeaponLoadouts();\n  ensureUtilityLoadouts();\n  ensureArmorLoadouts();');
-    html = html.replace(
-      "if(UTILITY_LOADOUT_FIELD_IDS.includes(id))activeUtilityLoadout()[id]=el.value;if(id==='utilityLoadoutNote')activeUtilityLoadout().note=el.value;saveState();",
-      "if(UTILITY_LOADOUT_FIELD_IDS.includes(id))activeUtilityLoadout()[id]=el.value;if(id==='utilityLoadoutNote')activeUtilityLoadout().note=el.value;if(ARMOR_LOADOUT_FIELD_IDS.includes(id))activeArmorLoadout()[id]=el.value;saveState();"
-    );
-    html = html.replace(
-      "document.querySelectorAll('[data-utility-loadout]').forEach(button=>button.onclick=()=>switchUtilityLoadout(button.dataset.utilityLoadout));renderWeaponLoadoutTabs();renderUtilityLoadoutTabs();enhanceAffinitySelects(document);enhancePlannerIconFields();",
-      "document.querySelectorAll('[data-utility-loadout]').forEach(button=>button.onclick=()=>switchUtilityLoadout(button.dataset.utilityLoadout));document.querySelectorAll('[data-armor-loadout]').forEach(button=>button.onclick=()=>switchArmorLoadout(button.dataset.armorLoadout));renderWeaponLoadoutTabs();renderUtilityLoadoutTabs();renderArmorLoadoutTabs();enhanceAffinitySelects(document);enhancePlannerIconFields();"
-    );
-    html = html.replace(
-      "if(WEAPON_LOADOUT_FIELD_IDS.includes(fieldId))activeWeaponLoadout()[fieldId]='';if(UTILITY_LOADOUT_FIELD_IDS.includes(fieldId))activeUtilityLoadout()[fieldId]='';",
-      "if(WEAPON_LOADOUT_FIELD_IDS.includes(fieldId))activeWeaponLoadout()[fieldId]='';if(UTILITY_LOADOUT_FIELD_IDS.includes(fieldId))activeUtilityLoadout()[fieldId]='';if(ARMOR_LOADOUT_FIELD_IDS.includes(fieldId))activeArmorLoadout()[fieldId]='';"
-    );
-
-    // Export/copy/reset cũng mang theo loadout giáp mới.
-    html = html.replace('saveActiveWeaponLoadoutFromDom();saveActiveUtilityLoadoutFromDom();', 'saveActiveWeaponLoadoutFromDom();saveActiveUtilityLoadoutFromDom();saveActiveArmorLoadoutFromDom();');
-    html = html.replace("`Weapon note: ${p.weaponLoadoutNote||'-'}`,'',`Helm:", "`Weapon note: ${p.weaponLoadoutNote||'-'}`,'',`Armor Loadout: ${activeArmorLoadoutIndex()}`,`Helm:");
-    html = html.replace('  state.planner.utilityLoadouts={};\n  ensureWeaponLoadouts();\n  ensureUtilityLoadouts();', '  state.planner.utilityLoadouts={};\n  state.planner.armorLoadouts={};\n  ensureWeaponLoadouts();\n  ensureUtilityLoadouts();\n  ensureArmorLoadouts();');
-
     // Quét bảo vệ lần cuối cho đúng các từ lỗi đã xác định ở source hiện tại.
     // Không xóa mù ký tự U+FFFD vì có thể làm sai nghĩa nếu source thay đổi về sau.
     html = html
