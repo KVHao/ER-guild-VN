@@ -1,10 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="vi">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#10120f">
-<title>Elden Ring Companion 1.4.4 — Native Armor Loadouts</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="#10120f" name="theme-color"/>
+<title>Elden Ring Companion 1.4.5.b — Native Armor Loadouts</title>
 <style>
 html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:Georgia,serif}
 #errorWrap{display:none;min-height:100vh;place-items:center;padding:24px}
@@ -14,13 +15,13 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
 </style>
 </head>
 <body>
-<div id="status" hidden></div>
+<div hidden="" id="status"></div>
 <div id="errorWrap"><div id="errorBox"><h1>Không thể mở Elden Ring Companion</h1><pre id="error"></pre></div></div>
 <script>
 (async function(){
   "use strict";
 
-  // Nền ổn định đang được bản 1.4.4 sử dụng. Chỉ chèn thêm Loadout Giáp,
+  // Nền ổn định đang được bản 1.4.5 sử dụng. Chỉ chèn thêm Loadout Giáp,
   // không sửa setTab(), nav-btn, mobile tab hay router của trang.
   const PATCHED_BASE = "https://raw.githubusercontent.com/KVHao/ER-guild-VN/84181bd/index.html";
   const errorWrap = document.getElementById("errorWrap");
@@ -28,11 +29,11 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
 
   function applySummaryLayout(html){
     html = html
-      .replace(/1\.3\.2/g, '1.4.4')
-      .replace(/VERSION\s*1\.4(?:\.[0-9]+)?/gi, 'VERSION 1.4.4')
-      .replace(/Version\s*1\.4(?:\.[0-9]+)?/gi, 'Version 1.4.4')
-      .replace(/V1\.4(?:\.[0-9]+)?/gi, 'V1.4.4')
-      .replace(/Elden Ring Companion 1\.4(?:\.[0-9]+)?/gi, 'Elden Ring Companion 1.4.4');
+      .replace(/Elden Ring Companion (?:1\.3\.2|1\.4(?:\.[0-9]+)?(?:\.[a-z]+)?)/gi, 'Elden Ring Companion 1.4.5.b')
+      .replace(/VERSION\s*(?:1\.3\.2|1\.4(?:\.[0-9]+)?(?:\.[a-z]+)?)/gi, 'VERSION 1.4.5.b')
+      .replace(/Version\s*(?:1\.3\.2|1\.4(?:\.[0-9]+)?(?:\.[a-z]+)?)/gi, 'Version 1.4.5.b')
+      .replace(/V(?:1\.3\.2|1\.4(?:\.[0-9]+)?(?:\.[a-z]+)?)/gi, 'V1.4.5.b')
+      .replace(/1\.3\.2/g, '1.4.5.b');
 
     // Các sửa lỗi UTF-8 đang có ở bản 1.4 hiện tại.
     const textRepairs = [
@@ -93,12 +94,36 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
 #buildSummaryMetricsMirror .build-calc-grid:nth-child(2) .build-metric{min-height:62px;background:rgba(0,0,0,.145)!important}
 #buildSummaryMetricsMirror .build-calc-grid:nth-child(2) .build-metric b{font-size:16px!important}
 
-/* === 1.4.4 · Loadout Giáp native như Bùa === */
+/* === 1.4.5 · Loadout Giáp native như Bùa === */
 #armorLoadoutTabs{margin:0 0 10px}
 #armorLoadoutTabs{position:relative;z-index:2}#armorLoadoutTabs .utility-loadout-tab{min-width:108px;position:relative;z-index:3;pointer-events:auto!important;touch-action:manipulation}
 #armorLoadoutStatus{margin-top:7px;color:var(--dim);font-size:12px;line-height:1.4}
 @media(max-width:1050px){#tab-planner .planer-summary,#buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:560px){#tab-planner .planer-summary{grid-template-columns:repeat(2,minmax(0,1fr))!important}#tab-planner .planer-summary>.summary-box{min-height:70px;padding:11px 10px!important}#tab-planner .planer-summary>.summary-box b{font-size:19px!important}#buildSummaryMetricsMirror .build-calc-grid{grid-template-columns:1fr 1fr!important;gap:7px!important}#buildSummaryMetricsMirror .build-metric{min-height:70px;padding:10px 9px!important}#buildSummaryMetricsMirror .build-metric b{font-size:16px!important}#armorLoadoutTabs{display:grid;grid-template-columns:repeat(3,1fr)}#armorLoadoutTabs .utility-loadout-tab{min-width:0}}
+
+/* === 1.4.5.b · Hiệu ứng dạng thông số + vị trí trang bị === */
+.planner-effect-number-table{display:flex;flex-direction:column;gap:7px;padding:7px;background:rgba(5,7,5,.16);border:1px solid rgba(215,205,158,.12)}
+.planner-effect-number-row{display:grid;grid-template-columns:96px minmax(155px,.78fr) minmax(0,1.32fr);gap:12px;padding:9px 10px;border:1px solid rgba(215,205,158,.09);background:linear-gradient(90deg,rgba(255,255,255,.018),rgba(255,255,255,.008));align-items:start}
+.planner-effect-number-row:hover{border-color:rgba(215,205,158,.20);background:rgba(255,255,255,.025)}
+.planner-effect-number-slot{display:inline-flex;align-items:center;justify-content:center;min-height:24px;padding:3px 7px;border:1px solid rgba(215,205,158,.25);background:rgba(215,205,158,.055);color:#d8ce9f;font:700 10px/1.15 Arial,sans-serif;text-transform:uppercase;letter-spacing:.35px;text-align:center}
+.planner-effect-number-name{color:#f1efe4;font:700 12px/1.3 Arial,sans-serif;overflow-wrap:anywhere;padding-top:3px}
+.planner-effect-number-values{display:flex;flex-direction:column;gap:3px;min-width:0;padding-left:12px;border-left:1px solid rgba(215,205,158,.10)}
+.planner-effect-number-line{font:12px/1.25 Arial,sans-serif;color:#20c982;overflow-wrap:anywhere}
+.planner-effect-number-line.neg{color:#ff6666}
+.planner-effect-number-line.trigger{color:#00d5c8}
+.planner-effect-number-line b{color:inherit;font-weight:700}
+@media(max-width:760px){.planner-effect-number-row{grid-template-columns:84px minmax(120px,.8fr) minmax(0,1.2fr);gap:8px}.planner-effect-number-values{padding-left:8px}}
+@media(max-width:560px){.planner-effect-number-row{grid-template-columns:86px 1fr;gap:5px 8px;padding:8px}.planner-effect-number-slot{grid-row:1}.planner-effect-number-name{grid-column:2;padding-top:4px}.planner-effect-number-values{grid-column:1/-1;padding:7px 0 0;border-left:0;border-top:1px solid rgba(215,205,158,.10)}.planner-effect-number-line{font-size:11px}}
+.talisman-with-view{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;min-width:0}
+.talisman-with-view>.btn{height:40px;padding:0 8px;font-size:11px;white-space:nowrap}
+@media(max-width:520px){.talisman-with-view{grid-template-columns:1fr}.talisman-with-view>.btn{width:100%}}
+.crystal-tear-with-view{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px;align-items:center;min-width:0}
+.crystal-tear-with-view>.btn{height:40px;padding:0 8px;font-size:11px;white-space:nowrap}
+@media(max-width:520px){.crystal-tear-with-view{grid-template-columns:1fr}.crystal-tear-with-view>.btn{width:100%}}
+.stats-panel.stats-collapsed>.class-box,.stats-panel.stats-collapsed>.stat-list{display:none!important}
+.build-stats-title{cursor:pointer;user-select:none}
+.build-stats-title .build-stats-chevron{margin-left:8px;transition:transform .18s ease;transform-origin:center;color:var(--dim)}
+.stats-panel.stats-collapsed .build-stats-chevron{transform:rotate(-90deg)}
 `;
     if(html.includes('</style>')) html = html.replace('</style>', css + '\n</style>');
     else if(html.includes('</head>')) html = html.replace('</head>', '<style>'+css+'</style></head>');
@@ -117,8 +142,32 @@ html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:
     if(html.includes(armorMarker)) html = html.replace(armorMarker, armorUi);
     else console.warn('[ER Companion] Không tìm thấy marker panel Giáp để chèn loadout.');
 
+
+    // Talisman: thêm nút Xem hiệu ứng bằng đúng cơ chế .planner-view-item gốc.
+    const talismanViewFields=[
+      ['talisman1','Talisman 1'],['talisman2','Talisman 2'],['talisman3','Talisman 3'],['talisman4','Talisman 4'],
+      ['talismanAlt1','Bùa dự phòng 1'],['talismanAlt2','Bùa dự phòng 2'],['talismanAlt3','Bùa dự phòng 3'],['talismanAlt4','Bùa dự phòng 4']
+    ];
+    for(const [id,placeholder] of talismanViewFields){
+      const oldInput='<input id="'+id+'" type="text" list="plannerTalismanList" placeholder="'+placeholder+'">';
+      const newInput='<div class="talisman-with-view"><input id="'+id+'" type="text" list="plannerTalismanList" placeholder="'+placeholder+'"><button class="btn mini planner-view-item" type="button" data-planer-field="'+id+'">Xem hiệu ứng</button></div>';
+      if(html.includes(oldInput))html=html.replace(oldInput,newInput);
+    }
+
+
+    // Crystal Tears: thêm nút Xem hiệu ứng bằng đúng handler .planner-view-item gốc.
+    const crystalTearViewFields=[
+      ['physick1','Crystal Tear 1'],['physick2','Crystal Tear 2'],
+      ['physick3','Tear dự phòng 1'],['physick4','Tear dự phòng 2']
+    ];
+    for(const [id,placeholder] of crystalTearViewFields){
+      const oldInput='<input id="'+id+'" type="text" list="plannerCrystalTearList" placeholder="'+placeholder+'">';
+      const newInput='<div class="crystal-tear-with-view"><input id="'+id+'" type="text" list="plannerCrystalTearList" placeholder="'+placeholder+'"><button class="btn mini planner-view-item" type="button" data-planer-field="'+id+'">Xem hiệu ứng</button></div>';
+      if(html.includes(oldInput))html=html.replace(oldInput,newInput);
+    }
+
     // Reset Planner phải xóa luôn 2 loadout giáp. Đây chỉ là bổ sung state, không đụng router/tab.
-    // === 1.4.4: đưa Loadout Giáp vào CHÍNH luồng Planner, cùng cơ chế với Loadout Bùa ===
+    // === 1.4.5: đưa Loadout Giáp vào CHÍNH luồng Planner, cùng cơ chế với Loadout Bùa ===
     // 1) Khai báo + hàm loadout đặt cạnh Utility Loadout gốc.
     const armorNative = `
 const ARMOR_LOADOUT_FIELD_IDS=['helm','chestArmor','gauntlets','legs','greatRune'];
@@ -174,8 +223,259 @@ function switchArmorLoadout(index){
     // 5) Reset Planner xóa cả 3 bộ Giáp và quay về Loadout 1.
     html = html.replace('state.planner.utilityLoadouts={};','state.planner.utilityLoadouts={};\n  state.planner.armorLoadouts={};state.planner.armorLoadoutActive=1;');
 
-    // 6) Build text ghi rõ loadout Giáp đang dùng.
+    // 6) Build text ghi rõ loadout Giáp đang dùng và stat là dữ liệu native của build.
     html = html.replace("'',`Helm: ${p.helm||'-'}`", "'',`Armor Loadout: ${activeArmorLoadoutIndex()}`,`Helm: ${p.helm||'-'}`");
+    html = html.replace('`Build Level: ${calcCurrentLevel()} / Current ${state.planner.ownedLevel||classBase().level}`', '`Build Level: ${calcCurrentLevel()}`');
+
+    // === 1.4.5 · Chỉ số là một phần trực tiếp của Build ===
+    html = html
+      .replace('<div class="panel-title"><h2>Trạng thái nhân vật</h2><span class="badge" id="classBadge">Vagabond</span></div>', '<div class="panel-title build-stats-title" onclick="var p=this.closest(\'.stats-panel\');if(p)p.classList.toggle(\'stats-collapsed\');"><h2>Chỉ số Build</h2><span class="badge" id="classBadge">Vagabond</span><span class="aside-section-chevron build-stats-chevron">&#9660;</span></div>')
+      .replace('<div class="level-panel"><div class="level-label">Level đã phân bổ</div><div class="level-big" id="currentLevel">9</div></div>', '<div class="level-panel"><div class="level-label">Level Build</div><div class="level-big" id="currentLevel">9</div></div>')
+      .replace('<label class="level-panel"><span class="level-label">Level đang có</span><input class="level-number-input" type="number" min="1" max="713" id="ownedLevel" value="150"></label>', '<div class="level-panel"><div class="level-label">Level Class</div><div class="level-big" id="classBaseLevel">9</div><input type="hidden" id="ownedLevel" value="9"></div>')
+      .replace('<div class="level-points-card" id="availablePointsCard"><span>Điểm còn có thể cộng</span><strong id="availablePoints">141</strong></div>', '<div class="level-points-card" id="availablePointsCard"><span>Điểm đã cộng vào build</span><strong id="availablePoints">0</strong></div>')
+      .replace('<div class="summary-box"><span>Level đang có</span><b id="sumOwnedLevel">150</b></div>', '<div class="summary-box"><span>Level Class</span><b id="sumOwnedLevel">9</b></div>')
+      .replace('<div class="summary-box"><span>Điểm còn cộng</span><b id="sumLeft">141</b></div>', '<div class="summary-box"><span>Điểm đã cộng</span><b id="sumLeft">0</b></div>')
+      .replace('<p style="margin:6px 0 2px;color:var(--dim);font-size:11px;font-style:italic">&#9432; Chọn class khác rồi chọn lại class của build để load file lại</p>', '<div style="display:flex;justify-content:flex-end;margin:8px 0 2px"><button class="btn mini" id="reloadSavedBuildBtn" type="button" onclick="reloadSavedPlannerBuild();return false">↻ Load lại Build đã lưu</button></div>');
+
+    // === 1.4.5 · Stat persistence hardening ===
+    // Lưu stat của Build bằng một snapshot độc lập để reload/import không bị bước khởi tạo Class ghi đè.
+    html = html.replace(
+      "const STORAGE_KEY='kvhao_elden_ring_companion_v1';",
+      "const STORAGE_KEY='kvhao_elden_ring_companion_v1';const PLANNER_STATS_STORAGE_KEY=STORAGE_KEY+'_planner_stats';"
+    );
+    html = html.replace(
+      "function loadState(){try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)return deepMerge(DEFAULT_STATE,JSON.parse(raw));if(EMBEDDED_OFFLINE_DATA?.savedState)return deepMerge(DEFAULT_STATE,EMBEDDED_OFFLINE_DATA.savedState);return clone(DEFAULT_STATE)}catch(e){return EMBEDDED_OFFLINE_DATA?.savedState?deepMerge(DEFAULT_STATE,EMBEDDED_OFFLINE_DATA.savedState):clone(DEFAULT_STATE)}}\nfunction saveState(show=false){state.version=APP_VERSION;try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){}if(show) toast('Đã lưu tiến trình ✓')}",
+      `function validPlannerStatsSnapshot(value){
+  if(!value||typeof value!=='object'||!CLASSES[value.className]||!value.stats||typeof value.stats!=='object')return null;
+  const base=CLASSES[value.className].stats,stats={};
+  for(const key of Object.keys(STAT_LABELS)){
+    const n=Number(value.stats[key]);if(!Number.isFinite(n)||n<base[key]||n>99)return null;stats[key]=Math.round(n);
+  }
+  return {className:value.className,stats};
+}
+function plannerStatsSnapshotFromState(){
+  const planner=state?.planner;if(!planner)return null;return validPlannerStatsSnapshot({className:planner.className,stats:planner.stats});
+}
+function applyPlannerStatsSnapshot(target,snapshot){
+  const snap=validPlannerStatsSnapshot(snapshot);if(!snap)return target;target.planner=target.planner||clone(DEFAULT_STATE.planner);target.planner.className=snap.className;target.planner.stats={...snap.stats};return target;
+}
+function loadState(){
+  let merged;
+  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)merged=deepMerge(DEFAULT_STATE,JSON.parse(raw))}catch(e){}
+  if(!merged){try{merged=EMBEDDED_OFFLINE_DATA?.savedState?deepMerge(DEFAULT_STATE,EMBEDDED_OFFLINE_DATA.savedState):clone(DEFAULT_STATE)}catch(e){merged=clone(DEFAULT_STATE)}}
+  // state.planner trong save chính là nguồn duy nhất. Xóa snapshot phụ của các bản vá cũ để nó không thể ghi đè stat nữa.
+  try{localStorage.removeItem(PLANNER_STATS_STORAGE_KEY)}catch(e){}
+  return merged;
+}
+function saveState(show=false){
+  state.version=APP_VERSION;
+  try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state));localStorage.removeItem(PLANNER_STATS_STORAGE_KEY)}catch(e){}
+  if(show)toast('Đã lưu tiến trình ✓');
+}
+async function refreshPlannerBuildUiFromState(){
+  const preserved=clone(state.planner||DEFAULT_STATE.planner),preservedClass=preserved.className,preservedStats=clone(preserved.stats||{});
+  state.planner=preserved;
+  normalizePlannerStats();syncPlannerBuildLevel();
+  ensureWeaponLoadouts();ensureArmorLoadouts();ensureUtilityLoadouts();
+  initPlanner();
+  // initPlanner chỉ dựng control. Sau đó trả lại đúng Class + stat của Build để không handler nào được reset dữ liệu đã lưu.
+  if(CLASSES[preservedClass])state.planner.className=preservedClass;
+  state.planner.stats=clone(preservedStats);normalizePlannerStats();syncPlannerBuildLevel();
+  syncActiveArmorLoadoutToPlannerFields();
+  renderPlanner();renderPlannerStatRowsFromState();
+  try{applyActiveArmorLoadoutToDom()}catch(e){}
+  try{await initPlannerCatalogs()}catch(e){}
+  try{renderPlannerArmorSummary()}catch(e){}
+  try{renderPlannerSummary()}catch(e){}
+  return true;
+}
+async function reloadSavedPlannerBuild(){
+  let savedRoot=null;
+  try{const raw=localStorage.getItem(STORAGE_KEY);if(raw)savedRoot=deepMerge(DEFAULT_STATE,JSON.parse(raw))}catch(e){}
+  if(!savedRoot?.planner){toast('Chưa có Build đã lưu');return;}
+  // Chỉ đọc planner trong save chính; không lấy snapshot stat phụ vì có thể là dữ liệu Class cũ.
+  state.planner=clone(savedRoot.planner);
+  await refreshPlannerBuildUiFromState();
+  saveState();
+  toast('Đã load lại Build đã lưu ✓');
+}`
+    );
+
+    // Build export mang thêm snapshot stat độc lập. Khi import, snapshot này được ưu tiên trước khi validate Planner.
+    html = html.replace(
+      "return {schema:'elden-ring-companion-build',formatVersion:1,schemaVersion:1,appVersion:APP_VERSION,exportedAt:new Date().toISOString(),name:`${className} Lv.${level}`,planner:clone(state.planner)};",
+      "return {schema:'elden-ring-companion-build',formatVersion:1,schemaVersion:1,appVersion:APP_VERSION,exportedAt:new Date().toISOString(),name:`${className} Lv.${level}`,planner:clone(state.planner)};"
+    );
+    html = html.replace(
+      "const candidate=parsed?.schema==='elden-ring-companion-build'?parsed.planner:(parsed?.planner||parsed);\n    const planner=validateImportedPlanner(candidate);",
+      "const rawCandidate=parsed?.schema==='elden-ring-companion-build'?parsed.planner:(parsed?.planner||parsed),candidate=clone(rawCandidate||{});\n    const planner=validateImportedPlanner(candidate);"
+    );
+
+    // === 1.4.5 · Build-native Stats Engine ===
+    // Đưa Class + stat + Level vào cùng dữ liệu Planner; Level build được suy ra trực tiếp từ các stat, không còn ngân sách Level riêng.
+    const statEngine = `
+function normalizePlannerStats(){
+  const base=classBase();
+  state.planner=state.planner||{};
+  state.planner.stats=state.planner.stats&&typeof state.planner.stats==='object'?state.planner.stats:{};
+  Object.keys(base.stats).forEach(k=>{
+    const raw=Number(state.planner.stats[k]);
+    state.planner.stats[k]=Math.max(base.stats[k],Math.min(99,Number.isFinite(raw)?Math.round(raw):base.stats[k]));
+  });
+  return state.planner.stats;
+}
+function renderPlannerStatRowsFromState(){
+  const base=classBase();normalizePlannerStats();
+  if(typeof classBadge!=='undefined'&&classBadge)classBadge.textContent=state.planner.className+(base.upcoming?' · Sắp ra mắt':'');
+  if(typeof classSelect!=='undefined'&&classSelect)classSelect.value=state.planner.className;
+  if(typeof statList!=='undefined'&&statList){
+    statList.innerHTML=Object.keys(STAT_LABELS).map(k=>'<div class="stat-row"><span class="stat-name">'+STAT_LABELS[k]+'</span><button class="stat-btn" data-stat="'+k+'" data-delta="-1">−</button><button class="stat-btn" data-stat="'+k+'" data-delta="1">+</button><span class="stat-value">'+state.planner.stats[k]+'</span></div>').join('');
+    statList.querySelectorAll('[data-stat]').forEach(btn=>btn.onclick=()=>changePlannerStat(btn.dataset.stat,+btn.dataset.delta));
+  }
+}
+function allocatedStatPoints(){
+  const base=classBase();normalizePlannerStats();
+  return Object.keys(base.stats).reduce((sum,k)=>sum+Math.max(0,state.planner.stats[k]-base.stats[k]),0);
+}
+function calcCurrentLevel(){
+  const base=classBase();return Math.min(713,base.level+allocatedStatPoints());
+}
+function syncPlannerBuildLevel(){
+  const level=calcCurrentLevel();
+  state.planner.ownedLevel=level; // giữ field cũ để tương thích save/build cũ, nhưng nguồn thật là stat của build
+  if(typeof ownedLevel!=='undefined'&&ownedLevel)ownedLevel.value=level;
+  return level;
+}
+function normalizedOwnedLevel(){return calcCurrentLevel()}
+function availableStatPointsCount(){return Math.max(0,713-calcCurrentLevel())}
+function commitOwnedLevel(){return syncPlannerBuildLevel()}
+function changePlannerStat(statKey,delta){
+  const base=classBase();normalizePlannerStats();
+  if(!(statKey in base.stats))return;
+  const current=state.planner.stats[statKey];
+  if(delta>0){
+    if(current>=99){toast('Chỉ số này đã đạt 99');return;}
+    if(calcCurrentLevel()>=713){toast('Build đã đạt Level 713');return;}
+    state.planner.stats[statKey]=current+1;
+  }else if(delta<0){
+    state.planner.stats[statKey]=Math.max(base.stats[statKey],current-1);
+  }
+  syncPlannerBuildLevel();saveState();renderPlanner();
+}
+`;
+    html = html.replace(
+      "function calcCurrentLevel(){const base=classBase();return base.level+Object.keys(base.stats).reduce((sum,k)=>sum+Math.max(0,(state.planner.stats[k]||base.stats[k])-base.stats[k]),0)}",
+      statEngine.trim()
+    );
+
+    // Khởi tạo: làm sạch stat cũ theo class và Level không bao giờ thấp hơn build đã phân bổ.
+    html = html.replace(
+      "state.planner.ownedLevel=Math.max(selectedBase.level,Math.min(713,+state.planner.ownedLevel||selectedBase.level));ownedLevel.value=state.planner.ownedLevel;",
+      "normalizePlannerStats();syncPlannerBuildLevel();ownedLevel.value=state.planner.ownedLevel;"
+    );
+
+    // Đổi class: reset đúng base stats của class mới, giữ Level đang có nếu hợp lệ rồi tính lại từ đầu.
+    html = html.replace(
+      "classSelect.onchange=()=>{const name=classSelect.value;if(!CLASSES[name])return;state.planner.className=name;state.planner.stats={...CLASSES[name].stats};state.planner.ownedLevel=Math.max(state.planner.ownedLevel||CLASSES[name].level,CLASSES[name].level);saveState();renderPlanner()};",
+      "classSelect.onchange=()=>{const name=classSelect.value;if(!CLASSES[name])return;if(name===state.planner.className){renderPlannerStatRowsFromState();renderPlannerSummary();return}state.planner.className=name;state.planner.stats={...CLASSES[name].stats};syncPlannerBuildLevel();saveState();renderPlanner();renderPlannerStatRowsFromState()};if($(\'reloadSavedBuildBtn\'))$(\'reloadSavedBuildBtn\').onclick=async(event)=>{event.preventDefault();await reloadSavedPlannerBuild()};"
+    );
+
+    // Không clamp mỗi phím gõ nữa. Chỉ commit khi change/blur để nhập 150, 200... bình thường.
+    html = html.replace(
+      "ownedLevel.oninput=()=>{const base=classBase();state.planner.ownedLevel=Math.max(base.level,Math.min(713,+ownedLevel.value||base.level));saveState();renderPlannerSummary()};",
+      "ownedLevel.oninput=()=>{};ownedLevel.onchange=()=>{};ownedLevel.onblur=()=>{};"
+    );
+
+    // +/- stat đi qua một hàm duy nhất; không thể xuống dưới base hoặc cộng quá số điểm còn lại.
+    html = html.replace(
+      "statList.querySelectorAll('[data-stat]').forEach(btn=>btn.onclick=()=>{const k=btn.dataset.stat,d=+btn.dataset.delta,min=base.stats[k];state.planner.stats[k]=Math.max(min,Math.min(99,(state.planner.stats[k]||min)+d));saveState();renderPlanner()});",
+      "statList.querySelectorAll('[data-stat]').forEach(btn=>btn.onclick=()=>changePlannerStat(btn.dataset.stat,+btn.dataset.delta));"
+    );
+
+    // Summary lấy Level/điểm từ engine mới; không tự ghi đè ô Level trong lúc người dùng đang nhập.
+    html = html.replace(
+      "const lvl=calcCurrentLevel(),base=classBase(),owned=Math.max(base.level,Math.min(713,+state.planner.ownedLevel||base.level)),available=owned-lvl,entries=Object.entries(state.planner.stats),highest=entries.sort((a,b)=>b[1]-a[1])[0],p=state.planner.fields||{};",
+      "normalizePlannerStats();const lvl=syncPlannerBuildLevel(),base=classBase(),owned=base.level,used=allocatedStatPoints(),available=used,entries=Object.entries(state.planner.stats),highest=entries.sort((a,b)=>b[1]-a[1])[0],p=state.planner.fields||{};"
+    );
+    html = html.replace(
+      "const availableColor=available<0?'#d39a8c':'var(--gold-bright)';sumLeft.style.color=availableColor;if(availablePoints)availablePoints.style.color=availableColor;if(availablePointsCard)availablePointsCard.classList.toggle('over',available<0);",
+      "const availableColor='var(--gold-bright)';sumLeft.style.color=availableColor;if(availablePoints)availablePoints.style.color=availableColor;if(availablePointsCard)availablePointsCard.classList.remove('over');"
+    );
+    html = html.replace(
+      "levelHint.innerHTML=available>=0?`Bạn còn <strong>${available}</strong> điểm có thể cộng ở Level ${owned}.`:`Build đang vượt Level hiện có <strong>${Math.abs(available)}</strong> điểm.`;",
+      "levelHint.innerHTML=`Build Level <strong>${lvl}</strong> = ${state.planner.className} Level ${base.level} + <strong>${used}</strong> điểm chỉ số.`;if($('classBaseLevel'))$('classBaseLevel').textContent=base.level;"
+    );
+    html = html.replace(
+      "levelProgress.style.width=`${Math.min(100,lvl/Math.max(1,owned)*100)}%`;ownedLevel.value=owned;renderPlannerArmorSummary();renderPlannerActiveEffects();renderBuildTools();",
+      "levelProgress.style.width=`${Math.min(100,lvl/713*100)}%`;ownedLevel.value=lvl;renderPlannerArmorSummary();renderPlannerActiveEffects();renderBuildTools();"
+    );
+
+    // Import build cũ: stat không được thấp hơn base class và Level phải đủ chứa toàn bộ điểm đã phân bổ.
+    html = html.replace(
+      "const planner=deepMerge(DEFAULT_STATE.planner,value),className=String(planner.className||'');",
+      "const planner=deepMerge(DEFAULT_STATE.planner,value),className=String(planner.className||'');"
+    );
+    html = html.replace(
+      "const stat=Number(planner.stats[key]);if(!Number.isFinite(stat)||stat<1||stat>99)throw new Error(`Chỉ số ${STAT_LABELS[key]} không hợp lệ.`);planner.stats[key]=Math.round(stat);",
+      "const stat=Number(planner.stats[key]),minStat=CLASSES[className].stats[key];if(!Number.isFinite(stat)||stat<minStat||stat>99)throw new Error(`Chỉ số ${STAT_LABELS[key]} không hợp lệ với class ${className}.`);planner.stats[key]=Math.round(stat);"
+    );
+    html = html.replace(
+      "const ownedLevel=Number(planner.ownedLevel);if(!Number.isFinite(ownedLevel)||ownedLevel<1||ownedLevel>713)throw new Error('Level đang có không hợp lệ.');planner.ownedLevel=Math.round(ownedLevel);",
+      "const baseClass=CLASSES[className],usedPoints=Object.keys(baseClass.stats).reduce((sum,key)=>sum+Math.max(0,planner.stats[key]-baseClass.stats[key]),0),buildLevel=baseClass.level+usedPoints;if(buildLevel>713)throw new Error('Build vượt Level 713.');planner.ownedLevel=buildLevel;"
+    );
+
+    // === 1.4.5 · Vật phẩm trang bị nhanh: chỉ Consumable Items + công dụng offline ===
+    html = html
+      .replace('6 ô vật phẩm nhanh để lưu consumable / tool bạn thường dùng.', '6 ô vật phẩm nhanh chỉ lấy các món thuộc Consumable Items.')
+      .replace('Bấm “Xem” để mở vị trí và công dụng của vật phẩm.', 'Bấm “Xem” để mở vị trí và công dụng đã nhúng offline của vật phẩm.')
+      .replace("if(categoryMap[fieldId]==='Items')return all.filter(item=>item.group==='Items'&&item.category!=='Crystal Tears');", "if(categoryMap[fieldId]==='Items')return all.filter(item=>item.group==='Items'&&item.category==='Consumable Items');")
+      .replace("quickItems=all.filter(item=>item.group==='Items'&&item.category!=='Crystal Tears')", "quickItems=all.filter(item=>item.group==='Items'&&item.category==='Consumable Items')")
+      .replace("const candidates=plannerItemsForField(fieldId);return candidates.find(item=>normalizeItemName(item.name)===key)||findPlanerItem(value)}", "const candidates=plannerItemsForField(fieldId);return candidates.find(item=>normalizeItemName(item.name)===key)||(fieldId.startsWith('quickItem')?null:findPlanerItem(value))}")
+      .replace("${quickItems.length} vật phẩm.", "${quickItems.length} Consumable Items.");
+
+    const consumableOfflineEngine = "const CONSUMABLE_EFFECTS_VI=Object.freeze({\n  \"flask of crimson tears\":\"Uống để hồi HP. Số lần dùng và lượng hồi phụ thuộc số Flask, cấp Sacred Tear và cách phân bổ Flask hiện tại.\",\n  \"flask of cerulean tears\":\"Uống để hồi FP. Số lần dùng và lượng hồi phụ thuộc số Flask, cấp Sacred Tear và cách phân bổ Flask hiện tại.\",\n  \"flask of wondrous physick\":\"Uống để kích hoạt đồng thời hiệu ứng của hai Crystal Tear đang pha trong Flask of Wondrous Physick; được hồi lại khi nghỉ tại Site of Grace.\",\n  \"rune arc\":\"Dùng để kích hoạt phúc lành của Great Rune đang trang bị. Hiệu lực kéo dài đến khi nhân vật chết.\",\n  \"rainbow stone\":\"Đặt xuống đất để phát ánh sáng màu, dùng làm mốc đường và hỗ trợ ước lượng độ nguy hiểm của cú rơi.\",\n  \"glowstone\":\"Đặt xuống đất để phát ánh sáng tạm thời, giúp soi khu vực tối.\",\n  \"rowa raisin\":\"Khi cưỡi Torrent, cho linh mã ăn để hồi HP.\",\n  \"frozen raisin\":\"Khi cưỡi Torrent, cho linh mã ăn để hồi nhiều HP hơn Rowa Raisin.\",\n  \"sweet raisin\":\"Khi cưỡi Torrent, cho linh mã ăn để hồi lượng HP lớn.\",\n  \"spirit raisin\":\"Khi cưỡi Torrent, cho linh mã ăn để hồi HP; loại raisin của Shadow Realm.\",\n  \"ancestral infant's head\":\"Tiêu FP để phun sương linh hồn phía trước, gây sát thương phép theo vùng trong thời gian ngắn.\",\n  \"albinauric pot\":\"Ném vào mục tiêu để tạm thời cản khả năng hồi HP bằng Flask of Crimson Tears.\",\n  \"beastlure pot\":\"Ném để tỏa mùi thu hút nhiều loại quái thú về vị trí chiếc pot.\",\n  \"alluring pot\":\"Ném để tỏa mùi thu hút nhiều kẻ địch hình người về vị trí chiếc pot.\",\n  \"cursed-blood pot\":\"Ném để phủ Cursed Blood lên mục tiêu, khiến Spirit Ash được triệu hồi ưu tiên và hung hăng tấn công mục tiêu đó.\",\n  \"sacred order pot\":\"Ném gây sát thương Holy; đặc biệt hữu ích với kẻ địch thuộc nhóm Those Who Live in Death/undead.\",\n  \"oil pot\":\"Ném để phủ dầu lên mục tiêu, làm đòn sát thương Fire tiếp theo gây nhiều sát thương hơn.\",\n  \"roped oil pot\":\"Thả chiếc pot ra phía sau để phủ dầu lên mục tiêu, làm đòn sát thương Fire tiếp theo gây nhiều sát thương hơn.\",\n  \"hefty oil pot\":\"Ném Hefty Pot để phủ lượng dầu lớn lên mục tiêu, tăng mạnh sát thương Fire kế tiếp nhận vào.\",\n  \"fetid pot\":\"Ném gây tích lũy Deadly Poison lên mục tiêu; mang nhiều Fetid Pot cũng làm người dùng tích lũy Poison dần.\",\n  \"roped fetid pot\":\"Thả ra phía sau để gây tích lũy Deadly Poison; bản roped dùng để đánh mục tiêu đang đuổi phía sau.\",\n  \"hefty fetid pot\":\"Ném Hefty Pot gây lượng tích lũy Deadly Poison lớn.\",\n  \"sleep pot\":\"Ném để tạo màn sương gây tích lũy Sleep.\",\n  \"eternal sleep pot\":\"Ném để gây tích lũy Eternal Sleep lên các mục tiêu có thể chịu trạng thái này.\",\n  \"freezing pot\":\"Ném để gây tích lũy Frostbite mạnh.\",\n  \"rot pot\":\"Ném để gây tích lũy Scarlet Rot.\",\n  \"poison pot\":\"Ném để gây tích lũy Poison.\",\n  \"swarm pot\":\"Ném để giải phóng đàn bloodfly gây sát thương và tích lũy Blood Loss.\",\n  \"roped fly pot\":\"Thả phía sau để giải phóng bloodfly, gây sát thương và tích lũy Blood Loss.\",\n  \"hefty fly pot\":\"Ném Hefty Pot giải phóng đàn bloodfly lớn, gây sát thương và tích lũy Blood Loss.\",\n  \"rancor pot\":\"Ném để triệu hồi các linh hồn báo oán truy đuổi mục tiêu và gây sát thương Magic.\",\n  \"hefty rancor pot\":\"Ném Hefty Pot để tạo nhiều linh hồn báo oán truy đuổi mục tiêu.\",\n  \"fire pot\":\"Ném gây sát thương Fire.\",\n  \"volcano pot\":\"Ném tạo vùng lửa phun liên tục trong thời gian ngắn, gây sát thương Fire nhiều lần.\",\n  \"magic pot\":\"Ném gây sát thương Magic.\",\n  \"academy magic pot\":\"Ném gây sát thương Magic bằng ma thuật học viện.\",\n  \"lightning pot\":\"Ném gây sát thương Lightning.\",\n  \"holy water pot\":\"Ném gây sát thương Holy.\",\n  \"redmane fire pot\":\"Ném gây sát thương Fire mạnh; sát thương tăng theo chỉ số phù hợp của công thức Redmane.\",\n  \"giantsflame fire pot\":\"Tiêu FP và ném gây sát thương Fire rất mạnh; sát thương thiên về Faith.\",\n  \"ancient dragonbolt pot\":\"Ném gây sát thương Lightning mạnh theo sức mạnh Ancient Dragon.\",\n  \"red lightning pot\":\"Ném gây sát thương Red Lightning mạnh.\",\n  \"frenzied flame pot\":\"Ném gây sát thương Fire và tích lũy Madness.\",\n  \"roped frenzied flame pot\":\"Thả phía sau để gây sát thương Fire và tích lũy Madness lên mục tiêu bám đuổi.\",\n  \"hefty frenzied flame pot\":\"Ném Hefty Pot gây sát thương Fire lớn và tích lũy Madness mạnh.\",\n  \"hefty rock pot\":\"Ném một khối đá nặng gây sát thương Physical và stagger/stance damage cao.\",\n  \"hefty furnace pot\":\"Ném gây sát thương Fire cực lớn; đặc biệt hiệu quả khi ném vào giỏ lửa của Furnace Golem từ vị trí cao.\",\n  \"hefty fire pot\":\"Ném Hefty Pot gây sát thương Fire lớn.\",\n  \"hefty lightning pot\":\"Ném Hefty Pot gây sát thương Lightning lớn.\",\n  \"hefty red lightning pot\":\"Ném Hefty Pot gây sát thương Red Lightning lớn.\",\n  \"hefty magic pot\":\"Ném Hefty Pot gây sát thương Magic lớn.\",\n  \"hefty volcano pot\":\"Ném Hefty Pot tạo vùng phun lửa lớn gây sát thương Fire nhiều lần.\",\n  \"hefty freezing pot\":\"Ném Hefty Pot gây tích lũy Frostbite rất cao.\",\n  \"hefty poison pot\":\"Ném Hefty Pot gây tích lũy Poison cao.\",\n  \"hefty rot pot\":\"Ném Hefty Pot gây tích lũy Scarlet Rot cao.\",\n  \"poison spraymist\":\"Tiêu FP để phun sương độc từ miệng, gây tích lũy Poison trên mục tiêu phía trước.\",\n  \"acid spraymist\":\"Tiêu FP để phun Acid Mist, tạm thời làm giảm Attack Power của mục tiêu trúng phải.\",\n  \"ironjar aromatic\":\"Tiêu FP để biến cơ thể nặng như kim loại: tăng mạnh poise và damage negation nhưng giảm khả năng cơ động, đồng thời làm yếu trước Lightning.\",\n  \"bloodboil aromatic\":\"Tiêu FP để vào trạng thái cuồng nhiệt: tăng Attack Power và Stamina tối đa nhưng làm người dùng nhận nhiều sát thương hơn.\",\n  \"spark aromatic\":\"Tiêu FP để tung tia lửa rộng phía trước, gây sát thương Fire.\",\n  \"uplifting aromatic\":\"Tiêu FP để tạo lá chắn một-hit cho bản thân/đồng minh gần đó và tăng Attack Power trong thời gian ngắn.\",\n  \"neutralizing boluses\":\"Giảm tích lũy Poison và chữa trạng thái Poison đang mắc.\",\n  \"preserving boluses\":\"Giảm tích lũy Scarlet Rot và chữa trạng thái Scarlet Rot đang mắc.\",\n  \"stanching boluses\":\"Giảm tích lũy Blood Loss.\",\n  \"stimulating boluses\":\"Giảm tích lũy Sleep.\",\n  \"thawfrost boluses\":\"Giảm tích lũy Frostbite và chữa Frostbite.\",\n  \"clarifying boluses\":\"Giảm tích lũy Madness.\",\n  \"rejuvenating boluses\":\"Giảm tích lũy Death Blight.\",\n  \"boiled prawn\":\"Tạm thời tăng Physical Damage Negation.\",\n  \"boiled crab\":\"Tạm thời tăng Physical Damage Negation mạnh hơn Boiled Prawn.\",\n  \"soft cotton\":\"Tạm thời giảm sát thương từ các cú rơi không gây chết và giảm tiếng động khi tiếp đất/di chuyển.\",\n  \"gold-pickled fowl foot\":\"Tạm thời tăng lượng Rune nhận được từ kẻ địch và các nguồn Rune phù hợp.\",\n  \"silver-pickled fowl foot\":\"Tạm thời tăng Item Discovery, giúp tăng xác suất nhận vật phẩm rơi từ kẻ địch.\",\n  \"golden horn tender\":\"Tạm thời tăng lượng Rune nhận được; phiên bản Shadow Realm có hiệu quả cao.\",\n  \"silver horn tender\":\"Tạm thời tăng Item Discovery; phiên bản Shadow Realm có hiệu quả cao.\",\n  \"dragon heart\":\"Vật phẩm Dragon Communion dùng tại các Dragon Communion altar để đổi lấy Incantation rồng; không phải buff chiến đấu trực tiếp.\",\n  \"bone dart\":\"Ném nhanh gây sát thương Physical nhỏ, hữu ích để kéo quái hoặc kết liễu mục tiêu còn ít HP.\",\n  \"throwing dagger\":\"Ném nhanh gây sát thương Physical và có thể dùng để kéo/ép nhịp mục tiêu.\",\n  \"crystal dart\":\"Ném gây sát thương Magic; một số kẻ địch dạng construct có thể bị rối loạn và quay sang tấn công đồng loại sau khi trúng đủ nhiều.\",\n  \"fan daggers\":\"Ném nhiều dao theo hình quạt, gây nhiều hit Physical ở cự ly gần-trung bình.\",\n  \"kukri\":\"Ném dao lớn gây sát thương Physical và tích lũy Blood Loss.\",\n  \"poisonbone dart\":\"Ném nhanh gây sát thương nhỏ và tích lũy Poison.\",\n  \"exalted flesh\":\"Tạm thời tăng sát thương Physical gây ra.\",\n  \"pickled turtle neck\":\"Tạm thời tăng tốc hồi Stamina.\",\n  \"well-pickled turtle neck\":\"Tạm thời tăng mạnh tốc hồi Stamina.\",\n  \"raw meat dumpling\":\"Hồi HP nhanh nhưng đồng thời gây tích lũy Poison lên người dùng.\",\n  \"warming stone\":\"Tiêu FP để đặt vùng ấm hồi HP liên tục cho mọi nhân vật đứng gần, kể cả đối tượng không phải đồng minh.\",\n  \"frenzyflame stone\":\"Tiêu FP để tạo vùng Frenzied Flame; hồi HP cho người mang Frenzied Flame nhưng gây Madness lên những đối tượng không tương thích.\",\n  \"baldachin's blessing\":\"Dùng để tạm thời tăng Poise. Khi còn giữ Blessing trong túi, nhân vật chịu giảm Max HP cho tới khi dùng/bỏ hiệu ứng liên quan.\",\n  \"radiant baldachin's blessing\":\"Dùng để tạm thời tăng Poise mạnh hơn Baldachin's Blessing.\",\n  \"gravity stone chunk\":\"Tiêu FP để phóng một khối gravity stone gây sát thương Magic/Gravity lên mục tiêu.\",\n  \"gravity stone fan\":\"Tiêu FP để bắn một chùm gravity stone theo hình quạt, gây sát thương Magic/Gravity.\",\n  \"bewitching branch\":\"Tiêu FP để mê hoặc một số kẻ địch bị chọc trúng, khiến chúng tạm thời quay sang tấn công đồng loại.\",\n  \"lulling branch\":\"Tự đâm nhánh cây vào người để hồi FP dần theo thời gian, đồng thời tự tích lũy Sleep. Nếu Sleep kích hoạt do Lulling Branch, hiệu ứng ngủ đó không làm mất FP.\",\n  \"starlight shards\":\"Hồi FP dần theo thời gian.\",\n  \"explosive stone\":\"Ném để gây nổ và sát thương Fire.\",\n  \"explosive stone clump\":\"Ném một cụm đá nổ tạo vụ nổ lớn hơn và gây sát thương Fire.\",\n  \"glintstone scrap\":\"Tiêu FP để phá mảnh glintstone và bắn các tia Magic tự động về phía mục tiêu.\",\n  \"large glintstone scrap\":\"Tiêu FP để tạo nhiều tia Magic hơn Glintstone Scrap.\",\n  \"cuckoo glintstone\":\"Ném để tạo projectile Magic truy đuổi mục tiêu.\",\n  \"poisoned stone\":\"Ném gây tích lũy Poison.\",\n  \"poisoned stone clump\":\"Ném cụm đá độc gây nhiều hit và tích lũy Poison mạnh hơn.\",\n  \"soap\":\"Làm sạch cơ thể; loại bỏ bụi/bùn/dầu bám và giảm một phần tích lũy trạng thái liên quan môi trường.\",\n  \"wraith calling bell\":\"Tiêu FP để triệu hồi một wraith truy đuổi mục tiêu.\",\n  \"omen bairn\":\"Tiêu FP để phóng nhiều wraith truy đuổi mục tiêu.\",\n  \"regal omen bairn\":\"Tiêu FP để phóng nhiều wraith mạnh hơn Omen Bairn.\",\n  \"margit's shackle\":\"Dùng trong một số trận với Margit/Morgott để trói Boss xuống đất trong thời gian ngắn; số lần hiệu quả bị giới hạn theo phase.\",\n  \"mohg's shackle\":\"Dùng trong trận Mohg phù hợp để trói Boss xuống đất trong thời gian ngắn; số lần hiệu quả bị giới hạn theo phase.\",\n  \"blasphemous claw\":\"Dùng đúng nhịp để parry/counter một số đòn Destined Death phát sáng vàng của Maliketh.\",\n  \"pureblood knight's medal\":\"Dùng để dịch chuyển đến Mohgwyn Palace.\",\n  \"miquella's needle\":\"Vật phẩm nhiệm vụ dùng tại Dragonlord Placidusax arena để loại bỏ Frenzied Flame, cho phép thoát khóa ending Frenzied Flame nếu đáp ứng điều kiện.\",\n  \"lands between rune\":\"Tiêu thụ để nhận một lượng Rune; đây cũng là Keepsake có thể chọn khi tạo nhân vật.\",\n  \"blessing of marika\":\"Dùng để hồi đầy HP và chữa nhiều trạng thái bất lợi; vật phẩm hiếm của Shadow Realm.\",\n  \"dragon communion flesh\":\"Tạm thời tăng Vigor, Endurance, Strength và Dexterity, đổi lại HP giảm dần trong thời gian hiệu lực.\",\n  \"dragonscale flesh\":\"Tạm thời tăng mạnh Vigor, Endurance, Strength và Dexterity, đổi lại HP giảm dần trong thời gian hiệu lực.\",\n  \"fingerprint nostrum\":\"Tạm thời tăng Mind, Intelligence, Faith và Arcane, đổi lại HP giảm dần trong thời gian hiệu lực.\",\n  \"opaline pickled liver\":\"Tạm thời tăng mạnh Damage Negation cho các loại sát thương phi vật lý.\",\n  \"scorpion stew\":\"Tạm thời tăng Physical Damage Negation đồng thời hồi HP dần theo thời gian.\",\n  \"gourmet scorpion stew\":\"Tạm thời tăng Physical Damage Negation đồng thời hồi HP dần mạnh hơn Scorpion Stew.\",\n  \"scorpion stew [2]\":\"Tạm thời tăng Physical Damage Negation đồng thời hồi HP dần theo thời gian; bản vật phẩm nhiệm vụ thứ hai.\",\n  \"gourmet scorpion stew [2]\":\"Tạm thời tăng Physical Damage Negation đồng thời hồi HP dần mạnh; bản vật phẩm nhiệm vụ thứ hai.\",\n  \"sacred bloody flesh\":\"Tạm thời tăng Attack Power; hiệu quả tăng thêm khi Blood Loss xảy ra ở gần.\",\n  \"dragon communion harpoon\":\"Ném gây sát thương Physical mạnh và có hiệu ứng chống rồng.\",\n  \"polter stone\":\"Ném xuống đất để tạo tiếng động giả giống sự hiện diện của con người tại điểm rơi, dùng để đánh lạc hướng hoặc thu hút sự chú ý của kẻ địch phù hợp.\",\n  \"rock heart\":\"Dùng khi không mặc giáp để biến cơ thể sang dạng Dragon Communion, tăng sức mạnh Dragon Communion Incantations cho tới khi chết.\",\n  \"priestess heart\":\"Dùng khi không mặc giáp để biến sang dạng Ancient Dragon, tăng sức mạnh Dragon Cult Incantations cho tới khi chết.\",\n  \"lamenter's mask\":\"Dùng khi không mặc giáp để biến sang dạng Lamenter cho tới khi chết; biến đổi ngoại hình và hiệu ứng nhân vật.\",\n  \"ancient dragon's blessing\":\"Tiêu FP để tạm thời tăng mọi loại Damage Negation, gồm cả Physical; đồng thời tăng Damage Negation khi Guard.\",\n  \"iris of grace\":\"Vật phẩm nhiệm vụ dùng để đưa ra lựa chọn cho một số NPC; không có công dụng buff chiến đấu thông thường.\",\n  \"iris of occultation\":\"Vật phẩm nhiệm vụ dùng để đưa ra lựa chọn cho một số NPC; lựa chọn này dẫn đến phần thưởng khác với Iris of Grace.\",\n  \"thiollier's concoction\":\"Thuốc nhiệm vụ của Thiollier gây trạng thái ngủ rất sâu; chủ yếu dùng cho một nhánh quest, không phải consumable chiến đấu thông thường.\",\n  \"marika's rune\":\"Tiêu thụ để nhận một lượng Rune rất lớn.\",\n  \"broken run\":\"Tiêu thụ để nhận Rune.\",\n  \"rune of an unsung hero\":\"Tiêu thụ để nhận một lượng Rune lớn.\",\n  \"leda's rune\":\"Tiêu thụ để nhận một lượng Rune lớn.\",\n  \"innard meat\":\"Ném vào kẻ địch để gây sát thương.\",\n  \"glass shard\":\"Mảnh kính bẩn không có hiệu ứng chiến đấu hữu ích; không tự phát sáng và về cơ bản là vật phẩm vô giá trị.\"\n});\nfunction isConsumableChecklistItem(item){return !!item&&item.group==='Items'&&item.category==='Consumable Items'}\nfunction consumableElementLabel(name=''){\n  const s=normalizeItemName(name);if(/messmerfire/.test(s))return'Messmerfire';if(/red lightning|dragonbolt|lightning/.test(s))return'Lightning';if(/royal magic|magic/.test(s))return'Magic';if(/golden|holy/.test(s))return'Holy';if(/fire|volcano|furnace/.test(s))return'Fire';if(/blood/.test(s))return'Blood Loss';if(/poison|fetid/.test(s))return'Poison';if(/rot/.test(s))return'Scarlet Rot';if(/eternal sleep|soporific|sleep/.test(s))return'Sleep';if(/freez/.test(s))return'Frostbite';return'';\n}\nfunction consumableEffectVi(item){\n  const key=normalizeItemName(item?.name||'');if(!key)return'Không có mô tả công dụng.';if(CONSUMABLE_EFFECTS_VI[key])return CONSUMABLE_EFFECTS_VI[key];\n  let m;\n  if((m=key.match(/^golden rune \\[(\\d+)\\]$/)))return`Tiêu thụ để nhận Rune. Golden Rune [${m[1]}] cho lượng Rune cố định theo cấp của vật phẩm.`;\n  if((m=key.match(/^hero's rune \\[(\\d+)\\]$/)))return`Tiêu thụ để nhận lượng Rune lớn. Hero's Rune [${m[1]}] cho lượng Rune cố định theo cấp.`;\n  if((m=key.match(/^shadow realm rune \\[(\\d+)\\]$/)))return`Tiêu thụ để nhận Rune. Shadow Realm Rune [${m[1]}] là Rune consumable của DLC với giá trị tăng theo cấp.`;\n  if(key===\"numen's rune\")return'Tiêu thụ để nhận một lượng Rune lớn.';if(key===\"lord's rune\")return'Tiêu thụ để nhận lượng Rune rất lớn.';\n  if(/(?:^| )grease$/.test(key)){\n    if(key==='shield grease')return'Bôi lên khiên để tăng Guard Boost/khả năng phòng thủ của khiên trong thời gian ngắn.';\n    if(key==='dragonwound grease')return'Bôi lên vũ khí để tăng sát thương đặc biệt lên Dragon và Ancient Dragon.';\n    if(key==='dragon communion grease')return'Bôi lên vũ khí để cấp hiệu ứng chống rồng mạnh.';\n    if(key==='festive grease')return'Bôi lên vũ khí; các đòn đánh trúng có thể tạo thêm Rune trong thời gian buff.';\n    const draw=key.startsWith('drawstring '),element=consumableElementLabel(key);\n    if(element)return`${draw?'Bôi rất nhanh lên':'Bôi lên'} vũ khí để ${['Blood Loss','Poison','Scarlet Rot','Sleep','Frostbite'].includes(element)?`gây tích lũy ${element}`:`thêm sát thương ${element}`} trong thời gian ${draw?'ngắn':'tạm thời'}.`;\n  }\n  if(/cured meat$/.test(key)){\n    if(key.includes('dappled'))return'Tạm thời tăng đồng thời Immunity, Robustness và Focus.';\n    if(key.includes('immunizing'))return'Tạm thời tăng Immunity, giúp chống Poison và Scarlet Rot.';\n    if(key.includes('invigorating'))return'Tạm thời tăng Robustness, giúp chống Blood Loss và Frostbite.';\n    if(key.includes('clarifying'))return'Tạm thời tăng Focus, giúp chống Sleep và Madness.';\n  }\n  if(/(?:dried|pickled) liver$/.test(key)){\n    if(key.includes('opaline'))return'Tạm thời tăng mạnh Damage Negation cho mọi sát thương phi vật lý.';\n    if(key.includes('fireproof'))return'Tạm thời tăng Fire Damage Negation.';\n    if(key.includes('spellproof'))return'Tạm thời tăng Magic Damage Negation.';\n    if(key.includes('lightningproof'))return'Tạm thời tăng Lightning Damage Negation.';\n    if(key.includes('holyproof'))return'Tạm thời tăng Holy Damage Negation.';\n  }\n  if(/ pot$/.test(key)){\n    const roped=key.startsWith('roped '),hefty=key.startsWith('hefty '),element=consumableElementLabel(key);\n    if(element){const status=['Blood Loss','Poison','Scarlet Rot','Sleep','Frostbite'].includes(element);return`${roped?'Thả ra phía sau':'Ném'} ${hefty?'Hefty Pot ':''}để ${status?`gây tích lũy ${element}`:`gây sát thương ${element}`}${hefty?' ở mức cao':''}.`;}\n    return`${roped?'Thả chiếc pot ra phía sau':'Ném chiếc pot'} để kích hoạt hiệu ứng đặc thù của ${item.name}.`;\n  }\n  if(/^(fireproof|spellproof|lightningproof|holyproof) pickled liver$/.test(key))return'Tạm thời tăng mạnh khả năng giảm sát thương nguyên tố tương ứng.';\n  return`Vật phẩm Consumable: ${item.name}. Công dụng đã được giữ offline trong danh mục; đây là vật phẩm dùng một lần hoặc có số lượt dùng giới hạn trong ngữ cảnh phù hợp.`;\n}\nfunction renderConsumableEffectPanel(item){\n  const effect=consumableEffectVi(item);return`<section class=\"special-effect-panel\" data-item-id=\"${esc(item.id)}\"><div class=\"special-effect-head\"><h3>◈ Công dụng vật phẩm</h3><span class=\"special-effect-kind\">Offline · Consumable</span></div><p class=\"special-effect-copy\">${esc(effect)}</p><div class=\"special-effect-disclaimer\">Mô tả được nhúng trực tiếp trong HTML để mở không cần tải Wiki. Đối chiếu từ checklist, dữ liệu game/API và wiki cộng đồng.</div></section>`;\n}";
+    const crystalTearOfflineEngine = 'const CRYSTAL_TEAR_EFFECTS_VI=Object.freeze({\n  "crimson crystal tear":{effect:"Hồi ngay 50% HP tối đa khi uống Flask of Wondrous Physick.",note:"Có 2 bản trong game; dùng cả hai Tear cùng lúc sẽ hồi tổng cộng 100% HP tối đa."},\n  "crimsonspill crystal tear":{effect:"Tăng HP tối đa +10%.",note:"Thời gian: 180 giây."},\n  "crimsonburst crystal tear":{effect:"Hồi HP liên tục +7 HP/giây.",note:"Thời gian: 180 giây."},\n  "crimsonburst dried tear":{effect:"Hồi HP cho đồng minh ở gần +7 HP/giây trong bán kính khoảng 7 m.",note:"Thời gian: 180 giây. Hiệu ứng dành cho đồng minh gần, không phải buff hồi máu chính cho bản thân."},\n  "cerulean crystal tear":{effect:"Hồi ngay 50% FP tối đa khi uống Flask of Wondrous Physick.",note:"Có 2 bản trong game; dùng cả hai Tear cùng lúc sẽ hồi tổng cộng 100% FP tối đa."},\n  "greenspill crystal tear":{effect:"Tăng Stamina tối đa +15%.",note:"Thời gian: 180 giây."},\n  "greenburst crystal tear":{effect:"Tăng tốc hồi Stamina +15 Stamina/giây.",note:"Thời gian: 180 giây."},\n  "strength-knot crystal tear":{effect:"Tăng Strength +10.",note:"Thời gian: 180 giây."},\n  "dexterity-knot crystal tear":{effect:"Tăng Dexterity +10.",note:"Thời gian: 180 giây."},\n  "intelligence-knot crystal tear":{effect:"Tăng Intelligence +10.",note:"Thời gian: 180 giây."},\n  "faith-knot crystal tear":{effect:"Tăng Faith +10.",note:"Thời gian: 180 giây."},\n  "opaline hardtear":{effect:"Tăng mọi Damage Negation +15% trong PvE.",note:"Thời gian: 180 giây. PvP: khoảng +10%."},\n  "speckled hardtear":{effect:"Tăng đồng thời Immunity, Robustness, Focus và Vitality +90, đồng thời xóa buildup/trạng thái bất lợi đang mắc khi uống.",note:"Phần tăng kháng kéo dài 180 giây."},\n  "leaden hardtear":{effect:"Tạo hiệu ứng siêu giáp: ngăn bị stagger bởi phần lớn đòn không gây knockdown hoặc hất tung.",note:"Thời gian: 10 giây."},\n  "deflecting hardtear":{effect:"Tăng mạnh khả năng Guard chính xác (Perfect/Spontaneous Guard): giảm sát thương xuyên khiên và Stamina mất, đồng thời tăng sức mạnh đòn phản công sau các lần đỡ chuẩn.",note:"Thời gian: 300 giây. Buff phản công tăng theo chuỗi Perfect Guard, có thể lên đến khoảng +80% ở PvE."},\n  "magic-shrouding cracked tear":{effect:"Tăng sát thương Magic +20% trong PvE.",note:"Thời gian: 180 giây. PvP: +12.5%."},\n  "flame-shrouding cracked tear":{effect:"Tăng sát thương Fire +20% trong PvE.",note:"Thời gian: 180 giây. PvP: +12.5%."},\n  "lightning-shrouding cracked tear":{effect:"Tăng sát thương Lightning +20% trong PvE.",note:"Thời gian: 180 giây. PvP: +12.5%."},\n  "holy-shrouding cracked tear":{effect:"Tăng sát thương Holy +20% trong PvE.",note:"Thời gian: 180 giây. PvP: +12.5%."},\n  "stonebarb cracked tear":{effect:"Tăng Poise/Stance/Stamina damage của đòn đánh +30%, giúp phá thế kẻ địch nhanh hơn.",note:"Thời gian: 30 giây."},\n  "spiked cracked tear":{effect:"Tăng sát thương Charged Heavy Attack +15%.",note:"Thời gian: 180 giây."},\n  "thorny cracked tear":{effect:"Đánh liên tiếp tăng Attack Power theo tầng +9% / +13% / +20%.",note:"Thời gian buff tổng: 180 giây; phải duy trì chuỗi hit để giữ/tăng tầng."},\n  "crimson-sapping cracked tear":{effect:"Mỗi đòn đánh trúng mục tiêu hồi khoảng 0.8% HP tối đa.",note:"Thời gian: 45 giây."},\n  "cerulean-sapping cracked tear":{effect:"Mỗi đòn đánh trúng mục tiêu hồi 5 FP.",note:"Thời gian: 45 giây."},\n  "bloodsucking cracked tear":{effect:"Tăng mọi sát thương gây ra +20% trong PvE, nhưng liên tục mất HP theo thời gian.",note:"Thời gian: 180 giây. Mức mất HP xấp xỉ 0.2% HP tối đa + 20 HP mỗi giây; PvP buff sát thương thấp hơn."},\n  "twiggy cracked tear":{effect:"Ngăn mất Rune khi chết trong thời gian hiệu lực (ngoại lệ một số trường hợp đặc biệt như Death Blight).",note:"Thời gian: 180 giây."},\n  "winged crystal tear":{effect:"Tăng Max Equip Load +450%, giúp tạm thời hạ mức tải trang bị/roll weight.",note:"Thời gian: 180 giây."},\n  "windy crystal tear":{effect:"Tăng thêm 3 i-frame cho dodge roll nhưng giảm mọi Damage Negation -15%.",note:"Thời gian: 180 giây."},\n  "glovewort crystal tear":{effect:"Tăng sát thương gây ra bởi Spirit Ashes +7.5%.",note:"Thời gian: 180 giây."},\n  "crimson bubbletear":{effect:"Tự động hồi 30% HP tối đa một lần khi HP tụt xuống dưới khoảng 21%.",note:"Hiệu lực chờ kích hoạt trong 180 giây hoặc cho đến khi proc."},\n  "crimsonwhorl bubbletear":{effect:"Khi nhận sát thương phi vật lý, hồi HP bằng khoảng 5% HP tối đa thay vì chịu phần sát thương tương ứng theo cơ chế của Tear.",note:"Thời gian: 15 giây."},\n  "opaline bubbletear":{effect:"Tăng Damage Negation +90% cho đòn đánh kế tiếp nhận vào.",note:"Lá chắn tồn tại tối đa khoảng 180 giây hoặc mất sau khi bị trúng đòn."},\n  "cerulean hidden tear":{effect:"Đưa FP Cost của hầu hết hành động về 0.",note:"Thời gian: 10 giây."},\n  "viridian hidden tear":{effect:"Đưa Stamina Cost của hành động về 0.",note:"Thời gian: 15 giây."},\n  "purifying crystal tear":{effect:"Giảm cực mạnh sát thương từ Bloodboon/Nihil của Mohg, Lord of Blood.",note:"Dùng trước hoặc trong trận Mohg để chống ba lần Nihil ở pha chuyển tiếp."},\n  "ruptured crystal tear":{effect:"Sau khi uống sẽ phát nổ gây Holy damage quanh người dùng và đồng thời tự gây sát thương.",note:"Một Tear: khoảng 800 Holy Attack Power và 300 self-damage. Dùng cả hai bản: khoảng 1750 Holy Attack Power và 700 self-damage."},\n  "oil-soaked tear":{effect:"Liên tục phủ Oil lên bản thân và mục tiêu trong khoảng 1 m; Oil làm giảm Fire Damage Negation khoảng -20% cho cú Fire hit kế tiếp.",note:"Thời gian: 30 giây."}\n});\nfunction crystalTearEffectVi(item){\n  if(!item||item.category!==\'Crystal Tears\')return null;\n  const key=normalizeItemName(item.name||\'\');\n  return CRYSTAL_TEAR_EFFECTS_VI[key]||{effect:\'Crystal Tear dùng trong Flask of Wondrous Physick. Hiệu ứng cụ thể của mục này chưa khớp tên trong bảng offline.\',note:\'Có thể dùng nút Fextralife để đối chiếu nếu tên vật phẩm khác dữ liệu chuẩn.\'};\n}\nfunction renderCrystalTearEffectPanel(item){\n  const info=crystalTearEffectVi(item);if(!info)return\'\';\n  return `<section class="special-effect-panel" id="dynamicEffectPanel" data-item-id="${esc(item.id)}"><div class="special-effect-head"><h3>✧ Hiệu ứng Crystal Tear</h3><span class="special-effect-kind">Offline · Crystal Tear</span></div><p class="special-effect-copy">${esc(info.effect)}</p>${info.note?`<p class="special-effect-note">${esc(info.note)}</p>`:\'\'}<div class="special-effect-disclaimer">Dữ liệu hiệu ứng được nhúng trực tiếp trong HTML để xem không cần tải Wiki.</div></section>`;\n}';
+    html = html.replace(
+      "function renderDynamicEffectPanel(item){\n  if(isSpellItem(item))return renderSpellNyasuPanel(item);",
+      consumableOfflineEngine + "\n" + crystalTearOfflineEngine + "\nfunction renderDynamicEffectPanel(item){\n  if(item?.category==='Crystal Tears')return renderCrystalTearEffectPanel(item);\n  if(isConsumableChecklistItem(item))return renderConsumableEffectPanel(item);\n  if(isSpellItem(item))return renderSpellNyasuPanel(item);"
+    );
+    html = html.replace(
+      "async function hydrateDynamicEffectPanel(item){\n  if(isSpellItem(item)){await hydrateSpellNyasuPanel(item);return}",
+      "async function hydrateDynamicEffectPanel(item){\n  if(item?.category==='Crystal Tears'||isConsumableChecklistItem(item))return;\n  if(isSpellItem(item)){await hydrateSpellNyasuPanel(item);return}"
+    );
+    html = html.replace(
+      "const done=!!state.itemDone?.[item.id],weapon=WEAPON_GROUPS.has(item.group),effect=specialEffectForItem(item),talisman=isTalismanItem(item),detailLabel=talisman?'Công dụng & chi tiết':(effect?'Hiệu ứng & chi tiết':(weapon?'Chỉ số & vị trí':'Xem vị trí'));",
+      "const done=!!state.itemDone?.[item.id],weapon=WEAPON_GROUPS.has(item.group),effect=specialEffectForItem(item),talisman=isTalismanItem(item),consumable=isConsumableChecklistItem(item),detailLabel=talisman?'Xem hiệu ứng':(consumable?'Công dụng & chi tiết':(effect?'Hiệu ứng & chi tiết':(weapon?'Chỉ số & vị trí':'Xem vị trí')));"
+    );
+
+    // Catalog giáp tải xong phải tự tính lại chỉ số giáp; không chờ người dùng đổi Loadout.
+    html = html.replace(
+      "PLANER_WEAPON_SLOTS.forEach(updatePlanerSlotState);document.querySelectorAll('[data-planner-icon-field]').forEach(button=>updatePlannerFieldIcon(button.dataset.plannerIconField));",
+      "PLANER_WEAPON_SLOTS.forEach(updatePlanerSlotState);document.querySelectorAll('[data-planner-icon-field]').forEach(button=>updatePlannerFieldIcon(button.dataset.plannerIconField));renderPlannerArmorSummary();renderPlannerSummary();"
+    );
+
+    // Mở tab Planner cũng ép render từ state hiện tại, không phát change Class và không đổi Loadout.
+    html = html.replace(
+      "if(tab==='planner')initPlannerCatalogs()",
+      "if(tab==='planner')initPlannerCatalogs().then(()=>{try{syncActiveArmorLoadoutToPlannerFields();renderPlanner();renderPlannerStatRowsFromState();applyActiveArmorLoadoutToDom();renderPlannerArmorSummary();renderPlannerSummary()}catch(e){console.warn('[ER Companion] Planner tab refresh:',e)}})"
+    );
+
+    // Import Build: lưu xong render ngay từ planner vừa import; không cần đổi Class và không phụ thuộc reload trang.
+    html = html.replace(
+      "state.planner=planner;saveState();toast('Đã nhập build ✓');setTimeout(()=>location.reload(),350);",
+      "state.planner=planner;saveState();toast('Đã nhập build ✓');await refreshPlannerBuildUiFromState();"
+    );
+
+    // Đồng bộ lại Planner ngay sau init gốc; không còn cần đổi Loadout Giáp để kích render stat/summary.
+    html = html.replace(
+      "\ninit();\n",
+      "\ninit();\nsetTimeout(()=>{const _reload=$('reloadSavedBuildBtn');if(_reload)_reload.onclick=async(event)=>{event.preventDefault();event.stopPropagation();await reloadSavedPlannerBuild()};refreshPlannerBuildUiFromState().catch(e=>console.warn('[ER Companion] Planner initial refresh:',e))},0);setTimeout(()=>{try{syncActiveArmorLoadoutToPlannerFields();renderPlanner();renderPlannerStatRowsFromState();applyActiveArmorLoadoutToDom();renderPlannerArmorSummary();renderPlannerSummary()}catch(e){console.warn('[ER Companion] Planner late refresh:',e)}},650);\n"
+    );
+
+    // Hiệu ứng: giữ renderer gốc để Planner ổn định, sau đó chuyển DOM sang bảng số gọn ở runtime.
+    // Cách này không sửa setTab(), không thay listener navigation và không phụ thuộc regex của source.
+    const numericEffectsRuntimeCode = "(function(){\n  \"use strict\";\n  const EFFECTS=Object.freeze({\n    \"dragon communion seal\":[[\"Dragon Communion Spell Attack Power\",\"+15%\",\"pos\"]],\n    \"great turtle shell\":[[\"Stamina Recovery Speed\",\"+3\",\"pos\"]],\n    \"kindred of rot's exultation\":[[\"Trigger in Presence of Rot\",\"\",\"trigger\"],[\"Attack Power\",\"+20%\",\"pos\"]],\n    \"lord of blood's exultation\":[[\"Trigger in Presence of Blood Loss\",\"\",\"trigger\"],[\"Attack Power\",\"+20%\",\"pos\"]],\n    \"aged one's exultation\":[[\"Trigger in Presence of Madness\",\"\",\"trigger\"],[\"Attack Power\",\"+20%\",\"pos\"]],\n    \"shard of alexander\":[[\"Charged Skill Attack / Skill Attack\",\"+15%\",\"pos\"]],\n    \"warrior jar shard\":[[\"Skill Attack Power\",\"+10%\",\"pos\"]],\n    \"shattered stone talisman\":[[\"Kicking / Stomping Skill Attack Power\",\"+10%\",\"pos\"]],\n    \"dragoncrest greatshield talisman\":[[\"Physical Damage Negation\",\"+20%\",\"pos\"]],\n    \"mushroom crown\":[[\"Trigger in Presence of Rot\",\"\",\"trigger\"],[\"Attack Power\",\"+10%\",\"pos\"]],\n    \"rakshasa helm\":[[\"Damage Negation\",\"-2% every 0.5s\",\"neg\"],[\"Attack Power\",\"+2% every 0.5s\",\"pos\"]],\n    \"rakshasa armor\":[[\"Damage Negation\",\"-2% every 0.5s\",\"neg\"],[\"Attack Power\",\"+2% every 0.5s\",\"pos\"]],\n    \"rakshasa gauntlets\":[[\"Damage Negation\",\"-2% every 0.5s\",\"neg\"],[\"Attack Power\",\"+2% every 0.5s\",\"pos\"]],\n    \"rakshasa greaves\":[[\"Damage Negation\",\"-2% every 0.5s\",\"neg\"],[\"Attack Power\",\"+2% every 0.5s\",\"pos\"]],\n    \"radagon's soreseal\":[[\"Vigor / Endurance / Strength / Dexterity\",\"+5\",\"pos\"],[\"Damage Taken\",\"+15%\",\"neg\"]],\n    \"radagon's scarseal\":[[\"Vigor / Endurance / Strength / Dexterity\",\"+3\",\"pos\"],[\"Damage Taken\",\"+10%\",\"neg\"]],\n    \"marika's soreseal\":[[\"Mind / Intelligence / Faith / Arcane\",\"+5\",\"pos\"],[\"Damage Taken\",\"+15%\",\"neg\"]],\n    \"marika's scarseal\":[[\"Mind / Intelligence / Faith / Arcane\",\"+3\",\"pos\"],[\"Damage Taken\",\"+10%\",\"neg\"]],\n    \"starscourge heirloom\":[[\"Strength\",\"+5\",\"pos\"]],\n    \"prosthesis-wearer heirloom\":[[\"Dexterity\",\"+5\",\"pos\"]],\n    \"stargazer heirloom\":[[\"Intelligence\",\"+5\",\"pos\"]],\n    \"two fingers heirloom\":[[\"Faith\",\"+5\",\"pos\"]],\n    \"outer god heirloom\":[[\"Arcane\",\"+5\",\"pos\"]],\n    \"millicent's prosthesis\":[[\"Dexterity\",\"+5\",\"pos\"],[\"Consecutive Attack Power\",\"+4% / +6% / +11%\",\"pos\"]],\n    \"rotten winged sword insignia\":[[\"Consecutive Attack Power\",\"+6% / +8% / +13%\",\"pos\"]],\n    \"winged sword insignia\":[[\"Consecutive Attack Power\",\"+3% / +5% / +10%\",\"pos\"]],\n    \"ritual sword talisman\":[[\"Attack Power at Full HP\",\"+10%\",\"pos\"]],\n    \"ritual shield talisman\":[[\"Damage Negation at Full HP\",\"+30%\",\"pos\"]],\n    \"red-feathered branchsword\":[[\"Attack Power at Low HP\",\"+20%\",\"pos\"]],\n    \"blue-feathered branchsword\":[[\"Damage Negation at Low HP\",\"+50%\",\"pos\"]],\n    \"axe talisman\":[[\"Charged Attack Power\",\"+10%\",\"pos\"]],\n    \"claw talisman\":[[\"Jump Attack Power\",\"+15%\",\"pos\"]],\n    \"spear talisman\":[[\"Thrust Counterattack Power\",\"+15%\",\"pos\"]],\n    \"dagger talisman\":[[\"Critical Attack Power\",\"+17%\",\"pos\"]],\n    \"roar medallion\":[[\"Roar / Breath Attack Power\",\"+15%\",\"pos\"]],\n    \"flock's canvas talisman\":[[\"Incantation Attack Power\",\"+8%\",\"pos\"]],\n    \"faithful's canvas talisman\":[[\"Incantation Attack Power\",\"+4%\",\"pos\"]],\n    \"graven-mass talisman\":[[\"Sorcery Attack Power\",\"+8%\",\"pos\"]],\n    \"graven-school talisman\":[[\"Sorcery Attack Power\",\"+4%\",\"pos\"]],\n    \"godfrey icon\":[[\"Charged Spell / Skill Attack Power\",\"+15%\",\"pos\"]],\n    \"moon of nokstella\":[[\"Memory Slots\",\"+2\",\"pos\"]],\n    \"green turtle talisman\":[[\"Stamina Recovery Speed\",\"+8 /s\",\"pos\"]],\n    \"two-headed turtle talisman\":[[\"Stamina Recovery Speed\",\"+10 /s\",\"pos\"]],\n    \"blessed dew talisman\":[[\"HP Recovery\",\"+2 HP/s\",\"pos\"]],\n    \"blessed blue dew talisman\":[[\"FP Recovery\",\"+0.5 FP/s\",\"pos\"]],\n    \"gold scarab\":[[\"Runes Acquired\",\"+20%\",\"pos\"]],\n    \"silver scarab\":[[\"Discovery\",\"+75\",\"pos\"]],\n    \"daedicar's woe\":[[\"Damage Taken\",\"+100%\",\"neg\"]],\n    \"godrick's great rune\":[[\"Vigor\",\"+5\",\"pos\"],[\"Mind\",\"+5\",\"pos\"],[\"Endurance\",\"+5\",\"pos\"],[\"Strength\",\"+5\",\"pos\"],[\"Dexterity\",\"+5\",\"pos\"],[\"Intelligence\",\"+5\",\"pos\"],[\"Faith\",\"+5\",\"pos\"],[\"Arcane\",\"+5\",\"pos\"]],\n    \"radahn's great rune\":[[\"Max HP\",\"+15%\",\"pos\"],[\"Max FP\",\"+15%\",\"pos\"],[\"Max Stamina\",\"+15%\",\"pos\"]],\n    \"morgott's great rune\":[[\"Max HP\",\"+25%\",\"pos\"]]\n  });\n  const CRYSTAL_EFFECTS=Object.freeze({\"crimson crystal tear\":[[\"HP Recovery\",\"50%\",\"pos\"]],\"crimsonspill crystal tear\":[[\"Max HP\",\"+10%\",\"pos\"]],\"crimsonburst crystal tear\":[[\"HP Recovery\",\"+7 HP/s\",\"pos\"]],\"crimsonburst dried tear\":[[\"Ally HP Recovery\",\"+7 HP/s\",\"pos\"]],\"cerulean crystal tear\":[[\"FP Recovery\",\"50%\",\"pos\"]],\"greenspill crystal tear\":[[\"Max Stamina\",\"+15%\",\"pos\"]],\"greenburst crystal tear\":[[\"Stamina Recovery\",\"+15 /s\",\"pos\"]],\"strength-knot crystal tear\":[[\"Strength\",\"+10\",\"pos\"]],\"dexterity-knot crystal tear\":[[\"Dexterity\",\"+10\",\"pos\"]],\"intelligence-knot crystal tear\":[[\"Intelligence\",\"+10\",\"pos\"]],\"faith-knot crystal tear\":[[\"Faith\",\"+10\",\"pos\"]],\"opaline hardtear\":[[\"Damage Negation\",\"+15% PvE\",\"pos\"],[\"Damage Negation\",\"+10% PvP\",\"pos\"]],\"speckled hardtear\":[[\"Immunity / Robustness / Focus / Vitality\",\"+90\",\"pos\"]],\"leaden hardtear\":[[\"Super Armor Duration\",\"10s\",\"pos\"]],\"deflecting hardtear\":[[\"Guard Counter Attack\",\"up to +80%\",\"pos\"],[\"Duration\",\"300s\",\"pos\"]],\"magic-shrouding cracked tear\":[[\"Magic Damage\",\"+20% PvE\",\"pos\"],[\"Magic Damage\",\"+12.5% PvP\",\"pos\"]],\"flame-shrouding cracked tear\":[[\"Fire Damage\",\"+20% PvE\",\"pos\"],[\"Fire Damage\",\"+12.5% PvP\",\"pos\"]],\"lightning-shrouding cracked tear\":[[\"Lightning Damage\",\"+20% PvE\",\"pos\"],[\"Lightning Damage\",\"+12.5% PvP\",\"pos\"]],\"holy-shrouding cracked tear\":[[\"Holy Damage\",\"+20% PvE\",\"pos\"],[\"Holy Damage\",\"+12.5% PvP\",\"pos\"]],\"stonebarb cracked tear\":[[\"Poise / Stance Damage\",\"+30%\",\"pos\"]],\"spiked cracked tear\":[[\"Charged Heavy Attack\",\"+15%\",\"pos\"]],\"thorny cracked tear\":[[\"Attack Power\",\"+9% / +13% / +20%\",\"pos\"]],\"crimson-sapping cracked tear\":[[\"HP Recovery per Hit\",\"0.8% Max HP\",\"pos\"]],\"cerulean-sapping cracked tear\":[[\"FP Recovery per Hit\",\"+5 FP\",\"pos\"]],\"bloodsucking cracked tear\":[[\"Damage\",\"+20% PvE\",\"pos\"],[\"HP Drain\",\"-0.2% Max HP - 20 HP/s\",\"neg\"]],\"twiggy cracked tear\":[[\"Runes Lost on Death\",\"0\",\"pos\"]],\"winged crystal tear\":[[\"Max Equip Load\",\"+450%\",\"pos\"]],\"windy crystal tear\":[[\"Dodge i-frames\",\"+3\",\"pos\"],[\"Damage Negation\",\"-15%\",\"neg\"]],\"glovewort crystal tear\":[[\"Spirit Ash Damage\",\"+7.5%\",\"pos\"]],\"crimson bubbletear\":[[\"HP Recovery\",\"30% Max HP\",\"pos\"],[\"Trigger\",\"HP < 21%\",\"trigger\"]],\"crimsonwhorl bubbletear\":[[\"HP Recovery\",\"5% Max HP\",\"pos\"]],\"opaline bubbletear\":[[\"Damage Negation\",\"+90% next hit\",\"pos\"]],\"cerulean hidden tear\":[[\"FP Cost\",\"0\",\"pos\"]],\"viridian hidden tear\":[[\"Stamina Cost\",\"0\",\"pos\"]],\"purifying crystal tear\":[[\"Nihil Pulses Protected\",\"3\",\"pos\"]],\"ruptured crystal tear\":[[\"Holy Attack Power\",\"800\",\"pos\"],[\"Self Damage\",\"300\",\"neg\"],[\"Double Tear Holy AP\",\"1750\",\"pos\"],[\"Double Tear Self Damage\",\"700\",\"neg\"]],\"oil-soaked tear\":[[\"Fire Damage Negation\",\"-20% next Fire hit\",\"neg\"]]});\n  function norm(value){return String(value||\"\").trim().toLowerCase().replace(/[’`]/g,\"'\").replace(/\\s+/g,\" \")}\n  function esc(value){return String(value??\"\").replace(/[&<>\"']/g,function(ch){return{\"&\":\"&amp;\",\"<\":\"&lt;\",\">\":\"&gt;\",'\"':\"&quot;\",\"'\":\"&#39;\"}[ch]})}\n  function fallbackValues(row){\n    const text=(row.querySelector('.planner-effect-copy p')?.textContent||'').trim();\n    const nums=text.match(/[+-]?\\d+(?:[.,]\\d+)?\\s*(?:%|HP|FP|slot|slots|ô|điểm|\\/s)/gi)||[];\n    return nums.slice(0,8).map(function(v){return[\"Hiệu ứng\",v,/^-/.test(v.trim())?\"neg\":\"pos\"]});\n  }\n  function renderNumberRow(slot,name,values){\n    if(!name||!values||!values.length)return '';\n    const lines=values.map(function(v){\n      const cls=v[2]==='neg'?'neg':(v[2]==='trigger'?'trigger':'');\n      const value=v[1]?(' <b>'+esc(v[1])+'</b>'):'';\n      return '<div class=\"planner-effect-number-line '+cls+'\">'+esc(v[0])+value+'</div>';\n    }).join('');\n    return '<div class=\"planner-effect-number-row\"><div class=\"planner-effect-number-slot\">'+esc(slot)+'</div><div class=\"planner-effect-number-name\">'+esc(name)+'</div><div class=\"planner-effect-number-values\">'+lines+'</div></div>';\n  }\n  function activeCrystalTearRows(){\n    const fields=(typeof state!=='undefined'&&state&&state.planner&&state.planner.fields)||{};\n    return [['physick1','Crystal Tear 1'],['physick2','Crystal Tear 2']].map(function(pair){\n      const input=document.getElementById(pair[0]);\n      const name=String(fields[pair[0]]||(input&&input.value)||'').trim();\n      if(!name)return '';\n      const values=CRYSTAL_EFFECTS[norm(name)]||[];\n      if(values.length)return renderNumberRow(pair[1],name,values);\n      return '';\n    }).join('');\n  }\n  function compactEffects(){\n    const host=document.getElementById('plannerActiveEffects');if(!host)return false;\n    const rows=Array.from(host.querySelectorAll('.planner-effect-row'));\n    if(!rows.length&&host.querySelector('.planner-effect-number-table'))return true;\n    const equipmentHtml=rows.map(function(row){\n      const source=row.querySelector('.planner-effect-source');\n      const name=(source&&source.querySelector('strong')?source.querySelector('strong').textContent:'').trim();\n      let slot='Trang bị';\n      if(source){\n        const copy=source.cloneNode(true);\n        const strong=copy.querySelector('strong');if(strong)strong.remove();\n        const raw=(copy.textContent||'').replace(/\\s+/g,' ').trim();\n        if(raw)slot=raw;\n      }\n      const values=EFFECTS[norm(name)]||fallbackValues(row);\n      return renderNumberRow(slot,name,values);\n    }).filter(Boolean).join('');\n    const tearHtml=activeCrystalTearRows();\n    const html=equipmentHtml+tearHtml;\n    host.innerHTML=html?'<div class=\"planner-effect-number-table\">'+html+'</div>':'<div class=\"planner-effect-empty\">Các món đang trang bị chưa có con số hiệu ứng để hiển thị.</div>';\n    return true;\n  }\n  function bind(){\n    const host=document.getElementById('plannerActiveEffects');\n    if(!host){setTimeout(bind,350);return}\n    if(!host.dataset.numericEffectWatcher){\n      host.dataset.numericEffectWatcher='1';\n      const observer=new MutationObserver(function(){queueMicrotask(compactEffects)});\n      observer.observe(host,{childList:true,subtree:true});\n    }\n    compactEffects();\n    ['physick1','physick2'].forEach(function(id){const el=document.getElementById(id);if(el&&!el.dataset.numericTearWatch){el.dataset.numericTearWatch='1';el.addEventListener('change',function(){setTimeout(function(){try{if(typeof renderPlannerActiveEffects==='function')renderPlannerActiveEffects();}catch(e){}compactEffects();},0)});el.addEventListener('input',function(){setTimeout(compactEffects,0)});}});\n  }\n  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind,{once:true});else bind();\n  setTimeout(bind,700);setTimeout(bind,1800);\n})();";
+    html = html.replace('</body>', '<scr'+'ipt>'+numericEffectsRuntimeCode+'</scr'+'ipt></body>');
 
     return html;
   }
@@ -197,12 +497,12 @@ function switchArmorLoadout(index){
     };
 
     const response = await fetch(PATCHED_BASE, {cache:'no-cache'});
-    if(!response.ok) throw new Error('Không tải được bản nền cho phiên bản 1.4.4: HTTP '+response.status);
+    if(!response.ok) throw new Error('Không tải được bản nền cho phiên bản 1.4.5.b: HTTP '+response.status);
     const loaderHtml = await response.text();
     const parsed = new DOMParser().parseFromString(loaderHtml, 'text/html');
     const scripts = Array.from(parsed.querySelectorAll('script'));
     const loaderScript = scripts.length ? scripts[scripts.length-1].textContent : '';
-    if(!loaderScript.trim()) throw new Error('Không tìm thấy script khởi tạo của phiên bản 1.4.4.');
+    if(!loaderScript.trim()) throw new Error('Không tìm thấy script khởi tạo của phiên bản 1.4.5.b.');
     (0,eval)(loaderScript);
   }catch(err){
     errorBox.textContent = String(err && err.stack || err);
