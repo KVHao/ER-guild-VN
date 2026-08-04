@@ -1,75 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="theme-color" content="#10120f"/>
-<title>Elden Ring Companion 1.5 — Damage Launcher</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10120f">
+<title>Elden Ring Companion 1.5.1</title>
 <style>
 html,body{margin:0;min-height:100%;background:#0d100d;color:#e7e4d4;font-family:Georgia,serif}
-#status{min-height:100vh;display:grid;place-items:center;color:#cdbf86;font-size:13px;letter-spacing:.03em}
+#status{min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center;color:#cdbf86;font-size:13px;line-height:1.6;letter-spacing:.03em}
 #errorWrap{display:none;min-height:100vh;place-items:center;padding:24px}
 #errorBox{width:min(760px,calc(100% - 32px));border:1px solid rgba(225,211,151,.48);background:#151914;padding:22px;box-shadow:0 20px 70px rgba(0,0,0,.5)}
 #errorBox h1{margin:0 0 10px;font-size:22px;color:#eadca6}
-#errorBox pre{white-space:pre-wrap;color:#d6a69b;font-size:13px;line-height:1.45}
+#errorBox pre{white-space:pre-wrap;color:#d6a69b;font:13px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace}
 </style>
 </head>
 <body>
-<div id="status">Đang mở Elden Ring Companion…</div>
+<div id="status">Đang mở Elden Ring Companion và liên kết Damage Calculator…</div>
 <div id="errorWrap"><div id="errorBox"><h1>Không thể mở Elden Ring Companion</h1><pre id="error"></pre></div></div>
 <script>
 (async function(){
   'use strict';
-  // Đóng băng đúng bản trang chính hiện tại trước khi thêm nút Damage.
-  // Khi file này được đưa lên main, nó không tự fetch chính nó nên không bị vòng lặp loader.
-  const PREVIOUS_MAIN='https://raw.githubusercontent.com/KVHao/ER-guild-VN/ff537506629597928e08777b2f27acbea9bdf518/index.html';
+  // Bản trang chính đã có bridge gửi Build sang ./damage-calculator.html.
+  // Khóa theo commit để khi thay index.html trên GitHub sẽ không tự fetch chính nó.
+  const LINKED_MAIN='https://raw.githubusercontent.com/KVHao/ER-guild-VN/24fb29af6893db632cd4f36531a59200d4fadd3d/index.html';
   const status=document.getElementById('status');
   const errorWrap=document.getElementById('errorWrap');
   const errorBox=document.getElementById('error');
-
-  const damageBridgeCode="(function(){\n  'use strict';\n  const PAYLOAD_KEY='kvhao_er_damage_payload_v1';\n  const MAIN_STATE_KEY='kvhao_elden_ring_companion_v1';\n  const DAMAGE_PAGE='./damage-calculator.html';\n  const WEAPON_SLOTS=['weaponR1','weaponL1','weaponR2','weaponL2','weaponR3','weaponL3'];\n  const FIELD_IDS=[\n    ...WEAPON_SLOTS,\n    ...WEAPON_SLOTS.flatMap(s=>[s+'Upgrade',s+'Affinity',s+'Ash']),\n    'helm','chestArmor','gauntlets','legs','greatRune',\n    'talisman1','talisman2','talisman3','talisman4','talismanAlt1','talismanAlt2','talismanAlt3','talismanAlt4',\n    'physick1','physick2','physick3','physick4',\n    ...Array.from({length:12},(_,i)=>'spell'+(i+1)),\n    'weaponLoadoutNote','utilityLoadoutNote','buildNotes'\n  ];\n  const SLOT_LABELS={weaponR1:'RH1',weaponL1:'LH1',weaponR2:'RH2',weaponL2:'LH2',weaponR3:'RH3',weaponL3:'LH3'};\n  const STAT_SHORT={strength:'str',dexterity:'dex',intelligence:'int',faith:'fai',arcane:'arc'};\n\n  function norm(v){return String(v||'').trim().toLowerCase().replace(/[’‘`]/g,\"'\").replace(/\\s+/g,' ')}\n  function clone(v){try{return JSON.parse(JSON.stringify(v))}catch(e){return null}}\n  function byId(id){return document.getElementById(id)}\n  function val(id){const el=byId(id);return el?String(el.value??''):''}\n  function readStoredState(){\n    try{const raw=localStorage.getItem(MAIN_STATE_KEY);return raw?JSON.parse(raw):null}catch(e){return null}\n  }\n  function currentPlannerSnapshot(){\n    let planner=null;\n    try{if(typeof state!=='undefined'&&state&&state.planner)planner=clone(state.planner)}catch(e){}\n    if(!planner){const stored=readStoredState();planner=clone(stored?.planner||{})||{}}\n    planner.fields=planner.fields||{};\n    FIELD_IDS.forEach(id=>{const el=byId(id);if(el)planner.fields[id]=String(el.value??'')});\n    try{\n      if(typeof classSelect!=='undefined'&&classSelect?.value)planner.className=classSelect.value;\n    }catch(e){const cs=byId('classSelect');if(cs?.value)planner.className=cs.value}\n    return planner;\n  }\n  function staticStatModifiers(planner){\n    let mods={vigor:0,mind:0,endurance:0,strength:0,dexterity:0,intelligence:0,faith:0,arcane:0};\n    try{if(typeof plannerStatModifiers==='function')mods={...mods,...plannerStatModifiers()}}catch(e){}\n    if(norm(planner?.fields?.greatRune)===\"godrick's great rune\")Object.keys(mods).forEach(k=>mods[k]=Number(mods[k]||0)-5);\n    return mods;\n  }\n  function shortStats(planner,addGodrick=0){\n    const src=planner?.stats||{},mods=staticStatModifiers(planner),out={str:10,dex:10,int:10,fai:10,arc:10};\n    Object.entries(STAT_SHORT).forEach(([long,short])=>{out[short]=Math.max(1,Math.min(99,Number(src[long]??10)+Number(mods[long]||0)+addGodrick))});\n    return out;\n  }\n  function safeCalcLevel(planner){\n    try{if(typeof calcCurrentLevel==='function')return Number(calcCurrentLevel())||Number(planner?.ownedLevel)||0}catch(e){}\n    return Number(planner?.ownedLevel)||0;\n  }\n  function itemMetaForSlot(slot){\n    try{\n      if(typeof plannerCurrentItem==='function'){\n        const item=plannerCurrentItem(slot);if(item)return{name:item.name||'',group:item.group||'',category:item.category||'',id:item.id||''};\n      }\n    }catch(e){}\n    const icon=document.querySelector(`[data-planner-icon-field=\"${slot}\"]`);\n    return{name:val(slot),group:icon?.dataset?.itemGroup||'',category:icon?.dataset?.itemCategory||'',id:''};\n  }\n  function uniqueUrls(values){return [...new Set((values||[]).filter(Boolean).map(String))]}\n  function domIconCandidates(fieldId){\n    const out=[];const holder=document.querySelector(`[data-planner-icon-field=\"${fieldId}\"]`);const img=holder?.querySelector?.('img');\n    if(img?.src)out.push(img.src);\n    try{const list=JSON.parse(decodeURIComponent(img?.dataset?.iconCandidates||''));if(Array.isArray(list))out.push(...list)}catch(e){}\n    return out;\n  }\n  function imagePayloadForField(fieldId,item,name=''){\n    const out=[];\n    try{if(item&&typeof plannerItemIconDescriptor==='function'){const d=plannerItemIconDescriptor(fieldId,item);if(d?.candidates)out.push(...d.candidates);if(d?.url)out.push(d.url)}}catch(e){}\n    try{if(item&&typeof itemIconCandidates==='function'){const list=itemIconCandidates(item);if(Array.isArray(list))out.push(...list)}}catch(e){}\n    out.push(...domIconCandidates(fieldId));\n    const candidates=uniqueUrls(out);return{icon:candidates[0]||'',imageCandidates:candidates};\n  }\n  function spellOfflineMeta(name){\n    try{if(typeof SPELL_OFFLINE_DATA!=='undefined'&&SPELL_OFFLINE_DATA){const key=typeof normalizeItemName==='function'?normalizeItemName(name):norm(name);const m=SPELL_OFFLINE_DATA[key]||SPELL_OFFLINE_DATA[norm(name)];return clone(m)||null}}catch(e){}\n    return null;\n  }\n  function detectCatalyst(meta,name){\n    const text=norm([meta?.group,meta?.category,name].filter(Boolean).join(' '));\n    if(/sacred seal|sacred seals|seal\\b/.test(text))return 'Sacred Seal';\n    if(/glintstone staff|glintstone staves|staff\\b/.test(text))return 'Staff';\n    return '';\n  }\n  function packCalc(result){\n    if(!result)return null;\n    const values={};Object.entries(result.values||{}).forEach(([k,v])=>values[String(k)]=Number(v)||0);\n    return{total:Number(result.total)||0,values,unmet:[...(result.unmet||[])],maxLevel:Number(result.maxLevel)||0};\n  }\n  async function calculateWeapons(planner){\n    const p=planner.fields||{};const output=[];\n    try{if(typeof ensureWeaponRegulation==='function')await ensureWeaponRegulation()}catch(e){}\n    for(const slot of WEAPON_SLOTS){\n      const name=String(p[slot]||'').trim();if(!name)continue;\n      const meta=itemMetaForSlot(slot);let item=null;try{if(typeof plannerCurrentItem==='function')item=plannerCurrentItem(slot)}catch(e){}\n      const images=imagePayloadForField(slot,item,name);const entry={slot,label:SLOT_LABELS[slot],name,upgrade:Number(p[slot+'Upgrade']||0),affinity:String(p[slot+'Affinity']||'Standard'),ash:String(p[slot+'Ash']||''),meta,catalyst:detectCatalyst(meta,name),exact:false,...images};\n      try{\n        if(typeof findWeaponVariants==='function'&&typeof calculateWeaponAttackRating==='function'){\n          const variants=findWeaponVariants(name)||[];\n          const desired=norm(entry.affinity);\n          const variant=variants.find(v=>{try{return norm(weaponAffinityName(v))===desired}catch(e){return false}})||variants[0];\n          if(variant){\n            const rows=typeof decodeWeaponUpgradeRows==='function'?decodeWeaponUpgradeRows(variant):[];\n            entry.upgrade=Math.max(0,Math.min(rows.length?rows.length-1:entry.upgrade,entry.upgrade));\n            const base=calculateWeaponAttackRating(variant,entry.upgrade,shortStats(planner,0),false);\n            const godrick=calculateWeaponAttackRating(variant,entry.upgrade,shortStats(planner,5),false);\n            entry.ar={base:packCalc(base),godrick:packCalc(godrick)};\n            entry.requirements=clone(variant.requirements||{});\n            entry.affinity=(typeof weaponAffinityName==='function'?weaponAffinityName(variant):entry.affinity)||entry.affinity;\n            entry.exact=true;\n          }\n        }\n      }catch(error){entry.error=String(error?.message||error)}\n      output.push(entry);\n    }\n    return output;\n  }\n  function plainSpellList(planner){const f=planner.fields||{};return Array.from({length:12},(_,i)=>({slot:i+1,name:String(f['spell'+(i+1)]||'').trim()}))}\n  function spellList(planner){\n    return plainSpellList(planner).map(row=>{\n      const fieldId='spell'+row.slot;let item=null;try{if(typeof plannerCurrentItem==='function')item=plannerCurrentItem(fieldId)}catch(e){}\n      const meta=spellOfflineMeta(row.name);const images=imagePayloadForField(fieldId,item,row.name);\n      return{...row,group:String(item?.group||''),category:String(item?.category||''),meta,...images};\n    });\n  }\n  function equippedNames(planner){const f=planner.fields||{};return [f.helm,f.chestArmor,f.gauntlets,f.legs,f.greatRune,f.talisman1,f.talisman2,f.talisman3,f.talisman4,f.physick1,f.physick2].filter(Boolean).map(String)}\n  function availability(planner){\n    const f=planner.fields||{};const names=equippedNames(planner).map(norm);const spells=plainSpellList(planner).map(x=>norm(x.name));\n    const has=n=>names.includes(norm(n));const hasSpell=n=>spells.includes(norm(n));\n    return{\n      godrick:has(\"Godrick's Great Rune\"),\n      kindred:has(\"Kindred of Rot's Exultation\"),\n      shardAlexander:has('Shard of Alexander'),\n      shatteredStone:has('Shattered Stone Talisman'),\n      goldenVow:hasSpell('Golden Vow (Spell)')||hasSpell('Golden Vow'),\n      fgms:hasSpell('Flame, Grant Me Strength')||hasSpell('Flame Grant me Strength'),\n      magicTear:has('Magic-Shrouding Cracked Tear'),\n      flameTear:has('Flame-Shrouding Cracked Tear'),\n      lightningTear:has('Lightning-Shrouding Cracked Tear'),\n      holyTear:has('Holy-Shrouding Cracked Tear')\n    };\n  }\n  async function buildPayload(){\n    const planner=currentPlannerSnapshot();\n    const weapons=await calculateWeapons(planner);\n    return{\n      schema:1,source:'Elden Ring Companion Planner',capturedAt:new Date().toISOString(),\n      className:String(planner.className||val('classSelect')||''),buildLevel:safeCalcLevel(planner),\n      stats:clone(planner.stats||{}),statModifiers:staticStatModifiers(planner),fields:clone(planner.fields||{}),\n      activeLoadouts:{weapon:Number(planner.weaponLoadoutActive)||1,armor:Number(planner.armorLoadoutActive)||1,utility:Number(planner.utilityLoadoutActive)||1},\n      weapons,spells:spellList(planner),availability:availability(planner)\n    };\n  }\n  async function sendToCalculator(button){\n    const original=button?.innerHTML||'';\n    try{\n      if(button){button.disabled=true;button.innerHTML='⌛ Đang lấy Build…'}\n      const payload=await buildPayload();\n      localStorage.setItem(PAYLOAD_KEY,JSON.stringify(payload));\n      const target=new URL(DAMAGE_PAGE,location.href);target.searchParams.set('from','planner');target.searchParams.set('t',Date.now());\n      window.open(target.href,'_blank','noopener');\n    }catch(error){\n      console.error('[Damage Bridge]',error);\n      try{if(typeof toast==='function')toast('Không gửi được Build sang Damage Calculator')}catch(e){}\n      alert('Không gửi được Build sang Damage Calculator: '+String(error?.message||error));\n    }finally{if(button){button.disabled=false;button.innerHTML=original}}\n  }\n  function injectCss(){\n    if(byId('damageBridgeStyle'))return;\n    const style=document.createElement('style');style.id='damageBridgeStyle';style.textContent=`\n#plannerDamageLauncher{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(201,183,125,.035),rgba(0,0,0,.08));}\n#plannerDamageLauncher .damage-launch-head{min-height:37px;padding:9px 13px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid rgba(215,205,158,.12);color:var(--gold-bright);font-family:\"Noto Serif Display\",Georgia,serif;font-size:12px;font-weight:600;}\n#plannerDamageLauncher .damage-launch-head span{color:var(--dim);font:700 10px/1 Arial,sans-serif;}\n#plannerDamageLauncher .damage-launch-body{padding:12px 11px 13px;}\n#plannerDamageLauncher p{margin:0 0 10px;color:var(--muted);font:11px/1.45 Arial,sans-serif;}\n#plannerDamageLauncher .damage-launch-btn{width:100%;min-height:38px;display:flex;align-items:center;justify-content:center;gap:8px;border:1px solid rgba(225,211,151,.56);background:linear-gradient(180deg,rgba(174,156,95,.12),rgba(91,80,43,.09));color:var(--gold-bright);font:700 12px/1.2 Georgia,serif;cursor:pointer;transition:.15s ease;}\n#plannerDamageLauncher .damage-launch-btn:hover{border-color:var(--gold);background:rgba(201,183,125,.12);transform:translateY(-1px)}\n#plannerDamageLauncher .damage-launch-btn:disabled{opacity:.62;cursor:wait;transform:none}\n#plannerDamageLauncher small{display:block;margin-top:8px;text-align:center;color:var(--dim);font:10px/1.35 Arial,sans-serif;}\n.stats-panel.stats-collapsed>#plannerDamageLauncher{display:block!important}\n`;\n    document.head.appendChild(style);\n  }\n  function injectLauncher(){\n    if(byId('plannerDamageLauncher'))return true;\n    const panel=document.querySelector('#tab-planner .stats-panel');if(!panel)return false;\n    injectCss();\n    const section=document.createElement('section');section.id='plannerDamageLauncher';section.innerHTML=`<div class=\"damage-launch-head\"><strong>Tính sát thương</strong><span>▼</span></div><div class=\"damage-launch-body\"><p>Tính sức mạnh vũ khí và phép dựa trên build hiện tại trong Planner.</p><button class=\"damage-launch-btn\" id=\"plannerDamageLaunchBtn\" type=\"button\"><span>⚔</span> Tính sát thương <span>↗</span></button><small>Dữ liệu trang bị, chỉ số và 12 slot phép được lấy trực tiếp từ Planner.</small></div>`;\n    const statList=panel.querySelector('.stat-list');\n    const armor=byId('armorAsideSection');\n    if(armor)panel.insertBefore(section,armor);else if(statList)statList.insertAdjacentElement('afterend',section);else panel.appendChild(section);\n    byId('plannerDamageLaunchBtn')?.addEventListener('click',e=>sendToCalculator(e.currentTarget));\n    return true;\n  }\n  function boot(){if(injectLauncher())return;let tries=0;const timer=setInterval(()=>{tries++;if(injectLauncher()||tries>40)clearInterval(timer)},250)}\n  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();\n  window.ERDamageBridge={capture:buildPayload,open:()=>sendToCalculator(byId('plannerDamageLaunchBtn'))};\n})();\n";
-
-  function patchFinalApp(html){
-    // Nâng nhãn phiên bản của trang chính lên 1.5 sau khi bản nền đã dựng xong.
-    html=html
-      .replace(/1\.4\.5\.[a-z]/gi,'1.5')
-      .replace(/1\.4\.5/gi,'1.5');
-    // Gắn bridge trực tiếp vào HTML thật sau khi toàn bộ patch nền đã chạy.
-    // Không sửa router/tab Planner; launcher tự tìm .stats-panel lúc runtime.
-    const marker='data-er-damage-main="1"';
-    if(html.includes(marker))return html;
-    const script='<scr'+'ipt '+marker+'>'+damageBridgeCode+'</scr'+'ipt>';
-    if(html.includes('</body>'))return html.replace('</body>',script+'</body>');
-    return html+script;
-  }
-
   try{
-    // Outer interceptor: loader nền bên trong sẽ gọi lại write này sau khi patch xong source thật.
-    const realWrite=Document.prototype.write;
-    let finalWritten=false;
-    Document.prototype.write=function(){
-      const args=Array.from(arguments);
-      let text=args.join('');
-      if(!finalWritten && text.includes('<html') && text.includes('</html>')){
-        finalWritten=true;
-        Document.prototype.write=realWrite;
-        text=patchFinalApp(text);
-        return realWrite.call(this,text);
-      }
-      return realWrite.apply(this,args);
-    };
-
-    const response=await fetch(PREVIOUS_MAIN,{cache:'no-cache'});
-    if(!response.ok)throw new Error('Không tải được bản trang chính nền: HTTP '+response.status);
-    const loaderHtml=await response.text();
-    const parsed=new DOMParser().parseFromString(loaderHtml,'text/html');
-    const scripts=Array.from(parsed.querySelectorAll('script'));
-    const loaderScript=scripts.length?scripts[scripts.length-1].textContent:'';
-    if(!loaderScript.trim())throw new Error('Không tìm thấy script khởi tạo của trang chính.');
-    status.textContent='Đã tải bản nền. Đang gắn nút Tính sát thương…';
-    (0,eval)(loaderScript);
+    const response=await fetch(LINKED_MAIN,{cache:'no-cache'});
+    if(!response.ok)throw new Error('Không tải được trang chính đã khóa: HTTP '+response.status);
+    const html=await response.text();
+    if(!html.includes('damage-calculator.html'))throw new Error('Bản trang chính không chứa liên kết Damage Calculator.');
+    document.open();
+    document.write(html);
+    document.close();
   }catch(err){
-    Document.prototype.write=Document.prototype.write;
     status.style.display='none';
     errorBox.textContent=String(err&&err.stack||err);
     errorWrap.style.display='grid';
