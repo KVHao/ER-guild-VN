@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0b100c">
-<title>Elden Ring Damage Calculator v1.5.3</title>
+<title>Elden Ring Damage Calculator v1.5.4</title>
 <style>
 :root{
   --bg:#060a07;--panel:#0c120e;--panel2:#111912;--panel3:#080d09;
@@ -41,7 +41,8 @@ button{cursor:pointer}
 .effectline{margin-top:9px;font-size:10.5px;color:#a6ab99;line-height:1.5}.effectline strong{color:var(--green)}.weapon-extra{display:grid;grid-template-columns:minmax(125px,.42fr) minmax(0,1fr);gap:7px;margin-top:9px}.weapon-extra-box{border:1px solid #2b3328;background:#080e0a;padding:8px 9px;min-width:0}.weapon-extra-label{font-size:8.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#858c7d}.weapon-extra-value{margin-top:4px;color:#e4d9a6;font-size:11px;font-weight:800;overflow-wrap:anywhere}.status-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}.status-chip{font-size:9px;font-weight:800;color:#d9c8a4;border:1px solid #514a33;background:#121108;padding:3px 6px}.status-chip.poison{color:#b9dc78;border-color:#546b35;background:#10160b}.status-chip.rot{color:#e09a88;border-color:#70443b;background:#180d0b}.status-chip.bleed{color:#e48a8a;border-color:#71383a;background:#180b0c}.status-chip.frost{color:#9bd7e8;border-color:#376777;background:#0b1519}.status-chip.sleep{color:#c9b0ee;border-color:#584879;background:#120e19}.status-chip.madness{color:#efd277;border-color:#77662d;background:#171308}.status-chip.death{color:#c6c4ba;border-color:#565950;background:#11120f}.status-empty{margin-top:4px;color:#858c7d;font-size:10px;font-weight:600}.calc-note,.mutedbox{margin-top:9px;border:1px solid #2b3328;background:#080e0a;padding:9px 10px;font-size:10px;color:#8f9587;line-height:1.5}.calc-note b,.mutedbox b{color:#d8ce98}.warn{color:#e4b57e}.danger-text{color:var(--red)}
 .controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin-top:10px}.control{min-width:0}.control label{display:block;font-size:8.5px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#858c7d;margin-bottom:4px}.control input,.control select{width:100%;height:33px;background:#080d09;border:1px solid #3d4736;color:#e7dfbd;padding:5px 7px;font-size:11px}.control input:focus,.control select:focus{outline:none;border-color:#8b8050}.control.wide{grid-column:span 2}.inline-check{display:flex;align-items:center;gap:7px;height:33px;border:1px solid #3d4736;background:#080d09;padding:0 8px;color:#bbbfae;font-size:10px}.inline-check input{width:auto;height:auto}
 .effect{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:11px 12px;border-bottom:1px solid #242c21;align-items:center}.effect:last-child{border-bottom:0}.effect-name{font-size:11.5px;font-weight:800;color:#e4dfcb;line-height:1.3}.effect-desc{font-size:9.5px;color:#8f9687;margin-top:4px;line-height:1.42}.switch{position:relative;width:40px;height:21px}.switch input{display:none}.slider{position:absolute;inset:0;border:1px solid #444c3a;background:#111712;transition:.2s}.slider:before{content:"";position:absolute;width:15px;height:15px;left:2px;top:2px;background:#777d6d;transition:.2s}.switch input:checked+.slider{border-color:#2e8b69;background:#0d2b21}.switch input:checked+.slider:before{transform:translateX(19px);background:var(--green)}
-.req{padding:11px 12px;font-size:10.5px;color:#9aa092;line-height:1.55}.req b{color:#e7dcaa}.target-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;padding:11px 12px}.target-grid label{font-size:9px;font-weight:800;color:#8f9685}.target-grid input{width:100%;margin-top:4px;background:#080d09;border:1px solid #414a36;color:#eee3b9;padding:7px 8px}.target-help{padding:0 12px 12px;font-size:9.5px;color:#7f8677;line-height:1.5}
+.req{padding:11px 12px;font-size:10.5px;color:#9aa092;line-height:1.55}.req b{color:#e7dcaa}
+.boss-picker{padding:12px}.boss-picker>label{display:block;font-size:9px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#8f9685;margin-bottom:5px}.boss-picker select{width:100%;height:36px;background:#080d09;border:1px solid #4a523b;color:#eee3b9;padding:6px 8px}.boss-picker select:focus{outline:none;border-color:#8b8050}.boss-target{margin-top:10px;border:1px solid #30382d;background:#080e0a;padding:10px}.boss-top{display:grid;grid-template-columns:88px minmax(0,1fr);gap:10px;align-items:center}.boss-image{width:88px;height:88px;object-fit:cover;object-position:center top;border:1px solid #625d38;background:radial-gradient(circle at 50% 38%,#1b2117,#0c110d 72%)}.boss-image-fallback{display:grid;place-items:center;font-family:var(--display);font-size:30px;color:#8a7e47}.boss-name{font-family:var(--display);font-size:17px;font-weight:700;color:#f0e9cf;line-height:1.2}.boss-region{font-size:10px;color:#9ca293;margin-top:4px}.boss-hp{font-size:12px;font-weight:900;color:var(--green);margin-top:6px}.boss-chip-row{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.boss-chip{font-size:8.5px;font-weight:800;padding:3px 6px;border:1px solid #414936;background:#0d130e;color:#c5c8b8}.boss-chip.weak{color:#8fe1bc;border-color:#28664f}.boss-chip.resist{color:#e7ab91;border-color:#69443a}.boss-neg-title{margin-top:10px;font-size:8.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#858c7d}.boss-neg-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:5px}.boss-neg{border-top:1px solid #2a3228;padding-top:5px;text-align:center;font-size:8px;color:#858c7d}.boss-neg b{display:block;font-size:10px;color:#ddd4ad;margin-top:2px}.boss-help{margin-top:9px;font-size:9.5px;color:#7f8677;line-height:1.5}.boss-none{font-size:10.5px;color:#919788;line-height:1.5}.boss-none b{display:block;color:#ddd5ad;margin-bottom:3px}
 
 .add-row{padding:0 11px 11px}.add-row .btn{width:100%}.empty-state{grid-column:1/-1;padding:24px 16px;text-align:center;color:#899081;border:1px dashed #343c31;background:#090e0a}.empty-state b{display:block;color:#d8d0aa;margin-bottom:4px}
 .footer{padding:18px 2px;color:#777d70;font-size:10px;letter-spacing:.03em;text-align:center}
@@ -54,7 +55,7 @@ button{cursor:pointer}
 <div class="wrap">
   <header class="header">
     <div><div class="eyebrow">Elden Ring Companion · Damage Lab</div><div class="title">Chỉ số sát thương đầu ra</div><div class="sub">Vũ khí · Ash of War · phép · tự đọc Build từ Planner</div></div>
-    <div class="version">V1.5.3 · MỞ TỪ TRANG CHÍNH</div>
+    <div class="version">V1.5.4 · MỞ TỪ TRANG CHÍNH</div>
   </header>
   <div class="notice" id="importNotice"><b>Đang đọc Build…</b></div>
   <div class="toolbar">
@@ -73,10 +74,10 @@ button{cursor:pointer}
     </main>
     <aside class="side">
       <div class="sidebox"><h3>Hiệu ứng đang áp dụng</h3><div id="effectList"></div></div>
-      <div class="sidebox"><h3>Mục tiêu mô phỏng</h3><div class="target-grid" id="targetGrid"></div><div class="target-help">Nhập phần trăm Negation của mục tiêu. Ví dụ 20 nghĩa là giảm 20% loại sát thương đó. Defense phẳng chưa được đưa vào để tránh hiển thị kết quả giả chính xác.</div></div>
+      <div class="sidebox"><h3>Boss mục tiêu</h3><div class="boss-picker"><label for="bossSelect">Chọn Boss lớn</label><select id="bossSelect"></select><div id="bossTargetCard"></div></div></div>
     </aside>
   </div>
-  <div class="footer">Develop and build by KVHao · V1.5.3 · Weapon + AoW + Spell Calculator</div>
+  <div class="footer">Develop and build by KVHao · V1.5.4 · Weapon + AoW + Spell Calculator</div>
 </div>
 <script>
 (() => {
@@ -109,15 +110,15 @@ const AOW_PRESETS={
   "royal knight's resolve":{mv:100,hits:1,mode:'weapon',fp:15,stance:0,kind:'buff',note:'Đây là skill buff; MV mặc định chỉ dùng để mô phỏng đòn kế tiếp.'},
   "determination":{mv:100,hits:1,mode:'weapon',fp:10,stance:0,kind:'buff',note:'Đây là skill buff; nhập hệ số đòn kế tiếp nếu cần.'},
   "dryleaf whirlwind":{mv:70,hits:4,mode:'weapon',fp:14,stance:8,kind:'kick',note:'Multi-hit; nhận Shattered Stone khi phù hợp.'},
-  "palm blast":{mv:250,hits:1,mode:'weapon',fp:14,stance:50,kind:'kick',charged:true},
+  "palm blast":{mv:250,hits:1,mode:'weapon',fp:14,stance:50,kind:'kick'},
   "kick":{mv:100,hits:1,mode:'weapon',fp:0,stance:40,kind:'kick'},
   "storm stomp":{mv:80,hits:1,mode:'physical',fp:6,stance:20,kind:'stomp'},
   "hoarfrost stomp":{mv:100,hits:1,mode:'magic',fp:10,stance:10,kind:'stomp',note:'Projectile/field skill: nhập MV theo dữ liệu muốn đối chiếu.'},
   "thunderbolt":{mv:100,hits:1,mode:'lightning',fp:10,stance:10,kind:'projectile'},
   "sacred blade":{mv:100,hits:1,mode:'holy',fp:19,stance:10,kind:'projectile'},
   "flaming strike":{mv:100,hits:1,mode:'fire',fp:14,stance:10,kind:'projectile'},
-  "carian grandeur":{mv:300,hits:1,mode:'magic',fp:26,stance:40,kind:'projectile',charged:true},
-  "carian sovereignty":{mv:350,hits:1,mode:'magic',fp:30,stance:40,kind:'projectile',charged:true},
+  "carian grandeur":{mv:300,hits:1,mode:'magic',fp:26,stance:40,kind:'projectile'},
+  "carian sovereignty":{mv:350,hits:1,mode:'magic',fp:30,stance:40,kind:'projectile'},
   "black flame tornado":{mv:80,hits:6,mode:'fire',fp:30,stance:8,kind:'projectile',note:'Mô phỏng phần hit; HP drain riêng chưa cộng.'},
   "corpse piler":{mv:70,hits:6,mode:'weapon',fp:17,stance:5,kind:'projectile',note:'Chuỗi nhiều hit; hiệu ứng máu lửa và buildup cần dữ liệu riêng.'},
   "transient moonlight":{mv:180,hits:1,mode:'magic',fp:20,stance:30,kind:'projectile'},
@@ -125,6 +126,56 @@ const AOW_PRESETS={
   "wave of gold":{mv:200,hits:1,mode:'holy',fp:42,stance:20,kind:'projectile'},
   "deadly poison spray":{mv:70,hits:4,mode:'physical',fp:21,stance:4,kind:'projectile',note:'Poison buildup hiển thị riêng khi có dữ liệu.'}
 };
+
+const GODFREY_CHARGEABLE_SKILLS=new Set([
+  "Ancient Lightning Spear","Carian Grandeur","Carian Greatsword","Carian Sovereignty","Charge Forth",
+  "Divine Beast Frost Stomp","Dragonwound Slash","Eochaid's Dancing Blade","Flame Spear","Flower Dragonbolt",
+  "Glintstone Dart","Lightspeed Slash","Moonlight Greatsword","Ordovis's Vortex","Palm Blast","Revenger's Blade",
+  "Siluria's Woe","Swift Slash","Wall of Sparks","Witching Hour Slash"
+].map(norm));
+const GODFREY_CHARGEABLE_SPELLS=new Set([
+  "Ancient Death Rancor","Cannon of Haima","Carian Piercer","Cherishing Fingers","Collapsing Stars","Comet",
+  "Crystal Barrage","Crystal Burst","Founding Rain of Stars","Glintblade Trio","Glintstone Cometshard",
+  "Glintstone Nail","Glintstone Nails","Glintstone Stars","Gravity Well","Great Oracular Bubble",
+  "Loretta's Greatbow","Loretta's Mastery","Magic Downpour","Magic Glintblade","Magma Shot","Mass of Putrescence",
+  "Night Comet","Oracle Bubbles","Rancorcall","Roiling Magma","Shard Spiral","Shattering Crystal",
+  "Stars of Ruin","Zamor Ice Storm","Ancient Dragons' Lightning Strike","Aspects of the Crucible: Bloom",
+  "Aspects of the Crucible: Horns","Aspects of the Crucible: Tail","Beast Claw","Black Flame","Black Flame Ritual",
+  "Burn, O Flame!","Death Lightning","Divine Beast Tornado","Electrocharge","Fire Serpent","Fire's Deadly Sin",
+  "Flame, Fall Upon Them","Flame Sling","Frenzied Burst","Frenzied Flame","Giantsflame Take Thee",
+  "Giant Golden Arc","Golden Arcs","Knight's Lightning Spear","Lightning Spear","Messmer's Orb",
+  "Multilayered Ring of Light","Noble Presence","O, Flame!","Pest-Thread Spears","Radagon's Rings of Light",
+  "Rain of Fire","Scouring Black Flame","The Flame of Frenzy","Whirl, O Flame!","Wrath from Afar","Wrath of Gold"
+].map(norm));
+const CHARGEABLE_SKILL_EXCEPTIONS=new Set([
+  "Shield Crash","Moore's Charge","Kowtower's Resentment"
+].map(norm));
+const CHARGEABLE_SPELL_EXCEPTIONS=new Set(["Rejection"].map(norm));
+function chargeText(value){
+  if(value==null)return'';
+  if(typeof value==='string'||typeof value==='number'||typeof value==='boolean')return String(value);
+  if(Array.isArray(value))return value.map(chargeText).join(' ');
+  if(typeof value==='object')return Object.values(value).map(chargeText).join(' ');
+  return'';
+}
+function hasChargeHint(value){
+  const text=norm(chargeText(value));
+  if(!text)return false;
+  if(/cannot be charged|not chargeable|không thể (?:tích|tụ) lực|không (?:tích|tụ) lực/.test(text))return false;
+  return /charging enhances potency|can be charged|charge(?:d|able)? (?:attack|spell|skill)|hold[^.]{0,40}(?:charge|enhance)|tích lực|tụ lực/.test(text);
+}
+function spellChargeInfo(spell){
+  const name=norm(spell?.name);
+  const metadata={meta:spell?.meta,description:spell?.description,desc:spell?.desc,effect:spell?.effect,charge:spell?.charge,canCharge:spell?.canCharge};
+  const godfrey=GODFREY_CHARGEABLE_SPELLS.has(name);
+  return{chargeable:godfrey||CHARGEABLE_SPELL_EXCEPTIONS.has(name)||hasChargeHint(metadata),godfrey};
+}
+function aowChargeInfo(weapon){
+  const name=norm(weapon?.ash);
+  const metadata={meta:weapon?.ashMeta,description:weapon?.ashDescription,effect:weapon?.ashEffect,charge:weapon?.ashCharge};
+  const godfrey=GODFREY_CHARGEABLE_SKILLS.has(name);
+  return{chargeable:godfrey||CHARGEABLE_SKILL_EXCEPTIONS.has(name)||hasChargeHint(metadata),godfrey};
+}
 const EFFECTS=[
   {id:'godrick',name:"Godrick's Great Rune",desc:'+5 STR/DEX/INT/FAI/ARC; AR dùng gói godrick từ Planner.',detect:n=>n.includes("godrick's great rune")},
   {id:'golden',name:'Golden Vow',desc:'+15% mọi loại damage.',detect:n=>n.includes('golden vow')},
@@ -143,18 +194,43 @@ const EFFECTS=[
   {id:'lightningTear',name:'Lightning-Shrouding Cracked Tear',desc:'+20% Lightning.',detect:n=>n.includes('lightning-shrouding cracked tear')},
   {id:'holyTear',name:'Holy-Shrouding Cracked Tear',desc:'+20% Holy.',detect:n=>n.includes('holy-shrouding cracked tear')}
 ];
+
+const BOSS_PROFILES=[
+  {id:'godrick',part:'Game chính',name:'Godrick the Grafted',region:'Stormveil Castle',hp:6080,weaknesses:['Lightning'],resistances:['Holy'],negation:{physical:0,magic:20,fire:20,lightning:-10,holy:40}},
+  {id:'rennala',part:'Game chính',name:'Rennala, Queen of the Full Moon',region:'Academy of Raya Lucaria',hp:7490,weaknesses:['Physical','Slash','Pierce'],resistances:['Magic'],negation:{physical:-10,magic:80,fire:0,lightning:0,holy:20}},
+  {id:'radahn',part:'Game chính',name:'Starscourge Radahn',region:'Wailing Dunes',hp:9572,weaknesses:['Pierce','Scarlet Rot'],resistances:['Holy'],negation:{physical:10,magic:20,fire:0,lightning:20,holy:40}},
+  {id:'morgott',part:'Game chính',name:'Morgott, the Omen King',region:'Leyndell, Royal Capital',hp:10399,weaknesses:['Slash','Lightning'],resistances:['Holy'],negation:{physical:0,magic:0,fire:0,lightning:-20,holy:40}},
+  {id:'fire-giant',part:'Game chính',name:'Fire Giant',region:'Mountaintops of the Giants',hp:42363,weaknesses:['Slash'],resistances:['Fire'],negation:{physical:10,magic:20,fire:50,lightning:20,holy:20}},
+  {id:'maliketh',part:'Game chính',name:'Maliketh, the Black Blade',aliases:['Beast Clergyman'],region:'Crumbling Farum Azula',hp:10620,weaknesses:['Physical'],resistances:['Holy'],negation:{physical:10,magic:20,fire:20,lightning:20,holy:40}},
+  {id:'godfrey',part:'Game chính',name:'Godfrey, First Elden Lord',aliases:['Hoarah Loux, Warrior'],region:'Leyndell, Ashen Capital',hp:21903,weaknesses:['Pierce','Lightning'],resistances:['Holy'],negation:{physical:0,magic:20,fire:20,lightning:20,holy:40}},
+  {id:'radagon',part:'Game chính',name:'Radagon of the Golden Order',region:'Elden Throne',hp:13339,weaknesses:['Strike','Fire'],resistances:['Holy'],negation:{physical:35,magic:20,fire:0,lightning:20,holy:80}},
+  {id:'elden-beast',part:'Game chính',name:'Elden Beast',region:'Elden Throne',hp:22127,weaknesses:['Physical'],resistances:['Holy'],negation:{physical:10,magic:40,fire:40,lightning:40,holy:80}},
+  {id:'mohg',part:'Game chính',name:'Mohg, Lord of Blood',region:'Mohgwyn Palace',hp:18389,weaknesses:['Physical'],resistances:['Fire'],negation:{physical:10,magic:40,fire:80,lightning:40,holy:40}},
+  {id:'malenia',part:'Game chính',name:'Malenia, Blade of Miquella',aliases:['Malenia, Goddess of Rot'],region:'Elphael, Brace of the Haligtree',hp:33251,weaknesses:['Fire','Frostbite'],resistances:['Holy'],negation:{physical:0,magic:20,fire:-10,lightning:20,holy:40}},
+  {id:'placidusax',part:'Game chính',name:'Dragonlord Placidusax',region:'Crumbling Farum Azula',hp:26651,weaknesses:['Pierce'],resistances:['Lightning'],negation:{physical:10,magic:40,fire:40,lightning:80,holy:40}},
+  {id:'dancing-lion',part:'Shadow of the Erdtree',name:'Divine Beast Dancing Lion',region:'Belurat, Tower Settlement',hp:22571,weaknesses:['Pierce','Fire'],resistances:['Magic','Lightning','Holy'],negation:{physical:0,magic:40,fire:-10,lightning:40,holy:40}},
+  {id:'rellana',part:'Shadow of the Erdtree',name:'Rellana, Twin Moon Knight',region:'Castle Ensis',hp:29723,weaknesses:['Pierce','Lightning'],resistances:['Slash','Magic'],negation:{physical:10,magic:40,fire:20,lightning:0,holy:20}},
+  {id:'messmer',part:'Shadow of the Erdtree',name:'Messmer the Impaler',aliases:['Base Serpent Messmer'],region:'Shadow Keep',hp:38981,weaknesses:['Slash','Frostbite'],resistances:['Fire'],negation:{physical:10,magic:20,fire:40,lightning:20,holy:20}},
+  {id:'metyr',part:'Shadow of the Erdtree',name:'Metyr, Mother of Fingers',region:'Finger Birthing Grounds',hp:43296,weaknesses:['Slash'],resistances:['Magic'],negation:{physical:10,magic:40,fire:20,lightning:20,holy:20}},
+  {id:'romina',part:'Shadow of the Erdtree',name:'Romina, Saint of the Bud',region:'Church of the Bud',hp:35798,weaknesses:['Fire'],resistances:['Slash','Scarlet Rot'],negation:{physical:20,magic:20,fire:-10,lightning:20,holy:20}},
+  {id:'putrescent-knight',part:'Shadow of the Erdtree',name:'Putrescent Knight',region:'Stone Coffin Fissure',hp:20612,weaknesses:['Holy'],resistances:['Slash','Pierce'],negation:{physical:20,magic:40,fire:20,lightning:20,holy:-10}},
+  {id:'midra',part:'Shadow of the Erdtree',name:'Midra, Lord of Frenzied Flame',region:"Midra's Manse",hp:47171,weaknesses:['Slash'],resistances:['Fire'],negation:{physical:10,magic:20,fire:40,lightning:20,holy:20}},
+  {id:'bayle',part:'Shadow of the Erdtree',name:'Bayle the Dread',region:'Jagged Peak',hp:41612,weaknesses:['Pierce'],resistances:['Fire','Lightning'],negation:{physical:10,magic:40,fire:40,lightning:40,holy:20}},
+  {id:'consort-radahn',part:'Shadow of the Erdtree',name:'Promised Consort Radahn',aliases:['Radahn, Consort of Miquella'],region:'Enir-Ilim',hp:46134,weaknesses:['Pierce','Holy'],resistances:['Physical'],negation:{physical:20,magic:20,fire:20,lightning:20,holy:0}}
+];
+
 let payload=null;
 let custom=loadCustom();
 let aowOverrides={};
 let spellOverrides={};
 
 function loadCustom(){try{return JSON.parse(localStorage.getItem(CUSTOM_KEY)||'{}')||{}}catch(e){return{}}}
-function saveCustom(){custom.aowOverrides=aowOverrides;custom.spellOverrides=spellOverrides;custom.target=target;custom.effects=effectState;localStorage.setItem(CUSTOM_KEY,JSON.stringify(custom))}
+function saveCustom(){custom.aowOverrides=aowOverrides;custom.spellOverrides=spellOverrides;custom.bossId=selectedBossId;delete custom.target;custom.effects=effectState;localStorage.setItem(CUSTOM_KEY,JSON.stringify(custom))}
 function readPayload(){try{return JSON.parse(localStorage.getItem(PAYLOAD_KEY)||'null')}catch(e){return null}}
 function allFieldNames(){const f=payload?.fields||{};return Object.values(f).filter(Boolean).map(norm)}
 function detectEffects(){const names=allFieldNames();const state={};EFFECTS.forEach(e=>state[e.id]=names.some(e.detect));if(payload?.availability){Object.entries(payload.availability).forEach(([k,v])=>{if(k in state&&v)state[k]=true})}return state}
 let effectState={};
-let target=Object.assign({physical:0,magic:0,fire:0,lightning:0,holy:0},custom.target||{});
+let selectedBossId=String(custom.bossId||'');
 
 function demoPayload(){return{
   schema:1,source:'Demo',capturedAt:new Date().toISOString(),className:'Samurai',buildLevel:150,
@@ -170,6 +246,55 @@ function demoPayload(){return{
     {slot:2,name:'Giantsflame Take Thee',category:'Incantations',group:'Spells',meta:{type:'Incantation · Chú thuật',damageType:'Fire',fpCost:36,charge:'Có thể giữ để tích lực'},imageCandidates:[]}
   ]
 }}
+function uniqueValues(values){return[...new Set((values||[]).filter(Boolean).map(v=>String(v).trim()).filter(Boolean))]}
+function bossFileCandidates(name){
+  const clean=String(name||'').replace(/[’‘]/g,"'").trim();
+  if(!clean)return[];
+  const files=[`ER ${clean}.png`,`ER ${clean}.jpg`,`ER ${clean}.jpeg`,`${clean}.png`];
+  return uniqueValues(files.flatMap(file=>[
+    `https://eldenring.wiki.gg/wiki/Special:Redirect/file/${encodeURIComponent(file)}`,
+    `https://eldenring.fandom.com/wiki/Special:Redirect/file/${encodeURIComponent(file)}`
+  ]));
+}
+function numberValue(value){const n=Number(String(value??'').replace(/[^0-9.-]/g,''));return Number.isFinite(n)?n:0}
+function bossList(){
+  const planner=Array.isArray(payload?.bosses)?payload.bosses:[];
+  return BOSS_PROFILES.map(profile=>{
+    const keys=[profile.name,...(profile.aliases||[])].map(norm);
+    const source=planner.find(item=>keys.includes(norm(item?.name)))||planner.find(item=>keys.some(key=>norm(item?.name).includes(key)||key.includes(norm(item?.name))));
+    const name=source?.name||profile.name;
+    return Object.assign({},profile,source||{}, {
+      id:profile.id,part:profile.part,name,
+      hp:numberValue(source?.hp)||profile.hp,
+      region:source?.region||profile.region,
+      weaknesses:uniqueValues([...(source?.weaknesses||[]),...(profile.weaknesses||[])]),
+      resistances:uniqueValues([...(source?.resistances||[]),...(profile.resistances||[])]),
+      negation:Object.assign({},profile.negation),
+      imageCandidates:uniqueValues([...(source?.imageCandidates||[]),source?.image||'',...bossFileCandidates(name)])
+    });
+  });
+}
+function selectedBoss(){return bossList().find(b=>b.id===selectedBossId)||null}
+function currentNegation(){return selectedBoss()?.negation||{physical:0,magic:0,fire:0,lightning:0,holy:0}}
+function bossImageMarkup(boss){const list=boss?.imageCandidates||[];if(!list.length)return'<div class="boss-image boss-image-fallback">♛</div>';const encoded=encodeURIComponent(JSON.stringify(list));return`<img class="boss-image" src="${esc(list[0])}" data-list="${encoded}" data-i="0" alt="${esc(boss.name)}" onerror="window.nextBossImage(this)">`}
+window.nextBossImage=img=>{let list=[];try{list=JSON.parse(decodeURIComponent(img.dataset.list||''))}catch(e){}const i=Number(img.dataset.i||0)+1;if(i<list.length){img.dataset.i=i;img.src=list[i]}else{const d=document.createElement('div');d.className='boss-image boss-image-fallback';d.textContent='♛';img.replaceWith(d)}};
+function renderBossTarget(){
+  const list=bossList(),select=$('bossSelect');
+  const groups=['Game chính','Shadow of the Erdtree'];
+  select.innerHTML='<option value="">Không chọn Boss</option>'+groups.map(group=>`<optgroup label="${esc(group)}">${list.filter(b=>b.part===group).map(b=>`<option value="${esc(b.id)}" ${b.id===selectedBossId?'selected':''}>${esc(b.name)}</option>`).join('')}</optgroup>`).join('');
+  if(selectedBossId&&!list.some(b=>b.id===selectedBossId))selectedBossId='';
+  select.value=selectedBossId;
+  const boss=selectedBoss(),card=$('bossTargetCard');
+  if(!boss){card.innerHTML='<div class="boss-target"><div class="boss-none"><b>Chưa chọn Boss</b>Kết quả chỉ áp dụng buff của Build, chưa giảm theo kháng của mục tiêu.</div></div>'}
+  else{
+    const weak=boss.weaknesses.length?boss.weaknesses.map(v=>`<span class="boss-chip weak">Yếu: ${esc(v)}</span>`).join(''):'<span class="boss-chip">Chưa có điểm yếu</span>';
+    const resist=boss.resistances.length?boss.resistances.map(v=>`<span class="boss-chip resist">Kháng: ${esc(v)}</span>`).join(''):'';
+    const neg=TYPES.map(t=>`<div class="boss-neg">${TYPE_LABELS[t]}<b>${Number(boss.negation[t])||0}%</b></div>`).join('');
+    card.innerHTML=`<div class="boss-target"><div class="boss-top">${bossImageMarkup(boss)}<div><div class="boss-name">${esc(boss.name)}</div><div class="boss-region">${esc(boss.region||boss.part)}</div><div class="boss-hp">HP ${fmt(boss.hp)}</div></div></div><div class="boss-chip-row">${weak}${resist}</div><div class="boss-neg-title">Negation áp dụng</div><div class="boss-neg-grid">${neg}</div><div class="boss-help">Ảnh và thông tin mô tả lấy từ dữ liệu Boss của Planner. Kết quả hiện áp dụng Negation theo profile Boss; Defense phẳng chưa được trừ.</div></div>`;
+  }
+  select.onchange=()=>{selectedBossId=select.value;saveCustom();renderBossTarget();renderDamageOnly()};
+}
+
 function init(){
   payload=readPayload();
   if(!payload&&custom.demo)payload=demoPayload();
@@ -181,7 +306,7 @@ function init(){
 function stats(){const out={};Object.entries(STAT_MAP).forEach(([short,long])=>out[short]=clamp(payload?.stats?.[long]??10,1,99));return out}
 function effectiveStats(){const s=stats();const mods=payload?.statModifiers||{};Object.entries(STAT_MAP).forEach(([short,long])=>s[short]=clamp(s[short]+Number(mods[long]||0)+(effectState.godrick?5:0),1,99));return s}
 function renderStats(){const base=stats(),eff=effectiveStats();$('stats').innerHTML=Object.keys(STAT_MAP).map(k=>`<div class="stat"><div class="k">${k}</div><input data-stat="${k}" type="number" min="1" max="99" value="${base[k]}"><div class="effective">${eff[k]!==base[k]?`Hiệu lực ${eff[k]}`:''}</div></div>`).join('');$('stats').querySelectorAll('input').forEach(inp=>inp.addEventListener('input',()=>{const long=STAT_MAP[inp.dataset.stat];payload=payload||demoPayload();payload.stats=payload.stats||{};payload.stats[long]=clamp(inp.value,1,99);renderDamageOnly()}))}
-function renderNotice(){const n=$('importNotice');if(payload){const when=payload.capturedAt?new Date(payload.capturedAt).toLocaleString('vi-VN'):'';n.innerHTML=`<b>Đã nhận Build từ Planner:</b> ${esc(payload.className||'—')} · Level ${esc(payload.buildLevel||'—')}${when?' · '+esc(when):''}. AoW dùng đúng ảnh skill và 12 slot phép được giữ nguyên.`;$('buildBadge').textContent=`${payload.className||'BUILD'} · LV ${payload.buildLevel||'—'}`}else{n.innerHTML='<b>Chưa nhận Build từ trang chính.</b> Mở trang này bằng nút <b>Tính sát thương</b> trong Planner để lấy AR, AoW và các slot phép. Có thể bấm <b>Dữ liệu demo</b> để xem giao diện.';$('buildBadge').textContent='CHƯA CÓ BUILD'}}
+function renderNotice(){const n=$('importNotice');if(payload){const when=payload.capturedAt?new Date(payload.capturedAt).toLocaleString('vi-VN'):'';n.innerHTML=`<b>Đã nhận Build từ Planner:</b> ${esc(payload.className||'—')} · Level ${esc(payload.buildLevel||'—')}${when?' · '+esc(when):''}. AoW dùng đúng ảnh skill, 12 slot phép được giữ nguyên và có thể chọn Boss lớn để mô phỏng sát thương.`;$('buildBadge').textContent=`${payload.className||'BUILD'} · LV ${payload.buildLevel||'—'}`}else{n.innerHTML='<b>Chưa nhận Build từ trang chính.</b> Mở trang này bằng nút <b>Tính sát thương</b> trong Planner để lấy AR, AoW và các slot phép. Có thể bấm <b>Dữ liệu demo</b> để xem giao diện.';$('buildBadge').textContent='CHƯA CÓ BUILD'}}
 function imageMarkup(list,name,fallback='◇'){list=[...(Array.isArray(list)?list:[])].filter(Boolean);if(!list.length)return`<div class="icon icon-fallback">${esc(fallback)}</div>`;const encoded=encodeURIComponent(JSON.stringify(list));return`<img class="icon" src="${esc(list[0])}" data-list="${encoded}" data-i="0" alt="${esc(name||'item')}" onerror="window.nextIcon(this)">`}
 function iconMarkup(w){return imageMarkup([...(Array.isArray(w?.imageCandidates)?w.imageCandidates:[]),w?.icon||''],w?.name,'◇')}
 function aowIconMarkup(w){return imageMarkup([...(Array.isArray(w?.ashImageCandidates)?w.ashImageCandidates:[]),w?.ashIcon||''],w?.ash,'✦')}
@@ -189,7 +314,7 @@ function spellIconMarkup(spell){return imageMarkup([...(Array.isArray(spell?.ima
 window.nextIcon=img=>{let list=[];try{list=JSON.parse(decodeURIComponent(img.dataset.list||''))}catch(e){}const i=Number(img.dataset.i||0)+1;if(i<list.length){img.dataset.i=i;img.src=list[i]}else{const d=document.createElement('div');d.className='icon icon-fallback';d.textContent='◇';img.replaceWith(d)}};
 function exactAR(w){const r=(effectState.godrick?w?.ar?.godrick:w?.ar?.base)||w?.ar?.base;if(!r)return null;return{physical:Number(r.values?.['0']||0),magic:Number(r.values?.['1']||0),fire:Number(r.values?.['2']||0),lightning:Number(r.values?.['3']||0),holy:Number(r.values?.['4']||0),total:Number(r.total)||0,status:r.values||{},unmet:r.unmet||[]}}
 function elementMult(type){let m=1;if(effectState.golden)m*=1.15;if(effectState.kindred)m*=1.20;if(effectState.fgms&&(type==='physical'||type==='fire'))m*=1.20;if(effectState.magicTear&&type==='magic')m*=1.20;if(effectState.flameTear&&type==='fire')m*=1.20;if(effectState.lightningTear&&type==='lightning')m*=1.20;if(effectState.holyTear&&type==='holy')m*=1.20;return m}
-function afterNeg(type,n){return n*(1-clamp(target[type],-100,100)/100)}
+function afterNeg(type,n){const neg=currentNegation();return n*(1-clamp(neg[type],-100,100)/100)}
 function activeElementEffects(type){const a=[];if(effectState.golden)a.push('Golden Vow ×1.15');if(effectState.kindred)a.push('Kindred of Rot ×1.20');if(effectState.fgms&&(type==='physical'||type==='fire'))a.push(`FGMS ${TYPE_LABELS[type]} ×1.20`);if(effectState.magicTear&&type==='magic')a.push('Magic Tear ×1.20');if(effectState.flameTear&&type==='fire')a.push('Flame Tear ×1.20');if(effectState.lightningTear&&type==='lightning')a.push('Lightning Tear ×1.20');if(effectState.holyTear&&type==='holy')a.push('Holy Tear ×1.20');return a}
 function statusClass(key){return({'5':'poison','6':'rot','7':'bleed','8':'frost','9':'sleep','10':'madness','11':'death'})[String(key)]||''}
 function statusInfo(r){const values=r?.status||{},known=Object.keys(STATUS_LABELS).some(k=>Object.prototype.hasOwnProperty.call(values,k)),items=Object.entries(STATUS_LABELS).filter(([k])=>Number(values[k]||0)>0).map(([k,label])=>({key:k,label,value:Number(values[k])||0}));return{known,items}}
@@ -200,27 +325,48 @@ function spellDamageType(spell){const text=norm(spell?.meta?.damageType||'');if(
 function spellIsDamage(spell){const text=norm(spell?.meta?.damageType||'');return !!text&&!text.includes('không gây sát thương')&&!text.includes('buff')&&!text.includes('hồi hp')&&!text.includes('chữa')}
 function firstPositiveNumber(...values){for(const value of values){const n=Number(value);if(Number.isFinite(n)&&n>0)return n}return 0}
 function spellCoefficient(spell,charged=false){const meta=spell?.meta||{},normal=firstPositiveNumber(spell?.mv,spell?.motionValue,spell?.coefficient,meta.mv,meta.motionValue,meta.coefficient,meta.damageCoefficient,meta.spellCoefficient),chargedValue=firstPositiveNumber(spell?.chargedMv,spell?.chargedMotionValue,spell?.chargedCoefficient,meta.chargedMv,meta.chargedMotionValue,meta.chargedCoefficient,meta.chargedDamageCoefficient);return charged&&chargedValue?chargedValue:(normal||100)}
-function spellDefaultConfig(spell){const charged=/tích lực|charge/i.test(String(spell?.meta?.charge||''))&&!/không tích lực/i.test(String(spell?.meta?.charge||''));return{catalyst:'',scaling:100,mv:spellCoefficient(spell,charged),hits:1,type:spellDamageType(spell),charged}}
-function getSpellConfig(spell){const cfg=Object.assign({},spellDefaultConfig(spell),spellOverrides[String(spell.slot)]||{});cfg.mv=spellCoefficient(spell,!!cfg.charged);return cfg}
-function spellBuff(kind,cfg){let m=1,parts=[];if(kind==='sorcery'){if(effectState.gravenMass){m*=1.08;parts.push('Graven-Mass ×1.08')}if(effectState.gravenSchool){m*=1.04;parts.push('Graven-School ×1.04')}}else{if(effectState.flockCanvas){m*=1.08;parts.push("Flock's Canvas ×1.08")}if(effectState.faithfulCanvas){m*=1.04;parts.push("Faithful's Canvas ×1.04")}}if(effectState.godfreyIcon&&cfg.charged){m*=1.15;parts.push('Godfrey Icon ×1.15')}return{m,parts}}
-function spellDamage(spell,cfg){const type=TYPES.includes(cfg.type)?cfg.type:spellDamageType(spell),kind=spellKind(spell),scaling=Math.max(0,Number(cfg.scaling)||0),mv=Math.max(0,Number(cfg.mv)||0)/100,hits=Math.max(1,Number(cfg.hits)||1),spellFx=spellBuff(kind,cfg),raw=scaling*mv*hits,buffed=raw*spellFx.m*elementMult(type),final=afterNeg(type,buffed);return{type,kind,raw,buffed,final,spellFx}}
-function renderSpells(){const spells=(payload?.spells||[]).filter(s=>String(s?.name||'').trim());$('spellBadge').textContent=`${spells.length} / 12 SLOT`;const catalysts=(payload?.weapons||[]).filter(w=>w.catalyst);$('spellCards').innerHTML=spells.length?spells.map(spell=>{const cfg=getSpellConfig(spell),d=spellDamage(spell,cfg),isDamage=spellIsDamage(spell),kindLabel=d.kind==='sorcery'?'SORCERY':'INCANTATION',catalystOptions=[['','Chọn pháp cụ / nhập Scaling'],...catalysts.map(w=>[w.slot||w.name,`${w.name} +${w.upgrade||0}`])].map(([v,l])=>`<option value="${esc(v)}" ${String(cfg.catalyst)===String(v)?'selected':''}>${esc(l)}</option>`).join(''),typeOpts=TYPES.map(t=>`<option value="${t}" ${d.type===t?'selected':''}>${TYPE_LABELS[t]}</option>`).join('');return`<article class="card" data-spell="${esc(spell.slot)}"><div class="card-top">${spellIconMarkup(spell)}<div><div class="name">${esc(spell.name)}</div><div class="meta">${esc(spell.meta?.type||spell.category||kindLabel)} · FP ${esc(spell.meta?.fpCost??'—')} · ${esc(spell.meta?.damageType||'Chưa có loại damage')}</div></div><span class="slot">SLOT ${esc(spell.slot)}</span></div><div class="tags"><span class="tag ${d.kind==='sorcery'?'blue':'gold'}">${kindLabel}</span>${cfg.charged?'<span class="tag purple">TÍCH LỰC</span>':''}${!isDamage?'<span class="tag red">HỖ TRỢ / BUFF</span>':''}</div><div class="controls"><div class="control wide"><label>Pháp cụ</label><select data-spell-field="catalyst">${catalystOptions}</select></div><div class="control"><label>Spell Scaling</label><input data-spell-field="scaling" type="number" min="0" step="1" value="${Number(cfg.scaling)||0}"></div><div class="control"><label>Số hit</label><input data-spell-field="hits" type="number" min="1" step="1" value="${Number(cfg.hits)||1}"></div><div class="control"><label>Loại damage</label><select data-spell-field="type">${typeOpts}</select></div><div class="control"><label>Tích lực</label><label class="inline-check"><input data-spell-field="charged" type="checkbox" ${cfg.charged?'checked':''}> Charged spell</label></div></div>${isDamage?`<div class="damage-grid"><div class="damage-box"><div class="label">Trước buff</div><div class="big">${fmt(d.raw)}</div></div><div class="damage-box"><div class="label">Sau buff + Negation</div><div class="big buff">${fmt(d.final)}</div></div></div><div class="effectline">Spell buff: <strong>${d.spellFx.parts.length?esc(d.spellFx.parts.join(' · ')):'Không có'}</strong></div>`:'<div class="mutedbox"><b>Phép hỗ trợ/buff:</b> giữ nguyên slot và thông tin, không ép tính damage.</div>'}<div class="calc-note"><b>Công thức:</b> Spell Scaling ${Number(cfg.scaling)||0} × hệ số tự động × ${Number(cfg.hits)||1}. Planner hiện chưa gửi Spell Scaling chính xác của staff/seal, nên chỉ giữ ô Scaling để nhập trực tiếp.</div></article>`}).join(''):'<div class="empty-state"><b>Chưa có phép trong 12 slot</b>Chọn phép ở Planner rồi mở lại bộ tính sát thương.</div>';
-  $('spellCards').querySelectorAll('[data-spell]').forEach(card=>card.querySelectorAll('[data-spell-field]').forEach(inp=>inp.addEventListener('input',()=>{const key=card.dataset.spell,spell=(payload?.spells||[]).find(s=>String(s.slot)===String(key))||{};const base=getSpellConfig(spell),val=inp.type==='checkbox'?inp.checked:inp.type==='number'?Number(inp.value):inp.value;spellOverrides[key]=Object.assign({},base,{[inp.dataset.spellField]:val});saveCustom();renderSpells()})))}
+function spellDefaultConfig(spell){return{catalyst:'',scaling:100,mv:spellCoefficient(spell,false),hits:1,type:spellDamageType(spell),charged:false}}
+function getSpellConfig(spell){const info=spellChargeInfo(spell),cfg=Object.assign({},spellDefaultConfig(spell),spellOverrides[String(spell.slot)]||{});cfg.charged=info.chargeable&&!!cfg.charged;cfg.mv=spellCoefficient(spell,cfg.charged);return cfg}
+function spellBuff(kind,cfg,spell){let m=1,parts=[];if(kind==='sorcery'){if(effectState.gravenMass){m*=1.08;parts.push('Graven-Mass ×1.08')}if(effectState.gravenSchool){m*=1.04;parts.push('Graven-School ×1.04')}}else{if(effectState.flockCanvas){m*=1.08;parts.push("Flock's Canvas ×1.08")}if(effectState.faithfulCanvas){m*=1.04;parts.push("Faithful's Canvas ×1.04")}}if(effectState.godfreyIcon&&cfg.charged&&spellChargeInfo(spell).godfrey){m*=1.15;parts.push('Godfrey Icon ×1.15')}return{m,parts}}
+function spellDamage(spell,cfg){const type=TYPES.includes(cfg.type)?cfg.type:spellDamageType(spell),kind=spellKind(spell),scaling=Math.max(0,Number(cfg.scaling)||0),mv=Math.max(0,Number(cfg.mv)||0)/100,hits=Math.max(1,Number(cfg.hits)||1),spellFx=spellBuff(kind,cfg,spell),raw=scaling*mv*hits,buffed=raw*spellFx.m*elementMult(type),final=afterNeg(type,buffed);return{type,kind,raw,buffed,final,spellFx}}
+function renderSpells(){
+  const spells=(payload?.spells||[]).filter(s=>String(s?.name||'').trim());
+  $('spellBadge').textContent=`${spells.length} / 12 SLOT`;
+  const catalysts=(payload?.weapons||[]).filter(w=>w.catalyst);
+  $('spellCards').innerHTML=spells.length?spells.map(spell=>{
+    const chargeInfo=spellChargeInfo(spell),cfg=getSpellConfig(spell),d=spellDamage(spell,cfg),isDamage=spellIsDamage(spell),kindLabel=d.kind==='sorcery'?'SORCERY':'INCANTATION';
+    const catalystOptions=[['','Chọn pháp cụ / nhập Scaling'],...catalysts.map(w=>[w.slot||w.name,`${w.name} +${w.upgrade||0}`])].map(([v,l])=>`<option value="${esc(v)}" ${String(cfg.catalyst)===String(v)?'selected':''}>${esc(l)}</option>`).join('');
+    const typeOpts=TYPES.map(t=>`<option value="${t}" ${d.type===t?'selected':''}>${TYPE_LABELS[t]}</option>`).join('');
+    const chargedControl=chargeInfo.chargeable?`<div class="control"><label>Tích lực</label><label class="inline-check"><input data-spell-field="charged" type="checkbox" ${cfg.charged?'checked':''}> Charged spell</label></div>`:'';
+    return`<article class="card" data-spell="${esc(spell.slot)}"><div class="card-top">${spellIconMarkup(spell)}<div><div class="name">${esc(spell.name)}</div><div class="meta">${esc(spell.meta?.type||spell.category||kindLabel)} · FP ${esc(spell.meta?.fpCost??'—')} · ${esc(spell.meta?.damageType||'Chưa có loại damage')}</div></div><span class="slot">SLOT ${esc(spell.slot)}</span></div><div class="tags"><span class="tag ${d.kind==='sorcery'?'blue':'gold'}">${kindLabel}</span>${chargeInfo.chargeable?'<span class="tag cyan">CÓ THỂ TÍCH LỰC</span>':''}${cfg.charged?'<span class="tag purple">ĐANG TÍCH LỰC</span>':''}${!isDamage?'<span class="tag red">HỖ TRỢ / BUFF</span>':''}</div><div class="controls"><div class="control wide"><label>Pháp cụ</label><select data-spell-field="catalyst">${catalystOptions}</select></div><div class="control"><label>Spell Scaling</label><input data-spell-field="scaling" type="number" min="0" step="1" value="${Number(cfg.scaling)||0}"></div><div class="control"><label>Số hit</label><input data-spell-field="hits" type="number" min="1" step="1" value="${Number(cfg.hits)||1}"></div><div class="control"><label>Loại damage</label><select data-spell-field="type">${typeOpts}</select></div>${chargedControl}</div>${isDamage?`<div class="damage-grid"><div class="damage-box"><div class="label">Trước buff</div><div class="big">${fmt(d.raw)}</div></div><div class="damage-box"><div class="label">Sau buff + Negation</div><div class="big buff">${fmt(d.final)}</div></div></div><div class="effectline">Spell buff: <strong>${d.spellFx.parts.length?esc(d.spellFx.parts.join(' · ')):'Không có'}</strong></div>`:'<div class="mutedbox"><b>Phép hỗ trợ/buff:</b> giữ nguyên slot và thông tin, không ép tính damage.</div>'}<div class="calc-note"><b>Công thức:</b> Spell Scaling ${Number(cfg.scaling)||0} × hệ số tự động × ${Number(cfg.hits)||1}. Planner hiện chưa gửi Spell Scaling chính xác của staff/seal, nên chỉ giữ ô Scaling để nhập trực tiếp.</div></article>`;
+  }).join(''):'<div class="empty-state"><b>Chưa có phép trong 12 slot</b>Chọn phép ở Planner rồi mở lại bộ tính sát thương.</div>';
+  $('spellCards').querySelectorAll('[data-spell]').forEach(card=>card.querySelectorAll('[data-spell-field]').forEach(inp=>inp.addEventListener('input',()=>{const key=card.dataset.spell,spell=(payload?.spells||[]).find(s=>String(s.slot)===String(key))||{};const base=getSpellConfig(spell),val=inp.type==='checkbox'?inp.checked:inp.type==='number'?Number(inp.value):inp.value;spellOverrides[key]=Object.assign({},base,{[inp.dataset.spellField]:val});saveCustom();renderSpells()})));
+}
 
 function presetForAsh(name){return AOW_PRESETS[norm(name)]||{mv:100,hits:1,mode:'weapon',fp:0,stance:0,kind:'unknown',note:'Chưa có preset riêng. Hãy nhập Motion Value và số hit để đối chiếu.'}}
-function getAowConfig(w){const key=w.slot||w.label||w.name;return Object.assign({},presetForAsh(w.ash),aowOverrides[key]||{})}
-function skillMult(cfg){let m=1,parts=[];if(effectState.shardAlexander){m*=1.15;parts.push('Shard of Alexander ×1.15')}else if(effectState.warriorJarShard){m*=1.10;parts.push('Warrior Jar Shard ×1.10')}if(effectState.godfreyIcon&&cfg.charged){m*=1.15;parts.push('Godfrey Icon ×1.15')}if(effectState.shatteredStone&&['kick','stomp'].includes(cfg.kind)){m*=1.10;parts.push('Shattered Stone ×1.10')}return{m,parts}}
-function aowDamage(w,cfg){const ar=exactAR(w);if(!ar)return null;const mv=Math.max(0,Number(cfg.mv)||0)/100,hits=Math.max(1,Number(cfg.hits)||1),flat=Number(cfg.flat)||0,skill=skillMult(cfg);let byType={},pre=0,buffed=0,final=0;TYPES.forEach(t=>{let base=0;if(cfg.mode==='weapon')base=ar[t]||0;else if(cfg.mode===t)base=ar.total||0;let raw=base*mv*hits+(cfg.mode===t?flat:0);let b=raw*elementMult(t)*skill.m;let f=afterNeg(t,b);byType[t]={raw,buffed:b,final:f};pre+=raw;buffed+=b;final+=f});return{byType,pre,buffed,final,skill}}
-function renderAow(){const ws=(payload?.weapons||[]).filter(w=>w.ash&&norm(w.ash)!=='—');$('aowBadge').textContent=`${ws.length} SKILL`;$('aowCards').innerHTML=ws.length?ws.map(w=>{const key=w.slot||w.label||w.name,cfg=getAowConfig(w),d=aowDamage(w,cfg);const options=['weapon','physical','magic','fire','lightning','holy'].map(x=>`<option value="${x}" ${cfg.mode===x?'selected':''}>${x==='weapon'?'Theo AR vũ khí':TYPE_LABELS[x]}</option>`).join('');const rows=d?TYPES.map(t=>`<div class="type">${TYPE_LABELS[t]}<b>${fmt(d.byType[t].raw)} → ${fmt(d.byType[t].final)}</b></div>`).join(''):'';return`<article class="card" data-aow="${esc(key)}"><div class="card-top">${aowIconMarkup(w)}<div><div class="name">${esc(w.ash)}</div><div class="meta">${esc(w.name)} +${w.upgrade||0} · ${esc(w.affinity||'Standard')}</div></div><span class="slot">${esc(w.label||w.slot||'—')}</span></div><div class="tags"><span class="tag ${cfg.kind==='unknown'?'red':'gold'}">${cfg.kind==='unknown'?'CẦN NHẬP MV':'AOW PRESET'}</span><span class="tag cyan">${esc(cfg.kind||'skill')}</span>${cfg.charged?'<span class="tag purple">TÍCH LỰC</span>':''}</div><div class="controls"><div class="control"><label>Motion Value %</label><input data-aow-field="mv" type="number" min="0" step="1" value="${Number(cfg.mv)||0}"></div><div class="control"><label>Số hit</label><input data-aow-field="hits" type="number" min="1" step="1" value="${Number(cfg.hits)||1}"></div><div class="control wide"><label>Nguồn sát thương</label><select data-aow-field="mode">${options}</select></div><div class="control"><label>Flat bonus</label><input data-aow-field="flat" type="number" step="1" value="${Number(cfg.flat)||0}"></div><div class="control"><label>FP</label><input data-aow-field="fp" type="number" step="1" value="${Number(cfg.fp)||0}"></div><div class="control"><label>Poise / Stance</label><input data-aow-field="stance" type="number" step="1" value="${Number(cfg.stance)||0}"></div><div class="control"><label>Tích lực</label><label class="inline-check"><input data-aow-field="charged" type="checkbox" ${cfg.charged?'checked':''}> Charged skill</label></div></div>${d?`<div class="damage-grid"><div class="damage-box"><div class="label">Trước buff</div><div class="big">${fmt(d.pre)}</div></div><div class="damage-box"><div class="label">Sau buff + Negation</div><div class="big buff">${fmt(d.final)}</div></div></div><div class="breakdown">${rows}</div><div class="effectline">Skill buff: <strong>${d.skill.parts.length?esc(d.skill.parts.join(' · ')):'Không có'}</strong></div>`:'<div class="mutedbox">Chưa có AR vũ khí nên chưa tính được AoW.</div>'}<div class="calc-note"><b>Công thức:</b> ${cfg.mode==='weapon'?'AR từng hệ':'Total AR quy về '+TYPE_LABELS[cfg.mode]} × ${(Number(cfg.mv)||0)/100} × ${Number(cfg.hits)||1}.${cfg.note?'<br><span class="warn">'+esc(cfg.note)+'</span>':''}</div></article>`}).join(''):'<div class="empty-state"><b>Chưa phát hiện Ash of War</b>Trang chính sẽ gửi tên AoW từ từng ô vũ khí sang đây.</div>';
-  $('aowCards').querySelectorAll('[data-aow]').forEach(card=>card.querySelectorAll('[data-aow-field]').forEach(inp=>inp.addEventListener('input',()=>{const key=card.dataset.aow;const base=getAowConfig((payload?.weapons||[]).find(w=>(w.slot||w.label||w.name)===key)||{});const val=inp.type==='checkbox'?inp.checked:inp.type==='number'?Number(inp.value):inp.value;aowOverrides[key]=Object.assign({},base,{[inp.dataset.aowField]:val});saveCustom();renderAow()})))}
+function getAowConfig(w){const key=w.slot||w.label||w.name,info=aowChargeInfo(w),cfg=Object.assign({},presetForAsh(w.ash),aowOverrides[key]||{});cfg.charged=info.chargeable&&!!cfg.charged;return cfg}
+function skillMult(cfg,w){let m=1,parts=[];if(effectState.shardAlexander){m*=1.15;parts.push('Shard of Alexander ×1.15')}else if(effectState.warriorJarShard){m*=1.10;parts.push('Warrior Jar Shard ×1.10')}if(effectState.godfreyIcon&&cfg.charged&&aowChargeInfo(w).godfrey){m*=1.15;parts.push('Godfrey Icon ×1.15')}if(effectState.shatteredStone&&['kick','stomp'].includes(cfg.kind)){m*=1.10;parts.push('Shattered Stone ×1.10')}return{m,parts}}
+function aowDamage(w,cfg){const ar=exactAR(w);if(!ar)return null;const mv=Math.max(0,Number(cfg.mv)||0)/100,hits=Math.max(1,Number(cfg.hits)||1),flat=Number(cfg.flat)||0,skill=skillMult(cfg,w);let byType={},pre=0,buffed=0,final=0;TYPES.forEach(t=>{let base=0;if(cfg.mode==='weapon')base=ar[t]||0;else if(cfg.mode===t)base=ar.total||0;let raw=base*mv*hits+(cfg.mode===t?flat:0);let b=raw*elementMult(t)*skill.m;let f=afterNeg(t,b);byType[t]={raw,buffed:b,final:f};pre+=raw;buffed+=b;final+=f});return{byType,pre,buffed,final,skill}}
+function renderAow(){
+  const ws=(payload?.weapons||[]).filter(w=>w.ash&&norm(w.ash)!=='—');
+  $('aowBadge').textContent=`${ws.length} SKILL`;
+  $('aowCards').innerHTML=ws.length?ws.map(w=>{
+    const key=w.slot||w.label||w.name,chargeInfo=aowChargeInfo(w),cfg=getAowConfig(w),d=aowDamage(w,cfg);
+    const options=['weapon','physical','magic','fire','lightning','holy'].map(x=>`<option value="${x}" ${cfg.mode===x?'selected':''}>${x==='weapon'?'Theo AR vũ khí':TYPE_LABELS[x]}</option>`).join('');
+    const rows=d?TYPES.map(t=>`<div class="type">${TYPE_LABELS[t]}<b>${fmt(d.byType[t].raw)} → ${fmt(d.byType[t].final)}</b></div>`).join(''):'';
+    const chargedControl=chargeInfo.chargeable?`<div class="control"><label>Tích lực</label><label class="inline-check"><input data-aow-field="charged" type="checkbox" ${cfg.charged?'checked':''}> Charged skill</label></div>`:'';
+    return`<article class="card" data-aow="${esc(key)}"><div class="card-top">${aowIconMarkup(w)}<div><div class="name">${esc(w.ash)}</div><div class="meta">${esc(w.name)} +${w.upgrade||0} · ${esc(w.affinity||'Standard')}</div></div><span class="slot">${esc(w.label||w.slot||'—')}</span></div><div class="tags"><span class="tag ${cfg.kind==='unknown'?'red':'gold'}">${cfg.kind==='unknown'?'CẦN NHẬP MV':'AOW PRESET'}</span><span class="tag cyan">${esc(cfg.kind||'skill')}</span>${chargeInfo.chargeable?'<span class="tag cyan">CÓ THỂ TÍCH LỰC</span>':''}${cfg.charged?'<span class="tag purple">ĐANG TÍCH LỰC</span>':''}</div><div class="controls"><div class="control"><label>Motion Value %</label><input data-aow-field="mv" type="number" min="0" step="1" value="${Number(cfg.mv)||0}"></div><div class="control"><label>Số hit</label><input data-aow-field="hits" type="number" min="1" step="1" value="${Number(cfg.hits)||1}"></div><div class="control wide"><label>Nguồn sát thương</label><select data-aow-field="mode">${options}</select></div><div class="control"><label>Flat bonus</label><input data-aow-field="flat" type="number" step="1" value="${Number(cfg.flat)||0}"></div><div class="control"><label>FP</label><input data-aow-field="fp" type="number" step="1" value="${Number(cfg.fp)||0}"></div><div class="control"><label>Poise / Stance</label><input data-aow-field="stance" type="number" step="1" value="${Number(cfg.stance)||0}"></div>${chargedControl}</div>${d?`<div class="damage-grid"><div class="damage-box"><div class="label">Trước buff</div><div class="big">${fmt(d.pre)}</div></div><div class="damage-box"><div class="label">Sau buff + Negation</div><div class="big buff">${fmt(d.final)}</div></div></div><div class="breakdown">${rows}</div><div class="effectline">Skill buff: <strong>${d.skill.parts.length?esc(d.skill.parts.join(' · ')):'Không có'}</strong></div>`:'<div class="mutedbox">Chưa có AR vũ khí nên chưa tính được AoW.</div>'}<div class="calc-note"><b>Công thức:</b> ${cfg.mode==='weapon'?'AR từng hệ':'Total AR quy về '+TYPE_LABELS[cfg.mode]} × ${(Number(cfg.mv)||0)/100} × ${Number(cfg.hits)||1}.${cfg.note?'<br><span class="warn">'+esc(cfg.note)+'</span>':''}</div></article>`;
+  }).join(''):'<div class="empty-state"><b>Chưa phát hiện Ash of War</b>Trang chính sẽ gửi tên AoW từ từng ô vũ khí sang đây.</div>';
+  $('aowCards').querySelectorAll('[data-aow]').forEach(card=>card.querySelectorAll('[data-aow-field]').forEach(inp=>inp.addEventListener('input',()=>{const key=card.dataset.aow;const weapon=(payload?.weapons||[]).find(w=>(w.slot||w.label||w.name)===key)||{};const base=getAowConfig(weapon),val=inp.type==='checkbox'?inp.checked:inp.type==='number'?Number(inp.value):inp.value;aowOverrides[key]=Object.assign({},base,{[inp.dataset.aowField]:val});saveCustom();renderAow()})));
+}
 function renderEffects(){const names=allFieldNames();$('effectList').innerHTML=EFFECTS.map(e=>{const available=names.some(e.detect)||(payload?.availability&&payload.availability[e.id]);return`<div class="effect"><div><div class="effect-name">${esc(e.name)} ${available?'<span class="tag green">ĐANG TRANG BỊ</span>':''}</div><div class="effect-desc">${esc(e.desc)}</div></div><label class="switch"><input id="fx-${e.id}" type="checkbox" ${effectState[e.id]?'checked':''}><span class="slider"></span></label></div>`}).join('');EFFECTS.forEach(e=>$(`fx-${e.id}`).addEventListener('change',ev=>{effectState[e.id]=ev.target.checked;saveCustom();renderAll(false)}))}
-function renderTarget(){const g=$('targetGrid');g.innerHTML=TYPES.map(t=>`<label>${TYPE_LABELS[t]} Negation %<input data-target="${t}" type="number" min="-100" max="100" step="1" value="${Number(target[t])||0}"></label>`).join('');g.querySelectorAll('input').forEach(i=>i.addEventListener('input',()=>{target[i.dataset.target]=Number(i.value)||0;saveCustom();renderDamageOnly()}))}
+
 function renderDamageOnly(){renderStats();renderWeapons();renderAow();renderSpells()}
-function renderAll(rebuildEffects=true){renderNotice();renderStats();renderTarget();if(rebuildEffects)renderEffects();renderWeapons();renderAow();renderSpells()}
+function renderAll(rebuildEffects=true){renderNotice();renderStats();renderBossTarget();if(rebuildEffects)renderEffects();renderWeapons();renderAow();renderSpells()}
 $('allBuffs').addEventListener('click',()=>{const detected=detectEffects();EFFECTS.forEach(e=>effectState[e.id]=!!detected[e.id]);saveCustom();renderAll()});
 $('clearBuffs').addEventListener('click',()=>{EFFECTS.forEach(e=>effectState[e.id]=false);saveCustom();renderAll()});
 $('demoBtn').addEventListener('click',()=>{payload=demoPayload();custom.demo=true;effectState=detectEffects();aowOverrides={};spellOverrides={};saveCustom();renderAll()});
-$('resetBtn').addEventListener('click',()=>{localStorage.removeItem(CUSTOM_KEY);custom={};payload=readPayload();effectState=detectEffects();target={physical:0,magic:0,fire:0,lightning:0,holy:0};aowOverrides={};spellOverrides={};renderAll()});
+$('resetBtn').addEventListener('click',()=>{localStorage.removeItem(CUSTOM_KEY);custom={};payload=readPayload();effectState=detectEffects();selectedBossId='';aowOverrides={};spellOverrides={};renderAll()});
 init();
 })();
 </script>
