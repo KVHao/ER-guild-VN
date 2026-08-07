@@ -3,8 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta name="theme-color" content="#0b100c">
-<title>Elden Ring Damage Calculator v1.5.5a</title>
+<title>Elden Ring Damage Calculator v1.5.5b</title>
 <style>
 :root{
   --bg:#060a07;--panel:#0c120e;--panel2:#111912;--panel3:#080d09;
@@ -51,11 +54,11 @@ button{cursor:pointer}
 @media(max-width:470px){.header{display:block}.version{display:inline-block;margin-top:12px}.stats{grid-template-columns:repeat(2,1fr)}.damage-grid{grid-template-columns:1fr}.breakdown{grid-template-columns:repeat(2,1fr)}.controls{grid-template-columns:1fr}.control.wide{grid-column:auto}}
 </style>
 </head>
-<body>
+<body data-build="1.5.5b">
 <div class="wrap">
   <header class="header">
     <div><div class="eyebrow">Elden Ring Companion · Damage Lab</div><div class="title">Chỉ số sát thương đầu ra</div><div class="sub">Vũ khí · Ash of War · phép · tự đọc Build từ Planner</div></div>
-    <div class="version">V1.5.5a · MỞ TỪ TRANG CHÍNH</div>
+    <div class="version">V1.5.5b · MỞ TỪ TRANG CHÍNH</div>
   </header>
   <div class="notice" id="importNotice"><b>Đang đọc Build…</b></div>
   <div class="toolbar">
@@ -77,7 +80,7 @@ button{cursor:pointer}
       <div class="sidebox"><h3>Boss mục tiêu</h3><div class="boss-picker"><label for="bossSelect">Chọn Boss lớn</label><select id="bossSelect"></select><div id="bossTargetCard"></div></div></div>
     </aside>
   </div>
-  <div class="footer">Develop and build by KVHao · V1.5.5a · Weapon + AoW + Spell Calculator</div>
+  <div class="footer">Develop and build by KVHao · V1.5.5b · Weapon + AoW + Spell Calculator</div>
 </div>
 <script>
 (() => {
@@ -105,7 +108,7 @@ const AOW_PRESETS={
   "sword dance":{mv:90,hits:2,mode:'weapon',fp:6,stance:10,kind:'weapon',note:'Ước tính 2 hit đầu; có thể chỉnh MV/hit.'},
   "double slash":{mv:75,hits:2,mode:'weapon',fp:6,stance:6,kind:'weapon'},
   "spinning slash":{mv:100,hits:2,mode:'weapon',fp:6,stance:10,kind:'weapon'},
-  "wild strikes":{mv:70,hits:4,mode:'weapon',fp:2,stance:6,kind:'weapon',note:'Số hit mặc định 4 để mô phỏng; chỉnh theo chuỗi thực tế.'},
+  "wild strikes":{mv:70,hits:4,mode:'weapon',fp:2,stance:6,kind:'weapon',note:'Dữ liệu chuỗi hit tự động của preset.'},
   "bloodhound's finesse":{mv:180,hits:1,mode:'weapon',fp:8,stance:15,kind:'weapon'},
   "royal knight's resolve":{mv:100,hits:1,mode:'weapon',fp:15,stance:0,kind:'buff',note:'Đây là skill buff; MV mặc định chỉ dùng để mô phỏng đòn kế tiếp.'},
   "determination":{mv:100,hits:1,mode:'weapon',fp:10,stance:0,kind:'buff',note:'Đây là skill buff; nhập hệ số đòn kế tiếp nếu cần.'},
